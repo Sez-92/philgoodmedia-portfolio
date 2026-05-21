@@ -664,7 +664,7 @@ export default function Portfolio() {
         <div className="section">
           <FadeIn>
             <div className="section-label">Werdegang</div>
-            <h2 className="section-title">ERFAH<br />RUNG</h2>
+            <h2 className="section-title">ERFAHRUNG</h2>
           </FadeIn>
           <FadeIn delay={100}>
             <div className="exp-item">
