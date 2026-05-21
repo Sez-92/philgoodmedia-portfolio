@@ -617,7 +617,7 @@ export default function Portfolio() {
         <div className="section">
           <FadeIn>
             <div className="section-label">Über mich</div>
-            <h2 className="section-title">PERSÖN<br />LICH</h2>
+            <h2 className="section-title">PERSÖNLICH</h2>
           </FadeIn>
           <div className="about-grid">
             <FadeIn delay={100}>
