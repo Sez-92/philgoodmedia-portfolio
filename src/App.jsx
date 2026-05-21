@@ -846,7 +846,7 @@ export default function App() {
         <div className="section">
           <FadeIn>
             <div className="section-label">Über mich</div>
-            <h2 className="section-title">PERSÖN<br />LICH</h2>
+            <h2 className="section-title">PERSÖNLICH</h2>
           </FadeIn>
           <div className="about-grid">
             <FadeIn delay={80}>
@@ -888,7 +888,7 @@ export default function App() {
         <div className="section">
           <FadeIn>
             <div className="section-label">Werdegang</div>
-            <h2 className="section-title">ERFAH<br />RUNG</h2>
+            <h2 className="section-title">ERFAHRUNG</h2>
           </FadeIn>
           <FadeIn delay={100}>
             <div className="exp-block">
