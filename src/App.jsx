@@ -401,23 +401,14 @@ export default function Portfolio() {
             <div className="exp-item">
               <div>
                 <div className="exp-company">Bounty Communication Group</div>
-                <div className="exp-period">2024 — 2026</div>
+                <div className="exp-period">2024 — heute</div>
               </div>
               <ul className="exp-bullets">
-                <li>Entwicklung und Gestaltung von Kampagnen für Social Media, Google Ads und Print für den Flughafen Bremen und Flughafen Salzburg – von der Idee bis zur finalen Umsetzung.</li>
-                <li>Entwurf und Layout umfangreicher Printmedien: saisonales Buch für Vonovia, Nachhaltigkeitsbericht für Klostermann Hamm – mit klarem, markengerechtem Design.</li>
-                <li>Schärfung von Markenauftritten über verschiedene Kanäle (Social, OOH, Print) mit Fokus auf klare Gestaltung, Wiedererkennbarkeit und effiziente Teamarbeit.</li>
+                <li>Kreative Betreuung des Flughafen Salzburg – Kampagnen für Social Media, Google Ads und Print, von der Idee bis zur finalen Umsetzung.</li>
+                <li>Visuelle Verantwortung für Events und Festivals: vom Konzept über den Markenauftritt bis zur kanalübergreifenden Umsetzung.</li>
+                <li>Kampagnenentwicklung für die Volksbank Dortmund – Print, Digital und OOH mit klarem, wiedererkennbarem Markenauftritt.</li>
+                <li>Entwurf und Layout umfangreicher Printmedien: saisonales Buch für Vonovia, Nachhaltigkeitsbericht für Klostermann Hamm.</li>
               </ul>
-            </div>
-          </FadeIn>
-          <FadeIn delay={150}>
-            <div style={{ marginTop: 48, padding: "32px 40px", background: "rgba(212,237,42,0.06)", borderLeft: `3px solid ${LIME}` }}>
-              <div style={{ fontFamily: "'Space Mono', monospace", fontSize: 11, letterSpacing: 2, textTransform: "uppercase", color: LIME, marginBottom: 12 }}>Bewerbung</div>
-              <p style={{ fontSize: 15, lineHeight: 1.7, color: "#BBBBB5", fontWeight: 300 }}>
-                Aktuell bewerbe ich mich bei <strong style={{ color: WHITE }}>BIOGENA</strong> als Art Director.
-                Deren Mission „My best health" spricht mich total an – Gesundheit, Wohlbefinden
-                und People-Planet-Profit sind Werte, die ich aus tiefstem Herzen teile. Salzburg ruft.
-              </p>
             </div>
           </FadeIn>
         </div>
