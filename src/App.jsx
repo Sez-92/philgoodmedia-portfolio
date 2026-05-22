@@ -421,9 +421,35 @@ function MobileCardScroll() {
 
 /* ── VOLKSBANK PAGE ── */
 function VolksbankPage({ onBack }) {
+  const [phase, setPhase] = useState("hidden"); // hidden → angled → straight → browser
   const [iframeLoaded, setIframeLoaded] = useState(false);
+
+  useEffect(() => {
+    // Sequence: wait → show angled → rotate to front → swap to browser
+    const t1 = setTimeout(() => setPhase("angled"),   200);
+    const t2 = setTimeout(() => setPhase("straight"), 900);
+    const t3 = setTimeout(() => setPhase("browser"),  2200);
+    return () => { clearTimeout(t1); clearTimeout(t2); clearTimeout(t3); };
+  }, []);
+
+  const laptopTransform = {
+    hidden:   "perspective(1400px) rotateY(-38deg) rotateX(4deg) scale(0.78) translateX(120px)",
+    angled:   "perspective(1400px) rotateY(-38deg) rotateX(4deg) scale(0.78) translateX(120px)",
+    straight: "perspective(1400px) rotateY(0deg)  rotateX(0deg) scale(1)    translateX(0px)",
+    browser:  "perspective(1400px) rotateY(0deg)  rotateX(0deg) scale(1)    translateX(0px)",
+  };
+
+  const laptopTransition = {
+    hidden:   "none",
+    angled:   "transform 0s, opacity 0.5s ease",
+    straight: "transform 1.1s cubic-bezier(0.23,1,0.32,1), opacity 0.5s ease",
+    browser:  "transform 1.1s cubic-bezier(0.23,1,0.32,1), opacity 0.6s ease",
+  };
+
   return (
     <div style={{ minHeight:"100vh" }}>
+
+      {/* HERO */}
       <section className="cs-hero">
         <div style={{ position:"absolute", inset:0, background:"radial-gradient(ellipse 55% 65% at 92% 35%, rgba(30,90,200,0.08) 0%, transparent 68%)", pointerEvents:"none" }} />
         <div style={{ position:"absolute", inset:0, backgroundImage:"radial-gradient(circle, rgba(212,237,42,0.07) 1px, transparent 1px)", backgroundSize:"60px 60px", WebkitMaskImage:"radial-gradient(ellipse 50% 70% at 5% 75%, black, transparent)", maskImage:"radial-gradient(ellipse 50% 70% at 5% 75%, black, transparent)", pointerEvents:"none" }} />
@@ -445,54 +471,84 @@ function VolksbankPage({ onBack }) {
         </div>
       </section>
 
-      {/* LAPTOP MOCKUP */}
-      <section style={{ padding:"100px 40px 0" }}>
+      {/* ANIMATED LAPTOP → BROWSER */}
+      <section style={{ padding:"100px 40px 0", overflow:"hidden" }}>
         <div style={{ maxWidth:1100, margin:"0 auto" }}>
           <div className="section-label">Das Projekt</div>
           <h2 className="section-title">VERLAUF DER<br />VERÄNDERUNG</h2>
-          <p style={{ fontSize:15, lineHeight:1.8, color:"#BBBBB5", fontWeight:300, maxWidth:520, marginTop:-36, marginBottom:60 }}>Geschäftsbericht der Dortmunder Volksbank – Leitmotiv, Key Visual, Web und Print.</p>
-          <div style={{ maxWidth:900, margin:"0 auto" }}>
-            <img src="/vob_laptop.png" alt="Dortmunder Volksbank" style={{ width:"100%", display:"block", filter:"drop-shadow(0 40px 80px rgba(0,0,0,0.8))" }} />
-          </div>
-        </div>
-      </section>
+          <p style={{ fontSize:15, lineHeight:1.8, color:"#BBBBB5", fontWeight:300, maxWidth:520, marginTop:-36, marginBottom:72 }}>
+            Geschäftsbericht der Dortmunder Volksbank – Leitmotiv, Key Visual, Web und Print.
+          </p>
 
-      {/* LIVE WEBSITE EMBED */}
-      <section style={{ padding:"80px 0 0" }}>
-        <div style={{ maxWidth:1100, margin:"0 auto", padding:"0 40px 32px", display:"flex", alignItems:"flex-end", justifyContent:"space-between", flexWrap:"wrap", gap:16 }}>
-          <div>
-            <div className="section-label">Live Website</div>
-            <h2 style={{ fontFamily:"'Bebas Neue',sans-serif", fontSize:"clamp(36px,5vw,72px)", lineHeight:0.9, color:WHITE }}>ONLINE<br />ANSEHEN</h2>
-          </div>
-          <a href="https://geschaeftsbericht.dovoba.de/" target="_blank" rel="noreferrer" className="btn-outline" style={{ flexShrink:0, marginBottom:8 }}>↗ Im Browser öffnen</a>
-        </div>
-        {/* Browser chrome */}
-        <div style={{ margin:"0 40px", borderRadius:"8px 8px 0 0", overflow:"hidden", border:"1px solid rgba(255,255,255,0.1)", boxShadow:"0 -20px 60px rgba(0,0,0,0.5)" }}>
-          <div style={{ background:"#1e1e1e", padding:"12px 20px", display:"flex", alignItems:"center", gap:12, borderBottom:"1px solid rgba(255,255,255,0.08)" }}>
-            <div style={{ display:"flex", gap:6 }}>
-              {["#ff5f57","#ffbd2e","#28c840"].map(c => <div key={c} style={{ width:12, height:12, borderRadius:"50%", background:c, opacity:0.7 }} />)}
+          {/* Stage */}
+          <div style={{ position:"relative", minHeight:560 }}>
+
+            {/* LAPTOP – visible in phases: angled + straight, fades out at browser */}
+            <div style={{
+              position: phase === "browser" ? "absolute" : "relative",
+              top: 0, left: 0, right: 0,
+              opacity: phase === "hidden" ? 0 : phase === "browser" ? 0 : 1,
+              transform: laptopTransform[phase],
+              transition: laptopTransition[phase],
+              transformOrigin: "center center",
+              willChange: "transform, opacity",
+              maxWidth: 900,
+              margin: "0 auto",
+              pointerEvents: phase === "browser" ? "none" : "auto",
+            }}>
+              <img
+                src="/vob_laptop.png"
+                alt="Dortmunder Volksbank"
+                style={{ width:"100%", display:"block", filter:"drop-shadow(0 40px 80px rgba(0,0,0,0.85))" }}
+              />
             </div>
-            <div style={{ flex:1, background:"rgba(255,255,255,0.06)", borderRadius:4, padding:"5px 14px", fontFamily:"'Space Mono',monospace", fontSize:11, color:GRAY }}>geschaeftsbericht.dovoba.de</div>
-          </div>
-          <div style={{ position:"relative" }}>
-            {!iframeLoaded && (
-              <div style={{ position:"absolute", inset:0, background:"#161616", display:"flex", flexDirection:"column", alignItems:"center", justifyContent:"center", gap:16, zIndex:2, minHeight:500 }}>
-                <div style={{ width:36, height:36, border:`2px solid rgba(212,237,42,0.2)`, borderTopColor:LIME, borderRadius:"50%", animation:"spin 0.8s linear infinite" }} />
-                <span style={{ fontFamily:"'Space Mono',monospace", fontSize:10, letterSpacing:3, textTransform:"uppercase", color:GRAY }}>Website wird geladen…</span>
+
+            {/* BROWSER – fades in at phase browser */}
+            <div style={{
+              opacity: phase === "browser" ? 1 : 0,
+              transform: phase === "browser" ? "translateY(0)" : "translateY(30px)",
+              transition: "opacity 0.7s ease, transform 0.7s ease",
+              pointerEvents: phase === "browser" ? "auto" : "none",
+            }}>
+              {/* Top bar */}
+              <div style={{ display:"flex", alignItems:"center", justifyContent:"space-between", marginBottom:24, flexWrap:"wrap", gap:12 }}>
+                <div className="section-label" style={{ margin:0 }}>Live Website</div>
+                <a href="https://geschaeftsbericht.dovoba.de/" target="_blank" rel="noreferrer" className="btn-outline" style={{ flexShrink:0 }}>↗ Im Browser öffnen</a>
               </div>
-            )}
-            <iframe
-              src="https://geschaeftsbericht.dovoba.de/"
-              title="Dortmunder Volksbank"
-              onLoad={() => setIframeLoaded(true)}
-              style={{ width:"100%", height:"72vh", minHeight:520, border:"none", display:"block" }}
-              loading="lazy"
-            />
+
+              {/* Browser chrome + iframe */}
+              <div style={{ borderRadius:"10px 10px 0 0", overflow:"hidden", border:"1px solid rgba(255,255,255,0.12)", boxShadow:"0 -20px 80px rgba(0,0,0,0.6)" }}>
+                <div style={{ background:"#1e1e1e", padding:"12px 20px", display:"flex", alignItems:"center", gap:12, borderBottom:"1px solid rgba(255,255,255,0.08)" }}>
+                  <div style={{ display:"flex", gap:6 }}>
+                    {["#ff5f57","#ffbd2e","#28c840"].map(c => <div key={c} style={{ width:12, height:12, borderRadius:"50%", background:c, opacity:0.8 }} />)}
+                  </div>
+                  <div style={{ flex:1, background:"rgba(255,255,255,0.07)", borderRadius:6, padding:"5px 16px", fontFamily:"'Space Mono',monospace", fontSize:11, color:GRAY, letterSpacing:0.5 }}>
+                    geschaeftsbericht.dovoba.de
+                  </div>
+                  <div style={{ width:20 }} />
+                </div>
+                <div style={{ position:"relative" }}>
+                  {!iframeLoaded && (
+                    <div style={{ position:"absolute", inset:0, background:"#161616", display:"flex", flexDirection:"column", alignItems:"center", justifyContent:"center", gap:16, zIndex:2, minHeight:540 }}>
+                      <div style={{ width:36, height:36, border:`2px solid rgba(212,237,42,0.2)`, borderTopColor:LIME, borderRadius:"50%", animation:"spin 0.8s linear infinite" }} />
+                      <span style={{ fontFamily:"'Space Mono',monospace", fontSize:10, letterSpacing:3, textTransform:"uppercase", color:GRAY }}>Website wird geladen…</span>
+                    </div>
+                  )}
+                  <iframe
+                    src="https://geschaeftsbericht.dovoba.de/"
+                    title="Dortmunder Volksbank – Verlauf der Veränderung"
+                    onLoad={() => setIframeLoaded(true)}
+                    style={{ width:"100%", height:"75vh", minHeight:540, border:"none", display:"block" }}
+                    loading="lazy"
+                  />
+                </div>
+              </div>
+            </div>
           </div>
         </div>
       </section>
 
-      <div style={{ padding:"52px 40px", borderTop:"1px solid rgba(255,255,255,0.06)", display:"flex", alignItems:"center", justifyContent:"space-between", flexWrap:"wrap", gap:24 }}>
+      <div style={{ padding:"52px 40px", marginTop:60, borderTop:"1px solid rgba(255,255,255,0.06)", display:"flex", alignItems:"center", justifyContent:"space-between", flexWrap:"wrap", gap:24 }}>
         <div style={{ display:"flex", alignItems:"center", gap:16 }}>
           <div style={{ width:10, height:10, background:LIME, borderRadius:"50%", animation:"pulse 2s ease-in-out infinite" }} />
           <span style={{ fontFamily:"'Space Mono',monospace", fontSize:11, letterSpacing:2, textTransform:"uppercase", color:GRAY }}>Brand Design · Web · Print · 2024</span>
