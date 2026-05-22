@@ -138,6 +138,7 @@ const styles = `
   .mobile-card::before { content:''; position:absolute; top:0; left:0; right:0; height:2px; background:${LIME}; }
   .mobile-card-hint { text-align:center; padding:14px 0 4px; font-family:'Space Mono',monospace; font-size:9px; letter-spacing:3px; text-transform:uppercase; color:rgba(255,255,255,0.2); }
   @keyframes pulse { 0%,100%{transform:scale(1);opacity:1;box-shadow:0 0 0 0 rgba(212,237,42,0.5)} 50%{transform:scale(1.35);opacity:0.7;box-shadow:0 0 0 10px rgba(212,237,42,0)} }
+  @keyframes spin { to { transform: rotate(360deg); } }
   @media (max-width:900px) {
     html,body { cursor:auto; }
     .cursor-dot,.cursor-ring { display:none; }
@@ -304,6 +305,7 @@ function DraggableMarquee({ items, onNavigate, onDragStateChange }) {
   const handleItemClick = (item, e) => {
     if (hasDragged.current) { e.stopPropagation(); return; }
     if (item === "Glutenfry") onNavigate("glutenfry");
+    if (item === "Dortmunder Volksbank") onNavigate("volksbank");
   };
 
   return (
@@ -321,7 +323,7 @@ function DraggableMarquee({ items, onNavigate, onDragStateChange }) {
       <div style={{ overflow: "hidden" }}>
         <div ref={trackRef} style={{ display: "inline-flex", whiteSpace: "nowrap" }}>
           {[...items, ...items].map((item, i) =>
-            item === "Glutenfry" ? (
+            (item === "Glutenfry" || item === "Dortmunder Volksbank") ? (
               <span key={i} className="marquee-item clickable" onClick={e => handleItemClick(item, e)}>
                 {item}<span className="marquee-badge">Case Study</span><span className="marquee-sep">✦</span>
               </span>
@@ -413,6 +415,94 @@ function MobileCardScroll() {
         ))}
       </div>
 
+    </div>
+  );
+}
+
+/* ── VOLKSBANK PAGE ── */
+function VolksbankPage({ onBack }) {
+  const [iframeLoaded, setIframeLoaded] = useState(false);
+  return (
+    <div style={{ minHeight:"100vh" }}>
+      <section className="cs-hero">
+        <div style={{ position:"absolute", inset:0, background:"radial-gradient(ellipse 55% 65% at 92% 35%, rgba(30,90,200,0.08) 0%, transparent 68%)", pointerEvents:"none" }} />
+        <div style={{ position:"absolute", inset:0, backgroundImage:"radial-gradient(circle, rgba(212,237,42,0.07) 1px, transparent 1px)", backgroundSize:"60px 60px", WebkitMaskImage:"radial-gradient(ellipse 50% 70% at 5% 75%, black, transparent)", maskImage:"radial-gradient(ellipse 50% 70% at 5% 75%, black, transparent)", pointerEvents:"none" }} />
+        <div style={{ position:"absolute", bottom:-40, right:-20, fontFamily:"'Bebas Neue',sans-serif", fontSize:"clamp(80px,14vw,220px)", color:"rgba(255,255,255,0.018)", pointerEvents:"none", userSelect:"none", letterSpacing:-4, lineHeight:0.85 }}>VERLAUF<br />DER<br />VERÄNDERUNG</div>
+        <div style={{ position:"relative", zIndex:1 }}>
+          <div className="section-label" style={{ animation:"slideUp 0.7s 0.1s both" }}>Case Study · Bounty Communication Group · 2024</div>
+          <div style={{ fontFamily:"'Bebas Neue',sans-serif", fontSize:"clamp(60px,11vw,180px)", lineHeight:0.82, letterSpacing:-4, animation:"slideUp 0.7s 0.2s both" }}>
+            <span style={{ color:WHITE, display:"block" }}>DORTMUNDER</span>
+            <span style={{ color:LIME, display:"block" }}>VOLKSBANK</span>
+          </div>
+          <div style={{ display:"flex", gap:60, marginTop:48, paddingTop:32, borderTop:"1px solid rgba(255,255,255,0.08)", animation:"slideUp 0.7s 0.35s both", flexWrap:"wrap" }}>
+            {[{l:"Jahr",v:"2024"},{l:"Kategorie",v:"Brand Design · Web · Print"},{l:"Rolle",v:"Art Direction"},{l:"Projekt",v:"Verlauf der Veränderung"}].map(m => (
+              <div key={m.l}>
+                <label style={{ fontFamily:"'Space Mono',monospace", fontSize:9, letterSpacing:2, textTransform:"uppercase", color:GRAY, display:"block", marginBottom:6 }}>{m.l}</label>
+                <span style={{ fontSize:15, color:WHITE, fontWeight:500 }}>{m.v}</span>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* LAPTOP MOCKUP */}
+      <section style={{ padding:"100px 40px 0" }}>
+        <div style={{ maxWidth:1100, margin:"0 auto" }}>
+          <div className="section-label">Das Projekt</div>
+          <h2 className="section-title">VERLAUF DER<br />VERÄNDERUNG</h2>
+          <p style={{ fontSize:15, lineHeight:1.8, color:"#BBBBB5", fontWeight:300, maxWidth:520, marginTop:-36, marginBottom:60 }}>Geschäftsbericht der Dortmunder Volksbank – Leitmotiv, Key Visual, Web und Print.</p>
+          <div style={{ maxWidth:900, margin:"0 auto" }}>
+            <img src="/vob_laptop.png" alt="Dortmunder Volksbank" style={{ width:"100%", display:"block", filter:"drop-shadow(0 40px 80px rgba(0,0,0,0.8))" }} />
+          </div>
+        </div>
+      </section>
+
+      {/* LIVE WEBSITE EMBED */}
+      <section style={{ padding:"80px 0 0" }}>
+        <div style={{ maxWidth:1100, margin:"0 auto", padding:"0 40px 32px", display:"flex", alignItems:"flex-end", justifyContent:"space-between", flexWrap:"wrap", gap:16 }}>
+          <div>
+            <div className="section-label">Live Website</div>
+            <h2 style={{ fontFamily:"'Bebas Neue',sans-serif", fontSize:"clamp(36px,5vw,72px)", lineHeight:0.9, color:WHITE }}>ONLINE<br />ANSEHEN</h2>
+          </div>
+          <a href="https://geschaeftsbericht.dovoba.de/" target="_blank" rel="noreferrer" className="btn-outline" style={{ flexShrink:0, marginBottom:8 }}>↗ Im Browser öffnen</a>
+        </div>
+        {/* Browser chrome */}
+        <div style={{ margin:"0 40px", borderRadius:"8px 8px 0 0", overflow:"hidden", border:"1px solid rgba(255,255,255,0.1)", boxShadow:"0 -20px 60px rgba(0,0,0,0.5)" }}>
+          <div style={{ background:"#1e1e1e", padding:"12px 20px", display:"flex", alignItems:"center", gap:12, borderBottom:"1px solid rgba(255,255,255,0.08)" }}>
+            <div style={{ display:"flex", gap:6 }}>
+              {["#ff5f57","#ffbd2e","#28c840"].map(c => <div key={c} style={{ width:12, height:12, borderRadius:"50%", background:c, opacity:0.7 }} />)}
+            </div>
+            <div style={{ flex:1, background:"rgba(255,255,255,0.06)", borderRadius:4, padding:"5px 14px", fontFamily:"'Space Mono',monospace", fontSize:11, color:GRAY }}>geschaeftsbericht.dovoba.de</div>
+          </div>
+          <div style={{ position:"relative" }}>
+            {!iframeLoaded && (
+              <div style={{ position:"absolute", inset:0, background:"#161616", display:"flex", flexDirection:"column", alignItems:"center", justifyContent:"center", gap:16, zIndex:2, minHeight:500 }}>
+                <div style={{ width:36, height:36, border:`2px solid rgba(212,237,42,0.2)`, borderTopColor:LIME, borderRadius:"50%", animation:"spin 0.8s linear infinite" }} />
+                <span style={{ fontFamily:"'Space Mono',monospace", fontSize:10, letterSpacing:3, textTransform:"uppercase", color:GRAY }}>Website wird geladen…</span>
+              </div>
+            )}
+            <iframe
+              src="https://geschaeftsbericht.dovoba.de/"
+              title="Dortmunder Volksbank"
+              onLoad={() => setIframeLoaded(true)}
+              style={{ width:"100%", height:"72vh", minHeight:520, border:"none", display:"block" }}
+              loading="lazy"
+            />
+          </div>
+        </div>
+      </section>
+
+      <div style={{ padding:"52px 40px", borderTop:"1px solid rgba(255,255,255,0.06)", display:"flex", alignItems:"center", justifyContent:"space-between", flexWrap:"wrap", gap:24 }}>
+        <div style={{ display:"flex", alignItems:"center", gap:16 }}>
+          <div style={{ width:10, height:10, background:LIME, borderRadius:"50%", animation:"pulse 2s ease-in-out infinite" }} />
+          <span style={{ fontFamily:"'Space Mono',monospace", fontSize:11, letterSpacing:2, textTransform:"uppercase", color:GRAY }}>Brand Design · Web · Print · 2024</span>
+        </div>
+        <button className="btn-outline" onClick={onBack}>← Zurück zur Übersicht</button>
+      </div>
+      <footer className="footer">
+        <div className="footer-name">PHILIP SPIEKERMANN</div>
+        <div className="footer-copy">Case Study · Dortmunder Volksbank · 2024</div>
+      </footer>
     </div>
   );
 }
@@ -559,8 +649,8 @@ export default function Portfolio() {
       </div>
 
       <nav className={"nav" + (scrolled ? " scrolled" : "")}>
-        <div className="nav-logo" onClick={() => currentPage==="glutenfry" ? navigateTo("home") : scrollTo("hero")}>PS</div>
-        {currentPage === "glutenfry" ? (
+        <div className="nav-logo" onClick={() => navigateTo("home")}>PS</div>
+        {(currentPage === "glutenfry" || currentPage === "volksbank") ? (
           <button className="nav-back" onClick={() => navigateTo("home")}><span className="nav-back-arrow">←</span> Alle Projekte</button>
         ) : (
           <div className="nav-links">
@@ -572,7 +662,9 @@ export default function Portfolio() {
       </nav>
 
       <div style={{ opacity:transitioning?0:1, transform:transitioning?"translateY(22px)":"none", transition:"opacity 0.42s ease,transform 0.42s ease" }}>
-        {currentPage === "glutenfry" ? (
+        {currentPage === "volksbank" ? (
+          <VolksbankPage onBack={() => navigateTo("home")} />
+        ) : currentPage === "glutenfry" ? (
           <GlutenfryPage onBack={() => navigateTo("home")} />
         ) : (
           <>
