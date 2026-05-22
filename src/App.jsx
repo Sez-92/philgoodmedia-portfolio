@@ -546,7 +546,7 @@ export default function Portfolio() {
     return () => window.removeEventListener("scroll", handle);
   }, []);
 
-  const marqueeItems = ["Glutenfry","Flughafen Salzburg","Events & Festivals","Volksbank Dortmund","Vonovia","Klostermann Hamm","Brand Design","Print","Digital","KI & Prompting"];
+  const marqueeItems = ["Glutenfry","Vonovia","Dortmunder Volksbank","Salzburger Flughafen","Mopla"];
   const cursorClass = "cursor-ring" + (hovering && !draggingMarquee ? " hovering" : "") + (draggingMarquee ? " grabbing" : "");
 
   return (
@@ -611,14 +611,15 @@ export default function Portfolio() {
                   <FadeIn delay={100}>
                     <div className="about-quote">„Medien sind<br />mein Zuhause."</div>
                     <p className="about-text">Ich bin Art Director aus dem Ruhrgebiet und fühle mich am wohlsten dort, wo es nicht nach Schema F läuft. Ich arbeite gerne im Team, übernehme Verantwortung und begleite Projekte mit Blick fürs große Ganze – vom Markenaufbau bis zur Optimierung interner Prozesse.</p>
+                    <p className="about-text" style={{ marginTop:16 }}>Durch meine Erfahrung in der Zusammenarbeit mit unterschiedlichen Kunden und Teams habe ich gelernt, flexibel zu denken, strukturiert zu arbeiten und auch in dynamischen Situationen den Überblick zu behalten.</p>
                     <p className="about-text" style={{ marginTop:16 }}>KI nutze ich dabei gern als Sparringspartner, um schneller zu Lösungen zu kommen und kreative Wege konsequent weiterzudenken.</p>
                     <div className="interests">
-                      {["Hip-Hop","Klassische Musik","Calisthenics","Yoga","Kochen","Interior","Wandern","Nachhaltigkeit"].map(i => <div key={i} className="interest-tag">{i}</div>)}
+                      {["Hip-Hop","Klassische Musik","Calisthenics","Yoga","Meditation","BMX","Kochen","Interior","Wandern","Nachhaltigkeit"].map(i => <div key={i} className="interest-tag">{i}</div>)}
                     </div>
                   </FadeIn>
                   <FadeIn delay={200}>
                     <div className="about-stats">
-                      {[{num:2,suffix:"+",label:"Jahre Erfahrung"},{num:3,suffix:"",label:"Tool-Suiten"},{num:4,suffix:"+",label:"Grosse Kunden"},{num:"INF",suffix:"",label:"Kreative Ideen"}].map(s => (
+                      {[{num:2,suffix:"+",label:"Jahre Erfahrung"},{num:3,suffix:"",label:"Tool-Suiten"},{num:4,suffix:"+",label:"Großkunden"},{num:"INF",suffix:"",label:"Kreative Ideen"}].map(s => (
                         <div key={s.label} className="stat-box">
                           <div className="stat-number"><Counter target={s.num} suffix={s.suffix} /></div>
                           <div className="stat-label">{s.label}</div>
@@ -639,10 +640,18 @@ export default function Portfolio() {
                   <div className="exp-item">
                     <div><div className="exp-company">Bounty Communication Group</div><div className="exp-period">2024 — heute</div></div>
                     <ul className="exp-bullets">
-                      <li>Kreative Betreuung des Flughafen Salzburg – Kampagnen für Social Media, Google Ads und Print, von der Idee bis zur finalen Umsetzung.</li>
-                      <li>Visuelle Verantwortung für Events und Festivals: vom Konzept über den Markenauftritt bis zur kanalübergreifenden Umsetzung.</li>
-                      <li>Kampagnenentwicklung für die Volksbank Dortmund – Print, Digital und OOH mit klarem, wiedererkennbarem Markenauftritt.</li>
-                      <li>Entwurf und Layout umfangreicher Printmedien: saisonales Buch für Vonovia, Nachhaltigkeitsbericht für Klostermann Hamm.</li>
+                      <li>Kreative Betreuung des Salzburger Flughafens – Entwicklung und Umsetzung kanalübergreifender Kampagnen für Social Media, Google Ads und Printmedien – von der ersten Idee über das visuelle Konzept bis zur finalen Ausspielung.</li>
+                      <li>Entwicklung und Umsetzung einer Flight-Kampagne für Wizz Air im Auftrag des Flughafen Dortmund zur gezielten Routen- und Zielgruppenbewerbung – inklusive Konzept, Key Visual und kanalübergreifender Ausspielung im digitalen und analogen Raum.</li>
+                      <li>Konzeption und Gestaltung visueller Auftritte für Events und Festivals – inklusive Markenentwicklung, Key Visuals, Werbemitteln und konsistenter Kommunikation über verschiedene Kanäle hinweg.</li>
+                      <li>Inhaltliche und visuelle Konzeption des Geschäftsberichts der Dortmunder Volksbank mit dem Titel „Verlauf der Veränderung" – Entwicklung des gestalterischen Leitmotivs inklusive Key Visual als Basis für Webdesign, Templates und weiterführende Kommunikationsmaßnahmen.</li>
+                      <li>Gestaltung ergänzender Printmaßnahmen rund um die Vertreterversammlung der Dortmunder Volksbank, darunter Einladungen, Wahlordnung, Stimmkarten und begleitende Veranstaltungsmedien.</li>
+                      <li>Entwicklung aufmerksamkeitsstarker Kampagnen für die Dortmunder Volksbank – Umsetzung von Print-, Digital- und OOH-Maßnahmen mit klarem Fokus auf Wiedererkennbarkeit und Markenstärke.</li>
+                      <li>Gestaltung eines saisonalen Buchprojekts „Vonovia x VfL Bochum" – visuelle Konzeption und Layout einer aufmerksamkeitsstarken Publikation an der Schnittstelle von Marke, Sport und Kommunikation.</li>
+                      <li>Verantwortung für die kreative Entwicklung von Kampagnen und Markenauftritten – von der Konzeption bis zur Reinzeichnung und Produktionsabwicklung.</li>
+                      <li>Gestaltung und Layout des Nachhaltigkeitsberichts der H. Klostermann Baugesellschaft mbH sowie weiterer umfangreicher Printpublikationen mit inhaltlichem und gestalterischem Anspruch.</li>
+                      <li>Entwicklung kreativer Ideen und visueller Konzepte mit Gespür für Trends, Zielgruppen und markengerechte Kommunikation.</li>
+                      <li>Strukturierte Zusammenarbeit mit Kunden, internen Teams und externen Dienstleistern in dynamischen Projektumfeldern.</li>
+                      <li>Sicherer Umgang mit digitalen Tools, KI-gestützten Workflows und modernen Gestaltungsprozessen zur effizienten Umsetzung kreativer Projekte.</li>
                     </ul>
                   </div>
                 </FadeIn>
