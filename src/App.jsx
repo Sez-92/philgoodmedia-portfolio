@@ -117,7 +117,7 @@ const styles = `
   .marquee-badge { font-family:'Space Mono',monospace; font-size:8px; letter-spacing:2px; background:${LIME}; color:${BLACK}; padding:2px 7px; text-transform:uppercase; font-weight:700; margin-left:8px; transition:background 0.3s; }
   .marquee-item.clickable:hover .marquee-badge { background:${WHITE}; }
   .marquee-sep { color:${LIME}; padding:0 8px; opacity:0.45; }
-  .marquee-drag-hint { text-align:center; padding-top:10px; font-family:'Space Mono',monospace; font-size:9px; letter-spacing:3px; text-transform:uppercase; color:rgba(255,255,255,0.2); pointer-events:none; }
+
   .contact-wrapper { background:rgba(255,255,255,0.03); padding:80px; text-align:center; position:relative; overflow:hidden; }
   .contact-wrapper::before { content:'"'; position:absolute; font-family:'Bebas Neue',sans-serif; font-size:400px; color:rgba(212,237,42,0.04); top:-100px; left:-30px; pointer-events:none; }
   .contact-tagline { font-family:'Space Mono',monospace; font-size:11px; letter-spacing:3px; text-transform:uppercase; color:${LIME}; margin-bottom:24px; }
@@ -331,7 +331,7 @@ function DraggableMarquee({ items, onNavigate, onDragStateChange }) {
           )}
         </div>
       </div>
-      <div className="marquee-drag-hint">← ziehen oder wischen →</div>
+
     </div>
   );
 }
@@ -412,7 +412,7 @@ function MobileCardScroll() {
           </div>
         ))}
       </div>
-      <div className="mobile-card-hint">← wischen →</div>
+
     </div>
   );
 }
@@ -457,7 +457,7 @@ function GlutenfryPage({ onBack }) {
           {GLUTENFRY_CARDS.map(card => (
             <SpreadCard key={card.id} card={card} hoveredCard={hoveredCard} setHoveredCard={setHoveredCard} />
           ))}
-          <p style={{ position:"absolute", bottom:-40, left:0, right:0, textAlign:"center", fontFamily:"'Space Mono',monospace", fontSize:9, letterSpacing:3, textTransform:"uppercase", color:"rgba(255,255,255,0.18)" }}>← Hover über die Karten →</p>
+
         </div>
         <div className="cs-cards-mobile" style={{ margin:"0 -40px" }}>
           <MobileCardScroll />
