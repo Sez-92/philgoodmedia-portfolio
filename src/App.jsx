@@ -1,5 +1,6 @@
 import { useState, useEffect, useRef } from "react";
-import philipPhoto from "/philip2.png";
+import philipPhoto from "/philip.png";
+import philipPhoto2 from "/philip2.png";
 
 const LIME = "#D4ED2A";
 const BLACK = "#111111";
@@ -63,10 +64,13 @@ const styles = `
   .photo-frame { position:relative; width:clamp(280px,35vw,480px); aspect-ratio:1; }
   .photo-frame::before { content:''; position:absolute; inset:-12px; border:2px solid ${LIME}; opacity:0.3; transform:rotate(3deg); transition:transform 0.6s cubic-bezier(0.23,1,0.32,1),opacity 0.4s; }
   .photo-frame:hover::before { transform:rotate(0deg); opacity:0.7; }
-  .photo-frame::after { content:''; position:absolute; bottom:-20px; right:-20px; width:80px; height:80px; background:${LIME}; z-index:0; transition:transform 0.4s cubic-bezier(0.23,1,0.32,1); }
-  .photo-frame:hover::after { transform:translate(6px,6px); }
-  .hero-photo { width:100%; height:100%; object-fit:cover; object-position:top center; display:block; position:relative; z-index:1; filter:grayscale(100%) contrast(1.1); transition:filter 0.6s; }
+  .photo-frame::after { content:''; position:absolute; top:-16px; right:-16px; width:72px; height:72px; background:${LIME}; z-index:3; transition:transform 0.4s cubic-bezier(0.23,1,0.32,1); }
+  .photo-frame:hover::after { transform:translate(5px,-5px); }
+  .hero-photo { width:100%; height:100%; object-fit:cover; object-position:top center; display:block; position:absolute; top:0; left:0; z-index:1; filter:grayscale(100%) contrast(1.1); transition:opacity 1s ease, filter 0.6s; }
+  .hero-photo.hidden { opacity:0; }
+  .hero-photo.visible { opacity:1; }
   .photo-frame:hover .hero-photo { filter:grayscale(75%) contrast(1.05); }
+  .photo-frame-inner { position:relative; width:100%; height:100%; }
   .photo-label { position:absolute; bottom:-36px; left:0; font-family:'Space Mono',monospace; font-size:10px; letter-spacing:2px; text-transform:uppercase; color:${GRAY}; }
   .scroll-hint { position:absolute; bottom:32px; left:40px; display:flex; align-items:center; gap:12px; opacity:0; animation:slideUp 0.8s 1.4s forwards; }
   .scroll-line { width:60px; height:1px; background:linear-gradient(to right,${LIME},transparent); animation:scrollPulse 2s ease-in-out infinite; }
@@ -585,6 +589,20 @@ function GlutenfryPage({ onBack }) {
 }
 
 /* ── MAIN ── */
+function PhotoSwitcher() {
+  const [show2, setShow2] = useState(false);
+  useEffect(() => {
+    const interval = setInterval(() => setShow2(v => !v), 3500);
+    return () => clearInterval(interval);
+  }, []);
+  return (
+    <>
+      <img src={philipPhoto}  alt="Philip Spiekermann" className={"hero-photo " + (show2 ? "hidden" : "visible")} />
+      <img src={philipPhoto2} alt="Philip Spiekermann" className={"hero-photo " + (show2 ? "visible" : "hidden")} />
+    </>
+  );
+}
+
 const sections = ["hero","about","experience","skills","contact"];
 
 export default function Portfolio() {
@@ -701,7 +719,9 @@ export default function Portfolio() {
               <div className="hero-right">
                 <div ref={heroRightRef} style={{ transition:"transform 0.18s ease-out" }}>
                   <div className="photo-frame">
-                    <img src={philipPhoto} alt="Philip Spiekermann" className="hero-photo" />
+                    <div className="photo-frame-inner">
+                      <PhotoSwitcher />
+                    </div>
                     <div className="photo-label">Recklinghausen · Ruhrgebiet</div>
                   </div>
                 </div>
