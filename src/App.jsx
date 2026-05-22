@@ -7,11 +7,11 @@ const WHITE = "#F5F5F0";
 const GRAY = "#888880";
 
 const GLUTENFRY_CARDS = [
-  { id: 1, label: "01 — Briefing",        title: "Der Auftrag",   desc: "Entwicklung eines modernen Markenauftritts für glutenfreie Produkte – frisch, ehrlich, unverwechselbar.", rot: -11, offX: -320, topOff: 80, zi: 1 },
-  { id: 2, label: "02 — Konzept",         title: "Die Idee",      desc: "Kein Verzicht, sondern Genuss. Frische Farben, klare Sprache, starke Bilder.", rot: -5, offX: -160, topOff: 40, zi: 2 },
-  { id: 3, label: "03 — Visual Identity", title: "Das Design",    desc: "Logo, Farbe, Typografie – ein modulares System für Print, Digital und Packaging.", rot: 0, offX: 0, topOff: 8, zi: 3 },
-  { id: 4, label: "04 — Kampagne",        title: "Die Umsetzung", desc: "Social Media, OOH, Print – konsistent und markenstark über alle Kanäle.", rot: 5, offX: 160, topOff: 40, zi: 2 },
-  { id: 5, label: "05 — Ergebnis",        title: "Das Resultat",  desc: "Ein Brand, der ankommt und beweist: glutenfrei kann groartig aussehen.", rot: 10, offX: 320, topOff: 80, zi: 1 },
+  { id: 1, label: "01 — Briefing",        title: "Der Auftrag",      desc: "Ein Restaurant das glutenfrei frittiert – und dafür einen Brand braucht, der genauso mutig ist wie die Idee dahinter.", img: "/gf_brand.png",   rot: -11, offX: -320, topOff: 80, zi: 1 },
+  { id: 2, label: "02 — Visual Identity", title: "Logo & Marke",     desc: "GF-Maskottchen, knalliges Orange, kräftiges Lila. Verspielt, mutig, unverwechselbar – Soul Food zum Anschauen.", img: "/gf_logo.png",    rot: -5,  offX: -160, topOff: 40, zi: 2 },
+  { id: 3, label: "03 — Packaging",       title: "Die Verpackung",   desc: "Von der Tüte bis zum Becher: das GF-Pattern zieht sich konsequent durch alle Touchpoints und macht jede Verpackung zum Statement.", img: "/gf_bag.png",  rot:  0,  offX:    0, topOff:  8, zi: 3 },
+  { id: 4, label: "04 — Print",           title: "Der Flyer",        desc: "Crunchy Chicken Bowl – Kein Weizen, voller Geschmack. Klare Bildsprache, starke Headlines, echter Hunger-Faktor.", img: "/gf_flyer.png",   rot:  5,  offX:  160, topOff: 40, zi: 2 },
+  { id: 5, label: "05 — Ergebnis",        title: "Kein Verzicht",    desc: "Ein Brand der beweist: glutenfrei muss nicht fade sein. Authentisches Soul Food, ohne Kompromisse – und mit Haltung.", img: "/gf_result.png",  rot: 11,  offX:  320, topOff: 80, zi: 1 },
 ];
 
 const styles = `
@@ -337,12 +337,26 @@ function DraggableMarquee({ items, onNavigate, onDragStateChange }) {
 }
 
 /* ── CARD SHARED PIECES ── */
-function CardMedia({ id }) {
+function CardMedia({ img, id }) {
   return (
-    <div style={{ width:"100%", height:210, position:"relative", overflow:"hidden", display:"flex", flexDirection:"column", alignItems:"center", justifyContent:"center", gap:8, background:"rgba(255,255,255,0.025)" }}>
-      <div style={{ position:"absolute", inset:0, backgroundImage:"radial-gradient(circle,rgba(212,237,42,0.055) 1px,transparent 1px)", backgroundSize:"28px 28px" }} />
-      <div style={{ fontFamily:"'Bebas Neue',sans-serif", fontSize:80, color:"rgba(212,237,42,0.09)", lineHeight:1, position:"relative", zIndex:1 }}>0{id}</div>
-      <div style={{ fontFamily:"'Space Mono',monospace", fontSize:8, letterSpacing:2, textTransform:"uppercase", color:"rgba(255,255,255,0.18)", position:"relative", zIndex:1 }}>Bild folgt</div>
+    <div style={{ width:"100%", height:210, position:"relative", overflow:"hidden", background:"#1a1a1a" }}>
+      {img ? (
+        <img
+          src={img}
+          alt={"Glutenfry " + id}
+          style={{ width:"100%", height:"100%", objectFit:"cover", objectPosition:"center", display:"block", transition:"transform 0.6s cubic-bezier(0.23,1,0.32,1)" }}
+          onMouseEnter={e => e.currentTarget.style.transform = "scale(1.06)"}
+          onMouseLeave={e => e.currentTarget.style.transform = "scale(1)"}
+        />
+      ) : (
+        <>
+          <div style={{ position:"absolute", inset:0, backgroundImage:"radial-gradient(circle,rgba(212,237,42,0.055) 1px,transparent 1px)", backgroundSize:"28px 28px" }} />
+          <div style={{ position:"absolute", inset:0, display:"flex", flexDirection:"column", alignItems:"center", justifyContent:"center", gap:8 }}>
+            <div style={{ fontFamily:"'Bebas Neue',sans-serif", fontSize:80, color:"rgba(212,237,42,0.09)", lineHeight:1 }}>0{id}</div>
+            <div style={{ fontFamily:"'Space Mono',monospace", fontSize:8, letterSpacing:2, textTransform:"uppercase", color:"rgba(255,255,255,0.18)" }}>Bild folgt</div>
+          </div>
+        </>
+      )}
     </div>
   );
 }
@@ -380,7 +394,7 @@ function SpreadCard({ card, hoveredCard, setHoveredCard }) {
       onMouseLeave={() => setHoveredCard(null)}
     >
       <div style={{ position:"absolute", top:0, left:0, right:0, height:2, background:LIME, zIndex:3, transform: isHovered ? "scaleX(1)" : "scaleX(0)", transformOrigin:"left", transition:"transform 0.4s ease" }} />
-      <CardMedia id={card.id} />
+      <CardMedia img={card.img} id={card.id} />
       <CardBody card={card} />
     </div>
   );
@@ -393,7 +407,7 @@ function MobileCardScroll() {
       <div className="mobile-cards-scroll">
         {GLUTENFRY_CARDS.map(card => (
           <div key={card.id} className="mobile-card">
-            <CardMedia id={card.id} />
+            <CardMedia img={card.img} id={card.id} />
             <CardBody card={card} />
           </div>
         ))}
@@ -415,13 +429,13 @@ function GlutenfryPage({ onBack }) {
         <div style={{ position:"absolute", inset:0, backgroundImage:"radial-gradient(circle,rgba(212,237,42,0.07) 1px,transparent 1px)", backgroundSize:"60px 60px", WebkitMaskImage:"radial-gradient(ellipse 50% 70% at 95% 25%,black,transparent)", maskImage:"radial-gradient(ellipse 50% 70% at 95% 25%,black,transparent)", pointerEvents:"none" }} />
         <div style={{ position:"absolute", bottom:-60, right:-30, fontFamily:"'Bebas Neue',sans-serif", fontSize:"clamp(120px,20vw,300px)", color:"rgba(255,255,255,0.018)", pointerEvents:"none", userSelect:"none", letterSpacing:-6, lineHeight:0.85 }}>GLUTEN<br/>FREE</div>
         <div style={{ position:"relative", zIndex:1 }}>
-          <div className="section-label" style={{ animation:"slideUp 0.7s 0.1s both" }}>Case Study · Bounty Communication Group</div>
+          <div className="section-label" style={{ animation:"slideUp 0.7s 0.1s both" }}>Case Study · Bounty Communication Group · 2024</div>
           <div style={{ fontFamily:"'Bebas Neue',sans-serif", fontSize:"clamp(80px,15vw,220px)", lineHeight:0.82, letterSpacing:-5, animation:"slideUp 0.7s 0.2s both" }}>
             <span style={{ color:WHITE, display:"block" }}>GLUTEN</span>
             <span style={{ color:LIME, display:"block" }}>FRY</span>
           </div>
           <div style={{ display:"flex", gap:60, marginTop:48, paddingTop:32, borderTop:"1px solid rgba(255,255,255,0.08)", animation:"slideUp 0.7s 0.35s both", flexWrap:"wrap" }}>
-            {[{l:"Jahr",v:"2024"},{l:"Kategorie",v:"Brand Design · Print · Digital"},{l:"Rolle",v:"Art Direction"},{l:"Agentur",v:"Bounty Communication Group"}].map(m => (
+            {[{l:"Jahr",v:"2024"},{l:"Kategorie",v:"Brand Design · Packaging · Print"},{l:"Rolle",v:"Art Direction"},{l:"Konzept",v:"Glutenfreies Soul-Food Restaurant"}].map(m => (
               <div key={m.l}>
                 <label style={{ fontFamily:"'Space Mono',monospace", fontSize:9, letterSpacing:2, textTransform:"uppercase", color:GRAY, display:"block", marginBottom:6 }}>{m.l}</label>
                 <span style={{ fontSize:15, color:WHITE, fontWeight:500 }}>{m.v}</span>
@@ -435,8 +449,8 @@ function GlutenfryPage({ onBack }) {
         <div style={{ marginBottom:80 }}>
           <div className="section-label">Projekt-Einblick</div>
           <h2 className="section-title">DER PROZESS</h2>
-          <p style={{ fontSize:15, lineHeight:1.8, color:"#BBBBB5", fontWeight:300, maxWidth:480, marginTop:-36 }}>
-            Von der ersten Idee bis zum fertigen Auftritt – fünf Stationen des kreativen Prozesses.
+          <p style={{ fontSize:15, lineHeight:1.8, color:"#BBBBB5", fontWeight:300, maxWidth:560, marginTop:-36 }}>
+            GlutenFry ist ein Restaurantkonzept für authentisches Soul Food – vollständig glutenfrei frittiert. Kein Verzicht, kein Kompromiss. Der Brand sollte genauso mutig, direkt und unverwechselbar sein wie das Essen selbst.
           </p>
         </div>
         <div className="cs-cards-desktop" style={{ position:"relative", height:520 }}>
@@ -453,7 +467,7 @@ function GlutenfryPage({ onBack }) {
       <div style={{ padding:"52px 40px", borderTop:"1px solid rgba(255,255,255,0.06)", display:"flex", alignItems:"center", justifyContent:"space-between", flexWrap:"wrap", gap:24 }}>
         <div style={{ display:"flex", alignItems:"center", gap:16 }}>
           <div style={{ width:10, height:10, background:LIME, borderRadius:"50%", animation:"pulse 2s ease-in-out infinite" }} />
-          <span style={{ fontFamily:"'Space Mono',monospace", fontSize:11, letterSpacing:2, textTransform:"uppercase", color:GRAY }}>Bilder &amp; Details folgen in Kürze</span>
+          <span style={{ fontFamily:"'Space Mono',monospace", fontSize:11, letterSpacing:2, textTransform:"uppercase", color:GRAY }}>Brand Design · Packaging · Print · 2024</span>
         </div>
         <button className="btn-outline" onClick={onBack}>← Zurück zur Übersicht</button>
       </div>
