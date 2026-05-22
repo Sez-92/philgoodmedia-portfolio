@@ -7,11 +7,11 @@ const WHITE = "#F5F5F0";
 const GRAY = "#888880";
 
 const GLUTENFRY_CARDS = [
-  { id: 1, label: "01 — Briefing",        title: "Der Auftrag",      desc: "Ein Restaurant das glutenfrei frittiert – und dafür einen Brand braucht, der genauso mutig ist wie die Idee dahinter.", img: "/gf_brand.png",   rot: -11, offX: -320, topOff: 80, zi: 1 },
-  { id: 2, label: "02 — Visual Identity", title: "Logo & Marke",     desc: "GF-Maskottchen, knalliges Orange, kräftiges Lila. Verspielt, mutig, unverwechselbar – Soul Food zum Anschauen.", img: "/gf_logo.png",    rot: -5,  offX: -160, topOff: 40, zi: 2 },
-  { id: 3, label: "03 — Packaging",       title: "Die Verpackung",   desc: "Von der Tüte bis zum Becher: das GF-Pattern zieht sich konsequent durch alle Touchpoints und macht jede Verpackung zum Statement.", img: "/gf_bag.png",  rot:  0,  offX:    0, topOff:  8, zi: 3 },
-  { id: 4, label: "04 — Print",           title: "Der Flyer",        desc: "Crunchy Chicken Bowl – Kein Weizen, voller Geschmack. Klare Bildsprache, starke Headlines, echter Hunger-Faktor.", img: "/gf_flyer.png",   rot:  5,  offX:  160, topOff: 40, zi: 2 },
-  { id: 5, label: "05 — Ergebnis",        title: "Kein Verzicht",    desc: "Ein Brand der beweist: glutenfrei muss nicht fade sein. Authentisches Soul Food, ohne Kompromisse – und mit Haltung.", img: "/gf_result.png",  rot: 11,  offX:  320, topOff: 80, zi: 1 },
+  { id: 1, label: "01 — Briefing",        title: "Der Auftrag",    desc: "Soul Food. Glutenfrei. Ein Brand der das genauso mutig sagt.",           img: "/gf_brand.png",  rot: -11, offX: -320, topOff: 80, zi: 1 },
+  { id: 2, label: "02 — Visual Identity", title: "Logo & Marke",   desc: "GF-Maskottchen, Orange, Lila. Verspielt und unverwechselbar.",            img: "/gf_logo.png",   rot: -5,  offX: -160, topOff: 40, zi: 2 },
+  { id: 3, label: "03 — Packaging",       title: "Verpackung",     desc: "Das Pattern zieht sich durch – von der Tüte bis zum Becher.",             img: "/gf_bag.png",    rot:  0,  offX:    0, topOff:  8, zi: 3 },
+  { id: 4, label: "04 — Print",           title: "Flyer",          desc: "Crunchy Chicken Bowl. Null Weizen. Voller Hunger-Faktor.",                 img: "/gf_flyer.png",  rot:  5,  offX:  160, topOff: 40, zi: 2 },
+  { id: 5, label: "05 — Ergebnis",        title: "Kein Verzicht",  desc: "Ein Brand der beweist: glutenfrei kann großartig aussehen.",              img: "/gf_result.png", rot: 11,  offX:  320, topOff: 80, zi: 1 },
 ];
 
 const styles = `
@@ -449,8 +449,8 @@ function GlutenfryPage({ onBack }) {
         <div style={{ marginBottom:80 }}>
           <div className="section-label">Projekt-Einblick</div>
           <h2 className="section-title">DER PROZESS</h2>
-          <p style={{ fontSize:15, lineHeight:1.8, color:"#BBBBB5", fontWeight:300, maxWidth:560, marginTop:-36 }}>
-            GlutenFry ist ein Restaurantkonzept für authentisches Soul Food – vollständig glutenfrei frittiert. Kein Verzicht, kein Kompromiss. Der Brand sollte genauso mutig, direkt und unverwechselbar sein wie das Essen selbst.
+          <p style={{ fontSize:15, lineHeight:1.8, color:"#BBBBB5", fontWeight:300, maxWidth:480, marginTop:-36 }}>
+            Glutenfrei frittiertes Soul Food – und ein Brand der genauso direkt ist wie das Essen.
           </p>
         </div>
         <div className="cs-cards-desktop" style={{ position:"relative", height:520 }}>
@@ -584,7 +584,7 @@ export default function Portfolio() {
                   <div className="hero-tag">Philip Spiekermann · Ruhrgebiet</div>
                   <h1 className="hero-name">PHILIP<br /><span>SPIEKERMANN</span></h1>
                   <Typewriter />
-                  <p className="hero-desc">Kreativität trifft Haltung. Ich gestalte Markenauftritte, die hängenbleiben – von der Idee bis zur finalen Umsetzung. Ruhrgebiet im Herzen, Medien im Blut.</p>
+                  <p className="hero-desc">Marken die hängenbleiben. Von der Idee bis zur Umsetzung. Ruhrgebiet.</p>
                   <div className="hero-cta">
                     <a href="https://www.behance.net/philsez" target="_blank" rel="noreferrer" className="btn-primary">Portfolio ansehen</a>
                     <button className="btn-outline" onClick={() => scrollTo("contact")}>Kontakt</button>
@@ -610,9 +610,7 @@ export default function Portfolio() {
                 <div className="about-grid">
                   <FadeIn delay={100}>
                     <div className="about-quote">„Medien sind<br />mein Zuhause."</div>
-                    <p className="about-text">Ich bin Art Director aus dem Ruhrgebiet und fühle mich am wohlsten dort, wo es nicht nach Schema F läuft. Ich arbeite gerne im Team, übernehme Verantwortung und begleite Projekte mit Blick fürs große Ganze – vom Markenaufbau bis zur Optimierung interner Prozesse.</p>
-                    <p className="about-text" style={{ marginTop:16 }}>Durch meine Erfahrung in der Zusammenarbeit mit unterschiedlichen Kunden und Teams habe ich gelernt, flexibel zu denken, strukturiert zu arbeiten und auch in dynamischen Situationen den Überblick zu behalten.</p>
-                    <p className="about-text" style={{ marginTop:16 }}>KI nutze ich dabei gern als Sparringspartner, um schneller zu Lösungen zu kommen und kreative Wege konsequent weiterzudenken.</p>
+                    <p className="about-text">Art Director aus dem Ruhrgebiet. Ich gestalte Marken, die hängenbleiben – kanalübergreifend, konsequent und mit Haltung. KI nutze ich als Werkzeug, nicht als Ausrede.</p>
                     <div className="interests">
                       {["Hip-Hop","Klassische Musik","Calisthenics","Yoga","Meditation","BMX","Kochen","Interior","Wandern","Nachhaltigkeit"].map(i => <div key={i} className="interest-tag">{i}</div>)}
                     </div>
@@ -640,18 +638,10 @@ export default function Portfolio() {
                   <div className="exp-item">
                     <div><div className="exp-company">Bounty Communication Group</div><div className="exp-period">2024 — heute</div></div>
                     <ul className="exp-bullets">
-                      <li>Kreative Betreuung des Salzburger Flughafens – Entwicklung und Umsetzung kanalübergreifender Kampagnen für Social Media, Google Ads und Printmedien – von der ersten Idee über das visuelle Konzept bis zur finalen Ausspielung.</li>
-                      <li>Entwicklung und Umsetzung einer Flight-Kampagne für Wizz Air im Auftrag des Flughafen Dortmund zur gezielten Routen- und Zielgruppenbewerbung – inklusive Konzept, Key Visual und kanalübergreifender Ausspielung im digitalen und analogen Raum.</li>
-                      <li>Konzeption und Gestaltung visueller Auftritte für Events und Festivals – inklusive Markenentwicklung, Key Visuals, Werbemitteln und konsistenter Kommunikation über verschiedene Kanäle hinweg.</li>
-                      <li>Inhaltliche und visuelle Konzeption des Geschäftsberichts der Dortmunder Volksbank mit dem Titel „Verlauf der Veränderung" – Entwicklung des gestalterischen Leitmotivs inklusive Key Visual als Basis für Webdesign, Templates und weiterführende Kommunikationsmaßnahmen.</li>
-                      <li>Gestaltung ergänzender Printmaßnahmen rund um die Vertreterversammlung der Dortmunder Volksbank, darunter Einladungen, Wahlordnung, Stimmkarten und begleitende Veranstaltungsmedien.</li>
-                      <li>Entwicklung aufmerksamkeitsstarker Kampagnen für die Dortmunder Volksbank – Umsetzung von Print-, Digital- und OOH-Maßnahmen mit klarem Fokus auf Wiedererkennbarkeit und Markenstärke.</li>
-                      <li>Gestaltung eines saisonalen Buchprojekts „Vonovia x VfL Bochum" – visuelle Konzeption und Layout einer aufmerksamkeitsstarken Publikation an der Schnittstelle von Marke, Sport und Kommunikation.</li>
-                      <li>Verantwortung für die kreative Entwicklung von Kampagnen und Markenauftritten – von der Konzeption bis zur Reinzeichnung und Produktionsabwicklung.</li>
-                      <li>Gestaltung und Layout des Nachhaltigkeitsberichts der H. Klostermann Baugesellschaft mbH sowie weiterer umfangreicher Printpublikationen mit inhaltlichem und gestalterischem Anspruch.</li>
-                      <li>Entwicklung kreativer Ideen und visueller Konzepte mit Gespür für Trends, Zielgruppen und markengerechte Kommunikation.</li>
-                      <li>Strukturierte Zusammenarbeit mit Kunden, internen Teams und externen Dienstleistern in dynamischen Projektumfeldern.</li>
-                      <li>Sicherer Umgang mit digitalen Tools, KI-gestützten Workflows und modernen Gestaltungsprozessen zur effizienten Umsetzung kreativer Projekte.</li>
+                      <li>Kampagnen für den Salzburger Flughafen – Social Media, Google Ads, Print.</li>
+                      <li>Geschäftsbericht & Kampagnen für die Dortmunder Volksbank – Konzept bis Reinzeichnung.</li>
+                      <li>Visuelle Auftritte für Events & Festivals – Markenentwicklung, Key Visuals, Werbemittel.</li>
+                      <li>Printprojekte: Vonovia × VfL Bochum, H. Klostermann Nachhaltigkeitsbericht.</li>
                     </ul>
                   </div>
                 </FadeIn>
@@ -665,9 +655,9 @@ export default function Portfolio() {
                 <FadeIn><div className="section-label">Kompetenzen</div><h2 className="section-title">SKILLS</h2></FadeIn>
                 <div className="skills-grid">
                   {[
-                    {icon:"🤖",title:"KI & Prompting",items:["KI-Prompting für Bild- & Layoutideen","Erstellung von KI-Vorlagen","Harmonisierung von KI-Visuals"]},
-                    {icon:"🎨",title:"Layout & Design",items:["Social-Media-Layouts","Printmedien","Logo-Design","Markenkonforme Kampagnen","Brand Design"]},
-                    {icon:"🛠",title:"Tools",items:["Adobe Photoshop","InDesign","Illustrator","Canva"]},
+                    {icon:"🎨", title:"Design", items:["Brand Design","Kampagnen","Print & OOH","Social Media","Packaging"]},
+                    {icon:"🛠", title:"Tools",   items:["Photoshop","InDesign","Illustrator","Canva"]},
+                    {icon:"🤖", title:"KI",      items:["Bild-Prompting","Layout-Konzepte","KI-Workflows"]},
                   ].map((card,i) => (
                     <FadeIn key={card.title} delay={i*80}>
                       <div className="skill-card">
@@ -689,7 +679,7 @@ export default function Portfolio() {
                   <div className="contact-wrapper">
                     <div className="contact-tagline">Lass uns reden</div>
                     <h2 className="contact-heading">READY<br />TO CREATE?</h2>
-                    <p style={{ fontSize:15, color:GRAY, maxWidth:440, margin:"0 auto", lineHeight:1.8, fontWeight:300 }}>Ich bin kein Schema-F-Mensch – und suche Projekte, die das auch nicht sind. Schreib mir, ruf an, oder schau dir mein Portfolio an.</p>
+                    <p style={{ fontSize:15, color:GRAY, maxWidth:360, margin:"0 auto", lineHeight:1.8, fontWeight:300 }}>Ruf an. Schreib. Oder schau dir mein Behance an.</p>
                     <div className="contact-links">
                       <a href="https://www.behance.net/philsez" target="_blank" rel="noreferrer" className="btn-primary">Behance Portfolio</a>
                       <a href="https://www.linkedin.com/in/philip-spiekermann-450403205/" target="_blank" rel="noreferrer" className="btn-outline">LinkedIn</a>
