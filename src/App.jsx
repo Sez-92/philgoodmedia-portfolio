@@ -8,11 +8,11 @@ const WHITE = "#F5F5F0";
 const GRAY = "#888880";
 
 const GLUTENFRY_CARDS = [
-  { id: 1, label: "01 — Briefing",        title: "Der Auftrag",    desc: "Soul Food. Glutenfrei. Ein Brand der das genauso mutig sagt.",           img: "/gf_brand.png",  rot: -11, offX: -320, topOff: 80, zi: 1 },
-  { id: 2, label: "02 — Visual Identity", title: "Logo & Marke",   desc: "GF-Maskottchen, Orange, Lila. Verspielt und unverwechselbar.",            img: "/gf_logo.png",   rot: -5,  offX: -160, topOff: 40, zi: 2 },
-  { id: 3, label: "03 — Packaging",       title: "Verpackung",     desc: "Das Pattern zieht sich durch – von der Tüte bis zum Becher.",             img: "/gf_bag.png",    rot:  0,  offX:    0, topOff:  8, zi: 3 },
-  { id: 4, label: "04 — Print",           title: "Flyer",          desc: "Crunchy Chicken Bowl. Null Weizen. Voller Hunger-Faktor.",                 img: "/gf_flyer.png",  rot:  5,  offX:  160, topOff: 40, zi: 2 },
-  { id: 5, label: "05 — Ergebnis",        title: "Kein Verzicht",  desc: "Ein Brand der beweist: glutenfrei kann großartig aussehen.",              img: "/gf_result.png", rot: 11,  offX:  320, topOff: 80, zi: 1 },
+  { id: 1, label: "01 — Briefing",        title: "Der Auftrag",   desc: "Soul Food. Glutenfrei. Ein Brand der das genauso mutig sagt.",           img: "/gf_brand.png",  rot: -11, offX: -320, topOff: 80, zi: 1 },
+  { id: 2, label: "02 — Visual Identity", title: "Logo & Marke",  desc: "GF-Maskottchen, Orange, Lila. Verspielt und unverwechselbar.",             img: "/gf_logo.png",   rot: -5,  offX: -160, topOff: 40, zi: 2 },
+  { id: 3, label: "03 — Packaging",       title: "Verpackung",   desc: "Das Pattern zieht sich durch – von der Tüte bis zum Becher.",              img: "/gf_bag.png",    rot:  0,  offX:    0, topOff:  8, zi: 3 },
+  { id: 4, label: "04 — Print",           title: "Flyer",          desc: "Crunchy Chicken Bowl. Null Weizen. Voller Hunger-Faktor.",                  img: "/gf_flyer.png",  rot:  5,  offX:  160, topOff: 40, zi: 2 },
+  { id: 5, label: "05 — Ergebnis",        title: "Kein Verzicht",  desc: "Ein Brand der beweist: glutenfrei kann großartig aussehen.",               img: "/gf_result.png", rot: 11,  offX:  320, topOff: 80, zi: 1 },
 ];
 
 const styles = `
@@ -337,7 +337,6 @@ function DraggableMarquee({ items, onNavigate, onDragStateChange }) {
           )}
         </div>
       </div>
-
     </div>
   );
 }
@@ -418,7 +417,6 @@ function MobileCardScroll() {
           </div>
         ))}
       </div>
-
     </div>
   );
 }
@@ -429,7 +427,6 @@ function VolksbankPage({ onBack }) {
 
   return (
     <div style={{ minHeight:"100vh" }}>
-
       {/* HERO */}
       <section className="cs-hero">
         <div style={{ position:"absolute", inset:0, background:"radial-gradient(ellipse 55% 65% at 92% 35%, rgba(30,90,200,0.07) 0%, transparent 68%)", pointerEvents:"none" }} />
@@ -460,7 +457,6 @@ function VolksbankPage({ onBack }) {
           <p style={{ fontSize:15, lineHeight:1.8, color:"#BBBBB5", fontWeight:300, maxWidth:520, marginTop:-36, marginBottom:64 }}>
             Geschäftsbericht der Dortmunder Volksbank – Leitmotiv, Key Visual, Web und Print.
           </p>
-          {/* Laptop image – plain, no iframe overlay */}
           <div style={{ maxWidth:860, margin:"0 auto" }}>
             <img
               src="/vob_laptop.png"
@@ -471,7 +467,7 @@ function VolksbankPage({ onBack }) {
         </div>
       </section>
 
-      {/* LIVE WEBSITE – constrained width, breathing room on sides */}
+      {/* LIVE WEBSITE */}
       <section style={{ padding:"0 0 80px" }}>
         <div style={{ maxWidth:1100, margin:"0 auto", padding:"0 40px" }}>
           <div style={{ display:"flex", alignItems:"center", justifyContent:"space-between", flexWrap:"wrap", gap:16, marginBottom:28 }}>
@@ -479,7 +475,6 @@ function VolksbankPage({ onBack }) {
             <a href="https://geschaeftsbericht.dovoba.de/" target="_blank" rel="noreferrer" className="btn-outline">↗ Im Browser öffnen</a>
           </div>
 
-          {/* Browser chrome, constrained to ~80% of section width */}
           <div style={{ maxWidth:880, margin:"0 auto", borderRadius:"10px 10px 0 0", overflow:"hidden", border:"1px solid rgba(255,255,255,0.12)", boxShadow:"0 -16px 60px rgba(0,0,0,0.55)" }}>
             <div style={{ background:"#1e1e1e", padding:"12px 20px", display:"flex", alignItems:"center", gap:12, borderBottom:"1px solid rgba(255,255,255,0.08)" }}>
               <div style={{ display:"flex", gap:6 }}>
@@ -524,12 +519,9 @@ function VolksbankPage({ onBack }) {
   );
 }
 
-
-
 /* ── GLUTENFRY PAGE ── */
 function GlutenfryPage({ onBack }) {
   const [hoveredCard, setHoveredCard] = useState(null);
-  const windowWidth = useWindowWidth();
 
   return (
     <div style={{ minHeight:"100vh" }}>
@@ -566,7 +558,6 @@ function GlutenfryPage({ onBack }) {
           {GLUTENFRY_CARDS.map(card => (
             <SpreadCard key={card.id} card={card} hoveredCard={hoveredCard} setHoveredCard={setHoveredCard} />
           ))}
-
         </div>
         <div className="cs-cards-mobile" style={{ margin:"0 -40px" }}>
           <MobileCardScroll />
@@ -588,7 +579,7 @@ function GlutenfryPage({ onBack }) {
   );
 }
 
-/* ── MAIN ── */
+/* ── MAIN COMPONENT ── */
 function PhotoSwitcher() {
   const [show2, setShow2] = useState(false);
   useEffect(() => {
@@ -606,7 +597,7 @@ function PhotoSwitcher() {
 const sections = ["hero","about","experience","skills","contact"];
 
 export default function Portfolio() {
-  const [currentPage,     setCurrentPage]     = useState("home");
+  const [currentPage,      setCurrentPage]      = useState("home");
   const [transitioning,   setTransitioning]   = useState(false);
   const [activeSection,   setActiveSection]   = useState("hero");
   const [scrolled,        setScrolled]        = useState(false);
@@ -622,17 +613,42 @@ export default function Portfolio() {
   const currentPageRef = useRef("home");
   currentPageRef.current = currentPage;
 
-  const navigateTo = (page) => {
+  // Modifizierte Navigation mit HTML5 History API Integration
+  const navigateTo = (page, isPopState = false) => {
     setTransitioning(true);
     setTimeout(() => {
       setCurrentPage(page);
-      window.scrollTo({ top:0, behavior:"instant" });
+      window.scrollTo({ top: 0, behavior: "instant" });
+      
+      // Nur einen neuen Verlaufseintrag pushen, wenn wir NICHT via Browser-Zurück navigieren
+      if (!isPopState) {
+        const url = page === "home" ? "/" : `/${page}`;
+        window.history.pushState({ page }, "", url);
+      }
+      
       requestAnimationFrame(() => requestAnimationFrame(() => setTransitioning(false)));
     }, 420);
   };
+
   const scrollTo = (id) => document.getElementById(id)?.scrollIntoView({ behavior:"smooth" });
 
+  // Event Listener für den Zurück-Button des Browsers (popstate)
   useEffect(() => {
+    const handlePopState = (event) => {
+      const targetPage = event.state && event.state.page ? event.state.page : "home";
+      navigateTo(targetPage, true);
+    };
+
+    window.addEventListener("popstate", handlePopState);
+    return () => window.removeEventListener("popstate", handlePopState);
+  }, []);
+
+  useEffect(() => {
+    // Initialen Verlaufseintrag für die Startseite setzen, falls noch keiner existiert
+    if (!window.history.state) {
+      window.history.replaceState({ page: "home" }, "", "/");
+    }
+
     const move = (e) => {
       if (cursorDot.current)  { cursorDot.current.style.left  = e.clientX+"px"; cursorDot.current.style.top  = e.clientY+"px"; }
       if (cursorRing.current) { cursorRing.current.style.left = e.clientX+"px"; cursorRing.current.style.top = e.clientY+"px"; }
@@ -744,7 +760,7 @@ export default function Portfolio() {
                   </FadeIn>
                   <FadeIn delay={200}>
                     <div className="about-stats">
-                      {[{num:2,suffix:"+",label:"Jahre Erfahrung"},{num:3,suffix:"",label:"Tool-Suiten"},{num:4,suffix:"+",label:"Großkunden"},{num:"INF",suffix:"",label:"Kreative Ideen"}].map(s => (
+                      {[{num:2,suffix:"+",label:"Jahre Experience"},{num:3,suffix:"",label:"Tool-Suiten"},{num:4,suffix:"+",label:"Großkunden"},{num:"INF",suffix:"",label:"Kreative Ideen"}].map(s => (
                         <div key={s.label} className="stat-box">
                           <div className="stat-number"><Counter target={s.num} suffix={s.suffix} /></div>
                           <div className="stat-label">{s.label}</div>
