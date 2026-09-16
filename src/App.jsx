@@ -298,6 +298,28 @@ const styles = `
     .poster-full-image { padding:12px; }
   }
 
+  .case-intro { padding-top:150px; padding-bottom:64px; }
+  .case-title { font-family:'Bebas Neue','Arial Narrow',sans-serif; font-size:clamp(48px,7.5vw,112px); letter-spacing:-2px; line-height:1; margin:32px 0; overflow-wrap:anywhere; }
+  .case-title span { display:block; }
+  .case-title .accent { color:${LIME}; }
+  .case-lead { max-width:760px; font-size:clamp(18px,2vw,23px); color:#bdbdb3; line-height:1.7; }
+  .case-facts { display:flex; flex-wrap:wrap; gap:32px 64px; margin-top:48px; padding-top:28px; border-top:1px solid #36362e; }
+  .case-facts dt { color:${GRAY}; font:10px 'Space Mono',monospace; text-transform:uppercase; letter-spacing:1px; margin-bottom:10px; }
+  .case-facts dd { font-size:15px; line-height:1.6; }
+  .case-showcase { padding-top:0; padding-bottom:64px; }
+  .case-image-stage { background:#f5f5f0; height:clamp(280px,48vw,640px); display:flex; align-items:center; justify-content:center; }
+  .case-image-stage img { width:100%; height:100%; object-fit:contain; }
+  .case-showcase figcaption { padding:18px 0; color:${GRAY}; font-size:14px; line-height:1.6; }
+  .case-thumbnails { display:flex; gap:12px; padding:6px 0; }
+  .case-thumbnails button { width:clamp(64px,12vw,150px); height:clamp(60px,9vw,105px); background:#f5f5f0; border:2px solid transparent; padding:4px; cursor:pointer; }
+  .case-thumbnails button.selected { border-color:${LIME}; }
+  .case-thumbnails img { width:100%; height:100%; object-fit:contain; }
+  .case-gallery-controls { display:flex; flex-wrap:wrap; gap:12px; margin-top:24px; }
+  .case-story { padding-top:64px; border-top:1px solid #36362e; display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); gap:48px; }
+  .case-story h2 { font-size:28px; margin:12px 0 20px; }
+  .case-story p { color:#bdbdb3; font-size:16px; line-height:1.8; }
+  @media(max-width:900px) { .case-story { grid-template-columns:1fr; gap:32px; } .case-intro { padding-top:120px; } .case-title { letter-spacing:-1px; } .case-image-stage { height:340px; } }
+
 `;
 
 const WORDS = ["Art Director", "Brand Designer", "Print & Digital", "Creative Mind"];
@@ -444,8 +466,8 @@ function DraggableMarquee({ items, onNavigate, onDragStateChange }) {
 
   const handleItemClick = (item, e) => {
     if (hasDragged.current) { e.stopPropagation(); return; }
-    if (item === "Glutenfry") onNavigate("glutenfry");
-    if (item === "Dortmunder Volksbank") onNavigate("volksbank");
+    const project = PROJECTS.find(project => project.title === item);
+    if (project) onNavigate(project.page);
   };
 
   return (
@@ -463,7 +485,7 @@ function DraggableMarquee({ items, onNavigate, onDragStateChange }) {
       <div style={{ overflow: "hidden" }}>
         <div ref={trackRef} style={{ display: "inline-flex", whiteSpace: "nowrap" }}>
           {[...items, ...items].map((item, i) =>
-            (item === "Glutenfry" || item === "Dortmunder Volksbank") ? (
+            PROJECTS.some(project => project.title === item) ? (
               <button type="button" key={i} className="marquee-item clickable" onClick={e => handleItemClick(item, e)}>
                 {item}<span className="marquee-badge">Case Study</span><span className="marquee-sep">✦</span>
               </button>
@@ -790,17 +812,57 @@ function PosterGallery() {
   </section>;
 }
 
+
+const PROJECTS = [
+  {page:"glutenfry",title:"Glutenfry",description:"Eine mutige Marke für glutenfreies Soul Food.",category:"Brand Design · Packaging · Print",img:"/gf_brand.png"},
+  {page:"volksbank",title:"Dortmunder Volksbank",description:"Veränderung sichtbar machen. Digital und gedruckt.",category:"Art Direction · Geschäftsbericht",img:"/vob_laptop.png"},
+  {page:"vonovia",title:"Vonovia × VfL Bochum",description:"Fußballkultur zum Durchblättern.",category:"Editorial Design · Saisonbuch",img:"/projects/vonovia-1.webp",year:"2025/26",role:"Art Direction · Editorial Design · Layout",headline:"EIN VEREIN.\nVIELE GESCHICHTEN.",intro:"Das Saisonbuch für Vonovia und den VfL Bochum 1848 verbindet Fußball, Nachbarschaft und die Emotionen des Ruhrgebiets in einem quadratischen Buchformat.",steps:[
+    ["Die Aufgabe","Ein Saisonbuch gestalten, das die Verbundenheit zwischen Hauptsponsor, Verein und Region sichtbar macht."],
+    ["Die Idee","Ein flexibles Magazinraster verbindet Bildstrecken, Spielerporträts und Infografiken. Prägnante Typografie und Cutout-Collagen geben den Geschichten ihren eigenen Rhythmus."],
+    ["Die Umsetzung","Editorial Design und Layout bis zur Druckvorstufe: Doppelseiten, Composings und ein quadratisches Sonderformat als zusammenhängendes Buchkonzept."]
+  ],images:[{src:"/projects/vonovia-1.webp",alt:"Aufgeschlagenes Saisonbuch mit einer Stadion-Bildstrecke",caption:"Editorial Design: große Bilder und klare Schrifthierarchien."},{src:"/projects/vonovia-2.webp",alt:"Cover-Mockup des Saisonbuchs",caption:"Ein quadratisches Buchformat für eine Saison voller Geschichten."},{src:"/projects/vonovia-3.webp",alt:"Weitere gestaltete Doppelseite des Vonovia-Saisonbuchs",caption:"Ein flexibles Raster hält unterschiedliche Inhalte zusammen."}]},
+  {page:"salzburg",title:"Flughafen Salzburg",description:"Ein Charakter. Viele Reiseziele.",category:"Kampagne · KI-Workflow · OOH",img:"/projects/salzburg-1.webp",year:"2026",role:"Art Direction · Campaign Design · KI-Workflow",headline:"FLIEG AB\nSALZBURG!",intro:"Eine humorvolle Ganzjahreskampagne zum 100-jährigen Jubiläum des Salzburg Airport. Ein wiederkehrender Affen-Charakter macht unterschiedliche Reiseziele zu einer erkennbaren Kampagnenwelt.",steps:[
+    ["Die Aufgabe","Eine Dachkampagne entwickeln, die über das gesamte Jahr für unterschiedliche Reiseziele funktioniert und die Jubiläums-CI aufgreift."],
+    ["Die Idee","Ein zentraler Charakter schafft Wiedererkennung. Neue Reiseziele und saisonale Anlässe lassen sich innerhalb derselben visuellen Sprache erzählen."],
+    ["Die Umsetzung","KI-Generierung, Prompting und Harmonisierung der Motive sowie Adaptionen für OOH-Großflächen, Print-Folder, Social Media und QR-Landingpages."]
+  ],images:[{src:"/projects/salzburg-1.webp",alt:"Flieg ab Salzburg als großflächige Außenwerbung an einer Fassade",caption:"Die Kampagne im öffentlichen Raum."},{src:"/projects/salzburg-2.webp",alt:"Salzburg-Kampagnenmotiv auf einer Außenwerbefläche",caption:"Wiedererkennung über verschiedene Formate hinweg."},{src:"/projects/salzburg-3.webp",alt:"Affen-Charakter mit Reise-Outfit auf einem Motorroller",caption:"Der zentrale Charakter als flexibel einsetzbares Kampagnenmotiv."}]},
+  {page:"vestische",title:"125 Jahre Vestische",description:"Ein Jubiläum, das im Gedächtnis bleibt.",category:"Eventbranding · Kampagne · Print",img:"/projects/vestische-1.webp",year:"125-jähriges Jubiläum",role:"Art Direction · Key Visual · Event-Werbemittel",headline:"125 JAHRE.\nMITTEN IM LEBEN.",intro:"Für das Jubiläum der Vestischen Straßenbahnen entstand ein Event- und Branding-Konzept, das regionale Verbundenheit mit einem durchgängigen visuellen Auftritt verbindet.",steps:[
+    ["Die Aufgabe","Das 125-jährige Bestehen als zusammenhängendes Markenerlebnis gestalten – im öffentlichen Raum und auf dem Veranstaltungsgelände."],
+    ["Die Idee","Ein prägnantes Jubiläumsdesign verbindet große Werbeflächen mit kleinen, persönlichen Details. So entsteht Wiedererkennung an jedem Kontaktpunkt."],
+    ["Die Umsetzung","Key Visual und Werbemittel: von Einladungen und Magazinen über Banner und Leitsysteme bis zu digitalen Adaptionen und Bus-Branding."]
+  ],images:[{src:"/projects/vestische-1.webp",alt:"Gebrandete Süßigkeitentüte mit Vestische-Motiv Die Mischung macht’s",caption:"Markengestaltung bis ins Detail: die Mischung macht’s."},{src:"/projects/vestische-2.webp",alt:"Candy-Bar beim Vestische-Jubiläum mit gestalteten Schildern",caption:"Der visuelle Auftritt im Einsatz auf dem Event."},{src:"/projects/vestische-3.webp",alt:"Mockup einer gestalteten Jubiläums-Werbefläche",caption:"Ein wiedererkennbares System für die Event-Werbemittel."},{src:"/projects/vestische-4.webp",alt:"Gestaltetes Werbemittel aus der Vestische-Jubiläumskampagne",caption:"Das Jubiläumsdesign in weiteren Anwendungen."}]}
+];
+function ProjectPage({ project, onNavigate }) {
+  const [activeImage, setActiveImage] = useState(0);
+  return <article className="project-case">
+    <header className="case-intro section">
+      <div className="section-label">Case Study / {project.title}</div>
+      <h1 className="case-title">{project.headline.split("\n").map((line,i)=><span key={line} className={i===1?"accent":""}>{line}</span>)}</h1>
+      <p className="case-lead">{project.intro}</p>
+      <dl className="case-facts"><div><dt>Projekt</dt><dd>{project.year}</dd></div><div><dt>Mein Beitrag</dt><dd>{project.role}</dd></div><div><dt>Entstanden bei</dt><dd>Bounty Communication Group</dd></div></dl>
+    </header>
+    <section className="case-showcase section" aria-label="Projektgalerie">
+      <figure><div className="case-image-stage"><img src={project.images[activeImage].src} alt={project.images[activeImage].alt}/></div><figcaption aria-live="polite">{String(activeImage+1).padStart(2,"0")} / {String(project.images.length).padStart(2,"0")} — {project.images[activeImage].caption}</figcaption></figure>
+      <div className="case-thumbnails">{project.images.map((im,i)=><button key={im.src} className={activeImage===i?"selected":""} aria-label={"Motiv "+(i+1)+": "+im.alt} aria-pressed={activeImage===i} onClick={()=>setActiveImage(i)}><img src={im.src} alt="" loading="lazy"/></button>)}</div>
+      <div className="case-gallery-controls"><button className="btn-outline" onClick={()=>setActiveImage(i=>(i-1+project.images.length)%project.images.length)}>← Vorheriges Motiv</button><button className="btn-outline" onClick={()=>setActiveImage(i=>(i+1)%project.images.length)}>Nächstes Motiv →</button></div>
+    </section>
+    <section className="case-story section" aria-label="Aufgabe, Idee und Umsetzung">{project.steps.map(([title,body],i)=><div key={title}><div className="section-label">0{i+1}</div><h2>{title}</h2><p>{body}</p></div>)}</section>
+    <CaseNext page={project.page} onNavigate={onNavigate}/>
+    <footer className="footer"><button className="btn-outline" onClick={()=>onNavigate("home")}>← Alle Projekte</button><div className="footer-copy">Philip Spiekermann · {project.title}</div></footer>
+  </article>;
+}
+
 const sections = ["hero","work","posters","about","experience","skills","contact"];
 const pageFromLocation = () => {
   const page = window.location.hash.slice(1) || window.location.pathname.slice(1);
-  return ["glutenfry", "volksbank"].includes(page) ? page : "home";
+  return PROJECTS.some(project => project.page === page) ? page : "home";
 };
 function CaseNext({ page, onNavigate }) {
   return <section className="case-next">
     <div><h2>So etwas für deine Marke?</h2><p>Erzähl mir, was du vorhast.</p></div>
     <div className="case-next-actions">
       <a className="btn-primary" href="mailto:philipspiekermann@hotmail.com?subject=Projektanfrage">Projekt anfragen ↗</a>
-      <button className="btn-outline" onClick={() => onNavigate(page === "glutenfry" ? "volksbank" : "glutenfry")}>Nächstes Projekt →</button>
+      <button className="btn-outline" onClick={() => onNavigate(PROJECTS[(PROJECTS.findIndex(project => project.page === page)+1)%PROJECTS.length].page)}>Nächstes Projekt →</button>
     </div>
   </section>;
 }
@@ -909,7 +971,7 @@ export default function Portfolio() {
     return () => window.removeEventListener("scroll", handle);
   }, []);
 
-  const marqueeItems = ["Glutenfry","Vonovia","Dortmunder Volksbank","Salzburger Flughafen","Mopla"];
+  const marqueeItems = PROJECTS.map(project => project.title);
   const cursorClass = "cursor-ring" + (hovering && !draggingMarquee ? " hovering" : "") + (draggingMarquee ? " grabbing" : "");
 
   return (
@@ -924,7 +986,7 @@ export default function Portfolio() {
 
       <nav className={"nav" + (scrolled ? " scrolled" : "")}>
         <button className="nav-logo" aria-label="Philgood Media – Startseite" onClick={() => navigateTo("home")}>PS<span className="logo-name">philgoodmedia.</span></button>
-        {(currentPage === "glutenfry" || currentPage === "volksbank") ? (
+        {(currentPage !== "home") ? (
           <button className="nav-back" onClick={() => navigateTo("home")}><span className="nav-back-arrow">←</span> Alle Projekte</button>
         ) : (
           <>
@@ -939,7 +1001,9 @@ export default function Portfolio() {
       </nav>
 
       <main id="main-content" tabIndex={-1} style={{ opacity:transitioning?0:1, transform:transitioning?"translateY(22px)":"none", transition:"opacity 0.42s ease,transform 0.42s ease" }}>
-        {currentPage === "volksbank" ? (
+        {PROJECTS.find(project => project.page === currentPage)?.images ? (
+          <ProjectPage key={currentPage} project={PROJECTS.find(project => project.page === currentPage)} onNavigate={navigateTo}/>
+        ) : currentPage === "volksbank" ? (
           <VolksbankPage onBack={() => navigateTo("home")} onNavigate={navigateTo} />
         ) : currentPage === "glutenfry" ? (
           <GlutenfryPage onBack={() => navigateTo("home")} onNavigate={navigateTo} />
@@ -977,17 +1041,14 @@ export default function Portfolio() {
             <section id="work" className="section">
               <div className="work-heading">
                 <div><div className="section-label">01 / Ausgewählte Arbeiten</div><h2 className="section-title">IDEEN WERDEN<br />SICHTBAR.</h2></div>
-                <p className="work-intro">Von der ersten Idee bis ins Detail. Zwei Projekte zum Reinklicken und Entdecken.</p>
+                <p className="work-intro">Von der ersten Idee bis ins Detail. Fünf Projekte aus Branding, Kampagne, Editorial und Eventgestaltung.</p>
               </div>
               <div className="project-grid">
-                {[
-                  {page:"glutenfry",title:"Glutenfry",description:"Eine mutige Marke für glutenfreies Soul Food.",category:"Brand Design · Packaging · Print",img:"/gf_brand.png"},
-                  {page:"volksbank",title:"Dortmunder Volksbank",description:"Veränderung sichtbar machen. Digital und gedruckt.",category:"Art Direction · Geschäftsbericht",img:"/vob_laptop.png"}
-                ].map((project,i) => <a key={project.page} className="project-link" href={"/#"+project.page} onClick={e => {
+                {PROJECTS.map((project,i) => <a key={project.page} className="project-link" href={"/#"+project.page} onClick={e => {
                   if (e.metaKey || e.ctrlKey || e.shiftKey || e.altKey) return;
                   e.preventDefault(); navigateTo(project.page);
                 }}>
-                  <div className={"project-visual"+(project.page === "volksbank" ? " bank" : "")}><img src={project.img} alt={project.title+" – "+project.description} loading="lazy" width="1000" height="800" /><span className="project-open" aria-hidden="true">↗</span></div>
+                  <div className={"project-visual"+(["volksbank","vonovia","salzburg"].includes(project.page) ? " bank" : "")}><img src={project.img} alt={project.title+" – "+project.description} loading="lazy" width="1000" height="800" /><span className="project-open" aria-hidden="true">↗</span></div>
                   <div className="project-meta"><div><h3>{project.title}</h3><p>{project.category}</p><p>{project.description}</p></div><span className="project-index">0{i+1}</span></div>
                 </a>)}
               </div>
