@@ -266,6 +266,38 @@ const styles = `
     .fade-in,.hero-tag,.hero-name,.hero-typewriter,.hero-desc,.hero-cta,.hero-right,.scroll-hint { opacity:1; transform:none; }
   }
 
+  .poster-section { border-top:1px solid #36362e; }
+  .poster-grid { display:grid; grid-template-columns:repeat(4,minmax(0,1fr)); gap:24px; }
+  .poster-card { background:none; border:0; color:inherit; padding:0; text-align:left; cursor:pointer; min-width:0; }
+  .poster-picture { aspect-ratio:3/4; display:flex; align-items:center; justify-content:center; background:#23231f; overflow:hidden; position:relative; }
+  .poster-picture img { width:100%; height:100%; object-fit:contain; transition:transform .5s; }
+  .poster-card:hover img,.poster-card:focus-visible img { transform:scale(1.025); }
+  .poster-picture .project-open { width:36px; height:36px; right:12px; bottom:12px; font-size:22px; }
+  .poster-card h3 { font-size:18px; margin:18px 0 6px; font-weight:500; }
+  .poster-card p { font-size:12px; line-height:1.6; color:${GRAY}; }
+  .poster-dialog { width:min(1200px,96vw); max-width:none; height:94svh; max-height:94svh; padding:0; margin:auto; border:1px solid #55554b; background:#151512; color:${WHITE}; }
+  .poster-dialog::backdrop { background:rgba(0,0,0,.9); backdrop-filter:blur(8px); }
+  .poster-dialog-inner { height:100%; display:flex; flex-direction:column; }
+  .poster-toolbar { display:flex; justify-content:space-between; align-items:center; padding:16px 24px; gap:16px; border-bottom:1px solid #36362e; }
+  .poster-toolbar span { font:11px 'Space Mono',monospace; color:${GRAY}; }
+  .poster-control { background:none; border:1px solid #66665c; color:${WHITE}; padding:12px 16px; min-height:44px; cursor:pointer; }
+  .poster-control:hover { color:${LIME}; border-color:${LIME}; }
+  .poster-full-image { flex:1; min-height:0; width:100%; object-fit:contain; padding:24px; }
+  .poster-caption { display:flex; align-items:center; justify-content:space-between; padding:20px 24px; border-top:1px solid #36362e; gap:16px; }
+  .poster-caption h3 { font-size:20px; margin-bottom:6px; }
+  .poster-caption p { font-size:13px; color:${GRAY}; }
+  .poster-controls { display:flex; gap:10px; flex-shrink:0; }
+  @media (max-width:1100px) { .poster-grid { grid-template-columns:repeat(2,minmax(0,1fr)); } }
+  @media (max-width:600px) {
+    .poster-grid { gap:24px 14px; }
+    .poster-card h3 { font-size:15px; line-height:1.4; }
+    .poster-picture .project-open { width:28px; height:28px; font-size:18px; right:8px; bottom:8px; }
+    .poster-dialog { width:100vw; height:100svh; max-height:100svh; border:0; }
+    .poster-toolbar,.poster-caption { padding:16px; }
+    .poster-caption { flex-wrap:wrap; }
+    .poster-full-image { padding:12px; }
+  }
+
 `;
 
 const WORDS = ["Art Director", "Brand Designer", "Print & Digital", "Creative Mind"];
@@ -706,7 +738,59 @@ function PhotoSwitcher() {
   );
 }
 
-const sections = ["hero","work","about","experience","skills","contact"];
+
+const POSTERS = [
+  {title:"Cali Couture — Anime", category:"Poster · Typografie & Illustration", src:"/posters/cali-anime.webp", alt:"Cali-Couture-Poster mit weißhaariger Animefigur, diagonalen Aussparungen und schwarzer Typografie auf Weiß"},
+  {title:"Heute schon Schwein gehabt?", category:"Poster · Gesellschaft & Gestaltung", src:"/posters/schwein-gehabt.webp", alt:"Gesellschaftskritisches Poster mit futuristischen Schweinen, großer weiß-roter Typografie und Informationen zur Tierhaltung"},
+  {title:"Her Art, Her Voice", category:"Museum · Plakatserie", src:"/posters/her-art-her-voice.webp", alt:"Drei Museumsplakate mit bunten Kunstmotiven auf einer Außenwand, jeweils mit dem Titel Her Art, Her Voice"},
+  {title:"Cali Couture — Streetworkout", category:"Poster · Collage & Typografie", src:"/posters/cali-streetworkout.webp", alt:"Cali-Couture-Collage mit schwarzhaariger Figur, pinken Akzenten und rotem Streetworkout-Schriftzug"},
+];
+function PosterGallery() {
+  const [selected, setSelected] = useState(null);
+  const dialog = useRef(null);
+  const opener = useRef(null);
+  const touchStart = useRef(null);
+  const step = (direction) => setSelected(i => (i + direction + POSTERS.length) % POSTERS.length);
+  const close = () => dialog.current?.close();
+  useEffect(() => {
+    if (selected === null) return;
+    const element = dialog.current;
+    const previousOverflow = document.body.style.overflow;
+    element.showModal();
+    document.body.style.overflow = "hidden";
+    return () => { document.body.style.overflow = previousOverflow; };
+  }, [selected !== null]);
+  const poster = selected === null ? null : POSTERS[selected];
+  return <section id="posters" className="section poster-section">
+    <div className="work-heading">
+      <div><div className="section-label">02 / Poster & freie Arbeiten</div><h2 className="section-title">PLATZ FÜR<br />EIGENE IDEEN.</h2></div>
+      <p className="work-intro">Typografie, Collage und visuelle Experimente. Motiv öffnen und die Details entdecken.</p>
+    </div>
+    <div className="poster-grid">
+      {POSTERS.map((item,i) => <button key={item.src} className="poster-card" aria-label={item.title+" – Großansicht öffnen"} aria-haspopup="dialog" onClick={event=>{opener.current=event.currentTarget;setSelected(i);}}>
+        <div className="poster-picture"><img src={item.src} alt={item.alt} loading="lazy" width="600" height="800"/><span className="project-open" aria-hidden="true">+</span></div>
+        <h3>{item.title}</h3><p>{item.category}</p>
+      </button>)}
+    </div>
+    <dialog ref={dialog} className="poster-dialog" aria-labelledby="poster-title" onClose={()=>{setSelected(null);opener.current?.focus({preventScroll:true});}} onClick={e=>{if(e.target===dialog.current)close();}} onKeyDown={e=>{
+      if(e.key === "ArrowRight") {e.preventDefault();step(1);}
+      if(e.key === "ArrowLeft") {e.preventDefault();step(-1);}
+    }}>
+      {poster && <div className="poster-dialog-inner">
+        <div className="poster-toolbar"><span>POSTER & FREIE ARBEITEN · {selected+1} / {POSTERS.length}</span><button className="poster-control" autoFocus onClick={close} aria-label="Großansicht schließen">Schließen ×</button></div>
+        <img className="poster-full-image" src={poster.src} alt={poster.alt} onTouchStart={e=>{touchStart.current={x:e.touches[0].clientX,y:e.touches[0].clientY};}} onTouchEnd={e=>{
+          if(!touchStart.current)return;
+          const dx=e.changedTouches[0].clientX-touchStart.current.x,dy=e.changedTouches[0].clientY-touchStart.current.y;
+          if(Math.abs(dx)>60 && Math.abs(dx)>Math.abs(dy))step(dx<0?1:-1);
+          touchStart.current=null;
+        }}/>
+        <div className="poster-caption"><div aria-live="polite"><h3 id="poster-title">{poster.title}</h3><p>{poster.category}</p></div><div className="poster-controls"><button className="poster-control" onClick={()=>step(-1)} aria-label="Vorheriges Poster">←</button><button className="poster-control" onClick={()=>step(1)} aria-label="Nächstes Poster">→</button></div></div>
+      </div>}
+    </dialog>
+  </section>;
+}
+
+const sections = ["hero","work","posters","about","experience","skills","contact"];
 const pageFromLocation = () => {
   const page = window.location.hash.slice(1) || window.location.pathname.slice(1);
   return ["glutenfry", "volksbank"].includes(page) ? page : "home";
@@ -846,7 +930,7 @@ export default function Portfolio() {
           <>
             <button className="menu-toggle" aria-expanded={menuOpen} aria-controls="main-navigation" onClick={() => setMenuOpen(v => !v)}>{menuOpen ? "Schließen ×" : "Menü +"}</button>
             <div id="main-navigation" className={"nav-links" + (menuOpen ? " open" : "")}>
-              {[["work","Projekte"],["about","Über mich"],["skills","Leistungen"],["contact","Kontakt ↗"]].map(([s,label]) => (
+              {[["work","Projekte"],["posters","Poster"],["about","Über mich"],["skills","Leistungen"],["contact","Kontakt ↗"]].map(([s,label]) => (
                 <button key={s} className={"nav-link"+(activeSection===s?" active":"")} onClick={() => scrollTo(s)}>{label}</button>
               ))}
             </div>
@@ -909,6 +993,8 @@ export default function Portfolio() {
               </div>
               <p className="work-footnote">Entstanden im Rahmen meiner Arbeit bei Bounty Communication Group.</p>
             </section>
+
+            <PosterGallery />
 
             <DraggableMarquee items={marqueeItems} onNavigate={navigateTo} onDragStateChange={setDraggingMarquee} />
 
