@@ -5,7 +5,7 @@ import philipPhoto2 from "/philip2.png";
 const LIME = "#D4ED2A";
 const BLACK = "#111111";
 const WHITE = "#F5F5F0";
-const GRAY = "#888880";
+const GRAY = "#A6A69C";
 
 const GLUTENFRY_CARDS = [
   { id: 1, label: "01 — Briefing",        title: "Der Auftrag",   desc: "Soul Food. Glutenfrei. Ein Brand der das genauso mutig sagt.",           img: "/gf_brand.png",  rot: -11, offX: -320, topOff: 80, zi: 1 },
@@ -166,6 +166,106 @@ const styles = `
     .cs-cards-desktop { display:block; }
     .cs-cards-mobile { display:none; }
   }
+  /* Editorial refinement: the original interactions remain intact. */
+  :root { color-scheme:dark; }
+  .sr-only { position:absolute; width:1px; height:1px; padding:0; margin:-1px; overflow:hidden; clip:rect(0,0,0,0); white-space:nowrap; border:0; }
+  section[id] { scroll-margin-top:100px; }
+  button, a { -webkit-tap-highlight-color:transparent; }
+  button { font:inherit; }
+  :focus-visible { outline:2px solid ${LIME}; outline-offset:6px; }
+  .skip-link { position:fixed; top:12px; left:20px; z-index:11000; background:${LIME}; color:${BLACK}; padding:12px 20px; transform:translateY(-160%); }
+  .skip-link:focus { transform:none; }
+  body::after { opacity:0.018; }
+  .nav { padding:22px 5vw; background:rgba(17,17,17,.94); }
+  .nav.scrolled { padding:16px 5vw; }
+  .nav-logo { background:none; border:0; display:flex; align-items:center; gap:10px; letter-spacing:1px; }
+  .logo-name { font-family:'Karla',sans-serif; font-size:15px; font-weight:700; color:${WHITE}; letter-spacing:-.5px; }
+  .nav-link { letter-spacing:1px; min-height:36px; color:#b3b3aa; }
+  .menu-toggle { display:none; background:none; border:1px solid #555; color:${WHITE}; padding:10px 14px; }
+  .hero { min-height: min(900px,100svh); padding:150px 5vw 110px; grid-template-columns:1.25fr 1fr; gap:5vw; }
+  .hero-name { font-size:clamp(64px,8.3vw,132px); line-height:.94; letter-spacing:-2px; }
+  .hero-tag { font-size:10px; letter-spacing:1.5px; }
+  .hero-desc { color:#bdbdb3; max-width:410px; font-size:18px; line-height:1.65; font-weight:400; }
+  .hero-typewriter { font-size:12px; letter-spacing:1px; margin:24px 0; }
+  .hero-bg-text,.hero-grid-dots { display:none; }
+  .photo-frame { width:100%; max-width:440px; aspect-ratio:4/5; }
+  .hero-right > div { width:100%; max-width:440px; }
+  .photo-frame::before { inset:12px -12px -12px 12px; border-width:1px; transform:none; opacity:.4; }
+  .photo-frame::after { width:16px; height:16px; top:18px; right:18px; border-radius:50%; }
+  .photo-label { z-index:4; bottom:18px; left:20px; color:${WHITE}; background:rgba(17,17,17,.7); padding:8px 10px; font-size:9px; }
+  .scroll-hint { left:5vw; }
+  .btn-primary,.btn-outline { font-family:'Karla',sans-serif; font-size:14px; letter-spacing:0; text-transform:none; padding:16px 24px; min-height:48px; }
+  .btn-primary:hover,.btn-outline:hover { box-shadow:none; }
+  .section { max-width:1440px; padding:110px 5vw; }
+  .section-title { font-size:clamp(48px,6vw,88px); margin-bottom:48px; }
+  .section-label { font-size:10px; letter-spacing:1.5px; }
+  .work-heading { display:flex; align-items:end; justify-content:space-between; gap:32px; margin-bottom:48px; }
+  .work-heading .section-title { margin:0; }
+  .work-intro { max-width:280px; color:#bdbdb3; font-size:16px; line-height:1.7; }
+  .project-grid { display:grid; grid-template-columns:1fr 1fr; gap:32px; }
+  .project-link { text-decoration:none; color:${WHITE}; display:block; min-width:0; }
+  .project-visual { aspect-ratio:5/4; background:#23231f; overflow:hidden; position:relative; }
+  .project-visual img { width:100%; height:100%; object-fit:cover; display:block; transition:transform .7s cubic-bezier(.2,.7,.2,1); }
+  .project-visual.bank { background:#d7dfec; }
+  .project-visual.bank img { object-fit:contain; padding:24px; }
+  .project-link:hover img,.project-link:focus-visible img { transform:scale(1.035); }
+  .project-open { position:absolute; right:20px; bottom:20px; width:48px; height:48px; display:grid; place-items:center; background:${LIME}; color:${BLACK}; font-size:24px; border-radius:50%; transition:transform .3s; }
+  .project-link:hover .project-open { transform:rotate(-45deg); }
+  .project-meta { display:flex; justify-content:space-between; gap:20px; padding-top:22px; }
+  .project-meta h3 { font-family:'Bebas Neue',sans-serif; font-size:36px; font-weight:400; }
+  .project-meta p { color:#bdbdb3; font-size:14px; margin-top:6px; line-height:1.5; }
+  .project-index { color:${GRAY}; font-family:'Space Mono',monospace; font-size:11px; padding-top:8px; }
+  .work-footnote { margin-top:30px; color:${GRAY}; font-size:12px; }
+  .marquee-item { font-size:24px; letter-spacing:1px; color:#8f8f85; }
+  button.marquee-item { background:none; border:0; }
+  .marquee-section { padding:24px 0; }
+  .skill-card { background:transparent; border-top:1px solid #44443c; padding:28px 16px 28px 0; }
+  .skill-card-icon { font-family:'Space Mono',monospace; font-size:12px; color:${LIME}; }
+  .contact-wrapper { text-align:left; background:${LIME}; color:${BLACK}; padding:64px; }
+  .contact-wrapper::before { display:none; }
+  .contact-tagline { color:#393e15; }
+  .contact-heading { font-size:clamp(60px,8vw,120px); letter-spacing:-1px; }
+  .contact-links { justify-content:flex-start; margin-top:32px; }
+  .contact-wrapper .btn-primary { background:${BLACK}; color:${WHITE}; }
+  .contact-wrapper .btn-outline { border-color:#657020; color:${BLACK}; }
+  .contact-wrapper .contact-info,.contact-wrapper .contact-info a { color:#343917; }
+  .case-next { max-width:1280px; margin:40px auto 60px; padding:40px 5vw; border-top:1px solid #45453a; display:flex; justify-content:space-between; align-items:center; gap:24px; flex-wrap:wrap; }
+  .case-next h2 { font-family:'Bebas Neue',sans-serif; font-size:42px; font-weight:400; margin-bottom:8px; }
+  .case-next p { color:${GRAY}; }
+  .case-next-actions { display:flex; gap:12px; flex-wrap:wrap; }
+  .footer-copy { color:${GRAY}; }
+  .footer-name { color:#bdbdb3; }
+  @media (max-width:900px) {
+    .hero { min-height:auto; grid-template-columns:1fr; padding:130px 24px 80px; gap:48px; }
+    .hero-right { order:0; justify-content:flex-start; }
+    .hero-right > div { max-width:380px; }
+    .hero-name { font-size:clamp(64px,13vw,110px); }
+    .hero-desc { font-size:17px; }
+    .hero-tag { flex-wrap:wrap; }
+    .scroll-hint { display:none; }
+    .nav,.nav.scrolled { padding:16px 24px; }
+    .menu-toggle { display:block; }
+    .nav-links { display:none; position:absolute; top:100%; left:0; right:0; padding:20px 24px 28px; background:${BLACK}; border-bottom:1px solid #444; flex-direction:column; align-items:stretch; gap:8px; }
+    .nav-links.open { display:flex; }
+    .nav-link { text-align:left; font-size:13px; min-height:44px; }
+    .section { padding:72px 24px; }
+    .work-heading { display:block; }
+    .work-intro { margin-top:24px; max-width:420px; }
+    .project-grid { gap:40px; grid-template-columns:1fr; }
+    .project-meta h3 { font-size:32px; }
+    .contact-wrapper { padding:36px 24px; }
+    .contact-info { overflow-wrap:anywhere; line-height:2; }
+    .cs-hero { overflow-wrap:anywhere; }
+  }
+  @media (hover:none), (pointer:coarse) {
+    html,body,button,a,.nav-logo,.nav-link,.btn-primary,.btn-outline { cursor:auto !important; }
+    .cursor-dot,.cursor-ring { display:none; }
+  }
+  @media (prefers-reduced-motion:reduce) {
+    *,*::before,*::after { animation:none !important; transition:none !important; scroll-behavior:auto !important; }
+    .fade-in,.hero-tag,.hero-name,.hero-typewriter,.hero-desc,.hero-cta,.hero-right,.scroll-hint { opacity:1; transform:none; }
+  }
+
 `;
 
 const WORDS = ["Art Director", "Brand Designer", "Print & Digital", "Creative Mind"];
@@ -174,19 +274,18 @@ function Typewriter() {
   const [wordIdx, setWordIdx] = useState(0);
   const [deleting, setDeleting] = useState(false);
   useEffect(() => {
+    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) { setText(WORDS[0]); return; }
     const word = WORDS[wordIdx];
+    const complete = !deleting && text === word;
     const t = setTimeout(() => {
-      if (!deleting) {
-        setText(word.slice(0, text.length + 1));
-        if (text.length + 1 === word.length) setTimeout(() => setDeleting(true), 1500);
-      } else {
-        setText(word.slice(0, text.length - 1));
-        if (text.length - 1 === 0) { setDeleting(false); setWordIdx(i => (i + 1) % WORDS.length); }
-      }
-    }, deleting ? 60 : 120);
+      if (complete) setDeleting(true);
+      else if (!deleting) setText(word.slice(0, text.length + 1));
+      else if (text.length <= 1) { setText(""); setDeleting(false); setWordIdx(i => (i + 1) % WORDS.length); }
+      else setText(word.slice(0, text.length - 1));
+    }, complete ? 1500 : deleting ? 60 : 120);
     return () => clearTimeout(t);
   }, [text, deleting, wordIdx]);
-  return <div className="hero-typewriter">{text}<span className="typewriter-cursor" /></div>;
+  return <div className="hero-typewriter"><span aria-hidden="true">{text}<span className="typewriter-cursor" /></span><span className="sr-only">Art Director · Brand Designer · Print & Digital</span></div>;
 }
 
 function Counter({ target, suffix = "" }) {
@@ -241,6 +340,8 @@ function DraggableMarquee({ items, onNavigate, onDragStateChange }) {
   const rafRef = useRef(null);
   const isDragging = useRef(false);
   const startX = useRef(0);
+  const startY = useRef(0);
+  const touchAxis = useRef(null);
   const startPos = useRef(0);
   const hasDragged = useRef(false);
 
@@ -248,7 +349,7 @@ function DraggableMarquee({ items, onNavigate, onDragStateChange }) {
     const track = trackRef.current;
     if (!track) return;
     const tick = () => {
-      if (!isDragging.current) {
+      if (!isDragging.current && !window.matchMedia("(prefers-reduced-motion: reduce)").matches && !containerRef.current?.matches(":hover, :focus-within")) {
         const hw = track.scrollWidth / 2;
         posRef.current -= 0.65;
         if (posRef.current <= -hw) posRef.current = 0;
@@ -265,8 +366,11 @@ function DraggableMarquee({ items, onNavigate, onDragStateChange }) {
     if (!el) return;
     const onTouchMove = (e) => {
       if (!isDragging.current) return;
-      e.preventDefault();
       const delta = e.touches[0].clientX - startX.current;
+      const dy = e.touches[0].clientY - startY.current;
+      if (!touchAxis.current && Math.max(Math.abs(delta), Math.abs(dy)) > 5) touchAxis.current = Math.abs(delta) > Math.abs(dy) ? "x" : "y";
+      if (touchAxis.current !== "x") return;
+      e.preventDefault();
       if (Math.abs(delta) > 5) hasDragged.current = true;
       applyDelta(delta);
     };
@@ -320,7 +424,7 @@ function DraggableMarquee({ items, onNavigate, onDragStateChange }) {
       onMouseMove={e => moveDrag(e.clientX)}
       onMouseUp={endDrag}
       onMouseLeave={endDrag}
-      onTouchStart={e => startDrag(e.touches[0].clientX)}
+      onTouchStart={e => { startY.current = e.touches[0].clientY; touchAxis.current = null; startDrag(e.touches[0].clientX); }}
       onTouchEnd={endDrag}
       onTouchCancel={endDrag}
     >
@@ -328,9 +432,9 @@ function DraggableMarquee({ items, onNavigate, onDragStateChange }) {
         <div ref={trackRef} style={{ display: "inline-flex", whiteSpace: "nowrap" }}>
           {[...items, ...items].map((item, i) =>
             (item === "Glutenfry" || item === "Dortmunder Volksbank") ? (
-              <span key={i} className="marquee-item clickable" onClick={e => handleItemClick(item, e)}>
+              <button type="button" key={i} className="marquee-item clickable" onClick={e => handleItemClick(item, e)}>
                 {item}<span className="marquee-badge">Case Study</span><span className="marquee-sep">✦</span>
-              </span>
+              </button>
             ) : (
               <span key={i} className="marquee-item">{item}<span className="marquee-sep">✦</span></span>
             )
@@ -348,7 +452,8 @@ function CardMedia({ img, id }) {
       {img ? (
         <img
           src={img}
-          alt={"Glutenfry " + id}
+          loading="lazy"
+          alt={"Glutenfry – Projektschritt " + id}
           style={{ width:"100%", height:"100%", objectFit:"cover", objectPosition:"center", display:"block", transition:"transform 0.6s cubic-bezier(0.23,1,0.32,1)" }}
           onMouseEnter={e => e.currentTarget.style.transform = "scale(1.06)"}
           onMouseLeave={e => e.currentTarget.style.transform = "scale(1)"}
@@ -395,6 +500,9 @@ function SpreadCard({ card, hoveredCard, setHoveredCard }) {
         transition:"all 0.52s cubic-bezier(0.23,1,0.32,1)",
         boxShadow: isHovered ? "0 70px 130px rgba(0,0,0,0.98),0 0 70px rgba(212,237,42,0.14)" : "0 20px 50px rgba(0,0,0,0.6)",
       }}
+      tabIndex={0}
+      onFocus={() => setHoveredCard(card.id)}
+      onBlur={() => setHoveredCard(null)}
       onMouseEnter={() => setHoveredCard(card.id)}
       onMouseLeave={() => setHoveredCard(null)}
     >
@@ -409,6 +517,7 @@ function SpreadCard({ card, hoveredCard, setHoveredCard }) {
 function MobileCardScroll() {
   return (
     <div>
+      <p className="mobile-card-hint">Wischen, um den Prozess zu entdecken →</p>
       <div className="mobile-cards-scroll">
         {GLUTENFRY_CARDS.map(card => (
           <div key={card.id} className="mobile-card">
@@ -422,7 +531,7 @@ function MobileCardScroll() {
 }
 
 /* ── VOLKSBANK PAGE ── */
-function VolksbankPage({ onBack }) {
+function VolksbankPage({ onBack, onNavigate }) {
   const [iframeLoaded, setIframeLoaded] = useState(false);
 
   return (
@@ -511,6 +620,7 @@ function VolksbankPage({ onBack }) {
         </div>
         <button className="btn-outline" onClick={onBack}>← Zurück zur Übersicht</button>
       </div>
+      <CaseNext page="volksbank" onNavigate={onNavigate} />
       <footer className="footer">
         <div className="footer-name">PHILIP SPIEKERMANN</div>
         <div className="footer-copy">Case Study · Dortmunder Volksbank · 2026</div>
@@ -520,7 +630,7 @@ function VolksbankPage({ onBack }) {
 }
 
 /* ── GLUTENFRY PAGE ── */
-function GlutenfryPage({ onBack }) {
+function GlutenfryPage({ onBack, onNavigate }) {
   const [hoveredCard, setHoveredCard] = useState(null);
 
   return (
@@ -571,6 +681,7 @@ function GlutenfryPage({ onBack }) {
         </div>
         <button className="btn-outline" onClick={onBack}>← Zurück zur Übersicht</button>
       </div>
+      <CaseNext page="glutenfry" onNavigate={onNavigate} />
       <footer className="footer">
         <div className="footer-name">PHILIP SPIEKERMANN</div>
         <div className="footer-copy">Case Study · Glutenfry · 2024</div>
@@ -583,6 +694,7 @@ function GlutenfryPage({ onBack }) {
 function PhotoSwitcher() {
   const [show2, setShow2] = useState(false);
   useEffect(() => {
+    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
     const interval = setInterval(() => setShow2(v => !v), 3500);
     return () => clearInterval(interval);
   }, []);
@@ -594,10 +706,25 @@ function PhotoSwitcher() {
   );
 }
 
-const sections = ["hero","about","experience","skills","contact"];
+const sections = ["hero","work","about","experience","skills","contact"];
+const pageFromLocation = () => {
+  const page = window.location.hash.slice(1) || window.location.pathname.slice(1);
+  return ["glutenfry", "volksbank"].includes(page) ? page : "home";
+};
+function CaseNext({ page, onNavigate }) {
+  return <section className="case-next">
+    <div><h2>So etwas für deine Marke?</h2><p>Erzähl mir, was du vorhast.</p></div>
+    <div className="case-next-actions">
+      <a className="btn-primary" href="mailto:philipspiekermann@hotmail.com?subject=Projektanfrage">Projekt anfragen ↗</a>
+      <button className="btn-outline" onClick={() => onNavigate(page === "glutenfry" ? "volksbank" : "glutenfry")}>Nächstes Projekt →</button>
+    </div>
+  </section>;
+}
 
 export default function Portfolio() {
-  const [currentPage,      setCurrentPage]      = useState("home");
+  const [currentPage,      setCurrentPage]      = useState(pageFromLocation);
+  const [menuOpen, setMenuOpen] = useState(false);
+  const navigationTimer = useRef(null);
   const [transitioning,   setTransitioning]   = useState(false);
   const [activeSection,   setActiveSection]   = useState("hero");
   const [scrolled,        setScrolled]        = useState(false);
@@ -615,27 +742,39 @@ export default function Portfolio() {
 
   // Modifizierte Navigation mit HTML5 History API Integration
   const navigateTo = (page, isPopState = false) => {
+    setMenuOpen(false);
+    clearTimeout(navigationTimer.current);
     setTransitioning(true);
-    setTimeout(() => {
+    navigationTimer.current = setTimeout(() => {
       setCurrentPage(page);
       window.scrollTo({ top: 0, behavior: "instant" });
       
       // Nur einen neuen Verlaufseintrag pushen, wenn wir NICHT via Browser-Zurück navigieren
       if (!isPopState) {
-        const url = page === "home" ? "/" : `/${page}`;
+        const url = page === "home" ? "/" : `/#${page}`;
         window.history.pushState({ page }, "", url);
       }
       
-      requestAnimationFrame(() => requestAnimationFrame(() => setTransitioning(false)));
-    }, 420);
+      requestAnimationFrame(() => requestAnimationFrame(() => { setTransitioning(false); document.getElementById("main-content")?.focus({ preventScroll:true }); }));
+    }, window.matchMedia("(prefers-reduced-motion: reduce)").matches ? 0 : 250);
   };
 
-  const scrollTo = (id) => document.getElementById(id)?.scrollIntoView({ behavior:"smooth" });
+  const scrollTo = (id) => {
+    setMenuOpen(false);
+    document.getElementById(id)?.scrollIntoView({ behavior:window.matchMedia("(prefers-reduced-motion: reduce)").matches ? "auto" : "smooth" });
+  };
+  useEffect(() => () => clearTimeout(navigationTimer.current), []);
+  useEffect(() => {
+    if (!menuOpen) return;
+    const close = (e) => { if (e.key === "Escape") { setMenuOpen(false); document.querySelector(".menu-toggle")?.focus(); } };
+    window.addEventListener("keydown", close);
+    return () => window.removeEventListener("keydown", close);
+  }, [menuOpen]);
 
   // Event Listener für den Zurück-Button des Browsers (popstate)
   useEffect(() => {
     const handlePopState = (event) => {
-      const targetPage = event.state && event.state.page ? event.state.page : "home";
+      const targetPage = pageFromLocation();
       navigateTo(targetPage, true);
     };
 
@@ -646,12 +785,13 @@ export default function Portfolio() {
   useEffect(() => {
     // Initialen Verlaufseintrag für die Startseite setzen, falls noch keiner existiert
     if (!window.history.state) {
-      window.history.replaceState({ page: "home" }, "", "/");
+      window.history.replaceState({ page: pageFromLocation() }, "", window.location.href);
     }
 
     const move = (e) => {
       if (cursorDot.current)  { cursorDot.current.style.left  = e.clientX+"px"; cursorDot.current.style.top  = e.clientY+"px"; }
       if (cursorRing.current) { cursorRing.current.style.left = e.clientX+"px"; cursorRing.current.style.top = e.clientY+"px"; }
+      if (window.matchMedia("(prefers-reduced-motion: reduce), (pointer: coarse)").matches) return;
       const px = e.clientX/window.innerWidth-0.5, py = e.clientY/window.innerHeight-0.5;
       if (heroLeftRef.current)  heroLeftRef.current.style.transform  = "translate("+(px*-9)+"px,"+(py*-5)+"px)";
       if (heroRightRef.current) heroRightRef.current.style.transform = "translate("+(px*14)+"px,"+(py*9)+"px)";
@@ -671,7 +811,7 @@ export default function Portfolio() {
   useEffect(() => {
     const handle = () => {
       const y = window.scrollY, max = document.body.scrollHeight - window.innerHeight;
-      setScrollProgress(y/max); setScrolled(y>60);
+      setScrollProgress(max > 0 ? Math.min(1, y/max) : 0); setScrolled(y>60);
       if (parallaxBg.current) parallaxBg.current.style.transform = "translateY("+(y*0.15)+"px)";
       if (currentPageRef.current === "home") {
         for (const id of sections) {
@@ -691,6 +831,7 @@ export default function Portfolio() {
   return (
     <div className="portfolio-root">
       <style>{styles}</style>
+      <a className="skip-link" href="#main-content">Zum Inhalt</a>
       <div ref={cursorDot} className="cursor-dot" />
       <div ref={cursorRing} className={cursorClass} />
       <div className="scroll-progress">
@@ -698,23 +839,26 @@ export default function Portfolio() {
       </div>
 
       <nav className={"nav" + (scrolled ? " scrolled" : "")}>
-        <div className="nav-logo" onClick={() => navigateTo("home")}>PS</div>
+        <button className="nav-logo" aria-label="Philgood Media – Startseite" onClick={() => navigateTo("home")}>PS<span className="logo-name">philgoodmedia.</span></button>
         {(currentPage === "glutenfry" || currentPage === "volksbank") ? (
           <button className="nav-back" onClick={() => navigateTo("home")}><span className="nav-back-arrow">←</span> Alle Projekte</button>
         ) : (
-          <div className="nav-links">
-            {["about","experience","skills","contact"].map(s => (
-              <button key={s} className={"nav-link"+(activeSection===s?" active":"")} onClick={() => scrollTo(s)}>{s}</button>
-            ))}
-          </div>
+          <>
+            <button className="menu-toggle" aria-expanded={menuOpen} aria-controls="main-navigation" onClick={() => setMenuOpen(v => !v)}>{menuOpen ? "Schließen ×" : "Menü +"}</button>
+            <div id="main-navigation" className={"nav-links" + (menuOpen ? " open" : "")}>
+              {[["work","Projekte"],["about","Über mich"],["skills","Leistungen"],["contact","Kontakt ↗"]].map(([s,label]) => (
+                <button key={s} className={"nav-link"+(activeSection===s?" active":"")} onClick={() => scrollTo(s)}>{label}</button>
+              ))}
+            </div>
+          </>
         )}
       </nav>
 
-      <div style={{ opacity:transitioning?0:1, transform:transitioning?"translateY(22px)":"none", transition:"opacity 0.42s ease,transform 0.42s ease" }}>
+      <main id="main-content" tabIndex={-1} style={{ opacity:transitioning?0:1, transform:transitioning?"translateY(22px)":"none", transition:"opacity 0.42s ease,transform 0.42s ease" }}>
         {currentPage === "volksbank" ? (
-          <VolksbankPage onBack={() => navigateTo("home")} />
+          <VolksbankPage onBack={() => navigateTo("home")} onNavigate={navigateTo} />
         ) : currentPage === "glutenfry" ? (
-          <GlutenfryPage onBack={() => navigateTo("home")} />
+          <GlutenfryPage onBack={() => navigateTo("home")} onNavigate={navigateTo} />
         ) : (
           <>
             <section id="hero" className="hero">
@@ -723,12 +867,12 @@ export default function Portfolio() {
               <div className="hero-left">
                 <div ref={heroLeftRef} style={{ transition:"transform 0.18s ease-out" }}>
                   <div className="hero-tag">Philip Spiekermann · Ruhrgebiet</div>
-                  <h1 className="hero-name">PHILIP<br /><span>SPIEKERMANN</span></h1>
+                  <h1 className="hero-name">GUTE IDEEN.<br /><span>BLEIBEN.</span></h1>
                   <Typewriter />
-                  <p className="hero-desc">Marken die hängenbleiben. Von der Idee bis zur Umsetzung.</p>
+                  <p className="hero-desc">Ich bin Philip. Art Director aus dem Ruhrgebiet. Ich mache aus guten Ideen Marken, die hängenbleiben.</p>
                   <div className="hero-cta">
-                    <a href="https://www.behance.net/philsez" target="_blank" rel="noreferrer" className="btn-primary">Portfolio ansehen</a>
-                    <button className="btn-outline" onClick={() => scrollTo("contact")}>Kontakt</button>
+                    <button className="btn-primary" onClick={() => scrollTo("work")}>Projekte entdecken ↓</button>
+                    <button className="btn-outline" onClick={() => scrollTo("contact")}>Lass uns sprechen ↗</button>
                   </div>
                 </div>
               </div>
@@ -743,6 +887,27 @@ export default function Portfolio() {
                 </div>
               </div>
               <div className="scroll-hint"><div className="scroll-line" /><span>Scroll</span></div>
+            </section>
+
+
+            <section id="work" className="section">
+              <div className="work-heading">
+                <div><div className="section-label">01 / Ausgewählte Arbeiten</div><h2 className="section-title">IDEEN WERDEN<br />SICHTBAR.</h2></div>
+                <p className="work-intro">Von der ersten Idee bis ins Detail. Zwei Projekte zum Reinklicken und Entdecken.</p>
+              </div>
+              <div className="project-grid">
+                {[
+                  {page:"glutenfry",title:"Glutenfry",description:"Eine mutige Marke für glutenfreies Soul Food.",category:"Brand Design · Packaging · Print",img:"/gf_brand.png"},
+                  {page:"volksbank",title:"Dortmunder Volksbank",description:"Veränderung sichtbar machen. Digital und gedruckt.",category:"Art Direction · Geschäftsbericht",img:"/vob_laptop.png"}
+                ].map((project,i) => <a key={project.page} className="project-link" href={"/#"+project.page} onClick={e => {
+                  if (e.metaKey || e.ctrlKey || e.shiftKey || e.altKey) return;
+                  e.preventDefault(); navigateTo(project.page);
+                }}>
+                  <div className={"project-visual"+(project.page === "volksbank" ? " bank" : "")}><img src={project.img} alt={project.title+" – "+project.description} loading="lazy" width="1000" height="800" /><span className="project-open" aria-hidden="true">↗</span></div>
+                  <div className="project-meta"><div><h3>{project.title}</h3><p>{project.category}</p><p>{project.description}</p></div><span className="project-index">0{i+1}</span></div>
+                </a>)}
+              </div>
+              <p className="work-footnote">Entstanden im Rahmen meiner Arbeit bei Bounty Communication Group.</p>
             </section>
 
             <DraggableMarquee items={marqueeItems} onNavigate={navigateTo} onDragStateChange={setDraggingMarquee} />
@@ -798,9 +963,9 @@ export default function Portfolio() {
                 <FadeIn><div className="section-label">Kompetenzen</div><h2 className="section-title">SKILLS</h2></FadeIn>
                 <div className="skills-grid">
                   {[
-                    {icon:"🎨", title:"Design", items:["Brand Design","Kampagnen","Print & OOH","Social Media","Packaging"]},
-                    {icon:"🛠", title:"Tools",   items:["Photoshop","InDesign","Illustrator","Canva"]},
-                    {icon:"🤖", title:"KI",      items:["Bild-Prompting","Layout-Konzepte","KI-Workflows"]},
+                    {icon:"01 /", title:"Design", items:["Brand Design","Kampagnen","Print & OOH","Social Media","Packaging"]},
+                    {icon:"02 /", title:"Tools",   items:["Photoshop","InDesign","Illustrator","Canva"]},
+                    {icon:"03 /", title:"KI",      items:["Bild-Prompting","Layout-Konzepte","KI-Workflows"]},
                   ].map((card,i) => (
                     <FadeIn key={card.title} delay={i*80}>
                       <div className="skill-card">
@@ -821,12 +986,12 @@ export default function Portfolio() {
                 <FadeIn>
                   <div className="contact-wrapper">
                     <div className="contact-tagline">Lass uns reden</div>
-                    <h2 className="contact-heading">READY<br />TO CREATE?</h2>
-                    <p style={{ fontSize:15, color:GRAY, maxWidth:360, margin:"0 auto", lineHeight:1.8, fontWeight:300 }}>Ruf an. Schreib. Oder schau dir mein Behance an.</p>
+                    <h2 className="contact-heading">GUTES BEGINNT<br />MIT EINEM HALLO.</h2>
+                    <p style={{ fontSize:17, color:BLACK, maxWidth:440, lineHeight:1.7 }}>Eine neue Marke, eine Kampagne oder eine erste Idee? Erzähl mir, was du vorhast.</p>
                     <div className="contact-links">
-                      <a href="https://www.behance.net/philsez" target="_blank" rel="noreferrer" className="btn-primary">Behance Portfolio</a>
+                      <a href="mailto:philipspiekermann@hotmail.com?subject=Projektanfrage" className="btn-primary">Projekt anfragen ↗</a>
                       <a href="https://www.linkedin.com/in/philip-spiekermann-450403205/" target="_blank" rel="noreferrer" className="btn-outline">LinkedIn</a>
-                      <a href="mailto:philipspiekermann@hotmail.com" className="btn-outline">E-Mail</a>
+                      <a href="https://www.behance.net/philsez" target="_blank" rel="noreferrer" className="btn-outline">Mehr auf Behance ↗</a>
                     </div>
                     <div className="contact-info" style={{ marginTop:40 }}>
                       <a href="tel:015208950009">01520 8950009</a>{" · "}
@@ -844,7 +1009,7 @@ export default function Portfolio() {
             </footer>
           </>
         )}
-      </div>
+      </main>
     </div>
   );
 }
