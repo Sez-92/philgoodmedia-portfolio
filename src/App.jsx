@@ -139,6 +139,8 @@ const styles = `
   .mobile-cards-scroll { display:flex; overflow-x:auto; scroll-snap-type:x mandatory; -webkit-overflow-scrolling:touch; gap:16px; padding:4px 20px 24px; scrollbar-width:none; }
   .mobile-cards-scroll::-webkit-scrollbar { display:none; }
   .mobile-card { flex-shrink:0; width:78vw; max-width:300px; scroll-snap-align:center; background:rgba(16,16,16,0.96); border:1px solid rgba(255,255,255,0.1); overflow:hidden; position:relative; }
+  .mobile-card.cutout-card { background:transparent; border-color:transparent; }
+  .mobile-card.cutout-card::before { display:none; }
   .mobile-card::before { content:''; position:absolute; top:0; left:0; right:0; height:2px; background:${LIME}; }
   .mobile-card-hint { text-align:center; padding:14px 0 4px; font-family:'Space Mono',monospace; font-size:9px; letter-spacing:3px; text-transform:uppercase; color:rgba(255,255,255,0.2); }
   @keyframes pulse { 0%,100%{transform:scale(1);opacity:1;box-shadow:0 0 0 0 rgba(212,237,42,0.5)} 50%{transform:scale(1.35);opacity:0.7;box-shadow:0 0 0 10px rgba(212,237,42,0)} }
@@ -320,19 +322,20 @@ const styles = `
   .case-story p { color:#bdbdb3; font-size:16px; line-height:1.8; }
   @media(max-width:900px) { .case-story { grid-template-columns:1fr; gap:32px; } .case-intro { padding-top:120px; } .case-title { letter-spacing:-1px; } .case-image-stage { height:340px; } }
 
-  /* Consistent full-sized media presentation. */
+  /* Media retains its own proportions; transparent artwork sits on the page. */
   .case-intro { padding-bottom:48px; }
   .case-showcase { max-width:1600px; padding-left:4vw; padding-right:4vw; }
-  .case-image-stage { position:relative; width:100%; height:auto; aspect-ratio:3/2; border:0; padding:0; cursor:zoom-in; overflow:hidden; background:#f5f5f0; }
-  .case-image-stage img { display:block; width:100%; height:100%; object-fit:contain; }
+  .case-image-stage { position:relative; width:100%; height:auto; aspect-ratio:auto; border:0; padding:0; cursor:zoom-in; overflow:hidden; background:transparent; }
+  .case-image-stage img { display:block; width:100%; height:auto; object-fit:contain; }
   .image-expand { position:absolute; right:20px; bottom:20px; background:#111; color:#f5f5f0; padding:12px 18px; font-size:13px; border:1px solid #555; }
-  .case-thumbnails button { width:120px; height:80px; padding:0; border:3px solid transparent; opacity:.65; }
+  .case-thumbnails button { width:120px; height:80px; background:transparent; padding:0; border:3px solid transparent; opacity:.65; }
   .case-thumbnails button.selected { opacity:1; border-color:${LIME}; }
   .case-thumbnails img { object-fit:contain; display:block; }
   .case-gallery-controls { justify-content:space-between; }
-  .project-visual { aspect-ratio:3/2; background:#f5f5f0; }
-  .project-visual img { object-fit:contain; }
-  .project-visual.bank { background:#f5f5f0; }
+  .project-grid { align-items:start; }
+  .project-visual { aspect-ratio:auto; background:transparent; }
+  .project-visual img { width:100%; height:auto; object-fit:contain; }
+  .project-visual.bank { background:transparent; }
   .project-visual.bank img { padding:0; }
   .image-detail { position:fixed; inset:0; width:100vw; max-width:100vw; height:100svh; max-height:100svh; margin:0; padding:0; border:0; background:#141412; color:${WHITE}; }
   .image-detail::backdrop { background:#141412; }
@@ -358,7 +361,7 @@ const styles = `
   @media (max-width:900px) {
     .nav-back { letter-spacing:1px; padding:10px; }
     .case-showcase { padding-left:16px; padding-right:16px; }
-    .case-image-stage { height:auto; aspect-ratio:3/2; }
+    .case-image-stage { height:auto; aspect-ratio:auto; }
     .image-expand { font-size:11px; padding:8px 10px; right:10px; bottom:10px; }
     .case-thumbnails button { width:90px; height:60px; }
     .case-gallery-controls .btn-outline { padding:12px; font-size:12px; }
@@ -555,14 +558,15 @@ function DraggableMarquee({ items, onNavigate, onDragStateChange }) {
 
 /* ── CARD SHARED PIECES ── */
 function CardMedia({ img, id }) {
+  const isCutout = img === "/gf_logo.png" || img === "/gf_result.png";
   return (
-    <div style={{ width:"100%", height:210, position:"relative", overflow:"hidden", background:"#1a1a1a" }}>
+    <div style={{ width:"100%", height:210, position:"relative", overflow:"hidden", background:"transparent" }}>
       {img ? (
         <img
           src={img}
           loading="lazy"
           alt={"Glutenfry – Projektschritt " + id}
-          style={{ width:"100%", height:"100%", objectFit:"cover", objectPosition:"center", display:"block", transition:"transform 0.6s cubic-bezier(0.23,1,0.32,1)" }}
+          style={{ width:"100%", height:"100%", objectFit:isCutout ? "contain" : "cover", objectPosition:"center", display:"block", transition:"transform 0.6s cubic-bezier(0.23,1,0.32,1)" }}
           onMouseEnter={e => e.currentTarget.style.transform = "scale(1.06)"}
           onMouseLeave={e => e.currentTarget.style.transform = "scale(1)"}
         />
@@ -591,6 +595,7 @@ function CardBody({ card }) {
 /* ── DESKTOP SPREAD CARD ── */
 function SpreadCard({ card, hoveredCard, setHoveredCard }) {
   const isHovered = hoveredCard === card.id;
+  const isCutout = card.img === "/gf_logo.png" || card.img === "/gf_result.png";
   const isDimmed  = hoveredCard !== null && !isHovered;
   return (
     <div
@@ -603,10 +608,10 @@ function SpreadCard({ card, hoveredCard, setHoveredCard }) {
         transform: isHovered ? "rotate(0deg) translateY(-44px) scale(1.12)" : "rotate(" + card.rot + "deg)",
         opacity: isDimmed ? 0.42 : 1,
         filter: isDimmed ? "brightness(0.48) saturate(0.6)" : "none",
-        border: "1px solid " + (isHovered ? LIME : "rgba(255,255,255,0.1)"),
-        background:"rgba(16,16,16,0.96)", overflow:"hidden", cursor:"none",
+        border: isCutout ? "1px solid transparent" : "1px solid " + (isHovered ? LIME : "rgba(255,255,255,0.1)"),
+        background:isCutout ? "transparent" : "rgba(16,16,16,0.96)", overflow:"hidden", cursor:"none",
         transition:"all 0.52s cubic-bezier(0.23,1,0.32,1)",
-        boxShadow: isHovered ? "0 70px 130px rgba(0,0,0,0.98),0 0 70px rgba(212,237,42,0.14)" : "0 20px 50px rgba(0,0,0,0.6)",
+        boxShadow: isCutout ? "none" : isHovered ? "0 70px 130px rgba(0,0,0,0.98),0 0 70px rgba(212,237,42,0.14)" : "0 20px 50px rgba(0,0,0,0.6)",
       }}
       tabIndex={0}
       onFocus={() => setHoveredCard(card.id)}
@@ -628,7 +633,7 @@ function MobileCardScroll() {
       <p className="mobile-card-hint">Wischen, um den Prozess zu entdecken →</p>
       <div className="mobile-cards-scroll">
         {GLUTENFRY_CARDS.map(card => (
-          <div key={card.id} className="mobile-card">
+          <div key={card.id} className={"mobile-card" + ([2,5].includes(card.id) ? " cutout-card" : "")}>
             <CardMedia img={card.img} id={card.id} />
             <CardBody card={card} />
           </div>
@@ -838,21 +843,21 @@ function PosterGallery() {
 const PROJECTS = [
   {page:"glutenfry",title:"Glutenfry",description:"Eine mutige Marke für glutenfreies Soul Food.",category:"Brand Design · Packaging · Print",img:"/gf_brand.png"},
   {page:"volksbank",title:"Dortmunder Volksbank",description:"Veränderung sichtbar machen. Digital und gedruckt.",category:"Art Direction · Geschäftsbericht",img:"/vob_laptop.png"},
-  {page:"vonovia",title:"Vonovia × VfL Bochum",description:"Fußballkultur zum Durchblättern.",category:"Editorial Design · Saisonbuch",img:"/projects/vonovia-1.webp",year:"2025/26",role:"Art Direction · Editorial Design · Layout",headline:"EIN VEREIN.\nVIELE GESCHICHTEN.",intro:"Das Saisonbuch für Vonovia und den VfL Bochum 1848 verbindet Fußball, Nachbarschaft und die Emotionen des Ruhrgebiets in einem quadratischen Buchformat.",steps:[
+  {page:"vonovia",title:"Vonovia × VfL Bochum",description:"Fußballkultur zum Durchblättern.",category:"Editorial Design · Saisonbuch",img:"/projects/vonovia-1-detail.webp",year:"2025/26",role:"Art Direction · Editorial Design · Layout",headline:"EIN VEREIN.\nVIELE GESCHICHTEN.",intro:"Das Saisonbuch für Vonovia und den VfL Bochum 1848 verbindet Fußball, Nachbarschaft und die Emotionen des Ruhrgebiets in einem quadratischen Buchformat.",steps:[
     ["Die Aufgabe","Ein Saisonbuch gestalten, das die Verbundenheit zwischen Hauptsponsor, Verein und Region sichtbar macht."],
     ["Die Idee","Ein flexibles Magazinraster verbindet Bildstrecken, Spielerporträts und Infografiken. Prägnante Typografie und Cutout-Collagen geben den Geschichten ihren eigenen Rhythmus."],
     ["Die Umsetzung","Editorial Design und Layout bis zur Druckvorstufe: Doppelseiten, Composings und ein quadratisches Sonderformat als zusammenhängendes Buchkonzept."]
-  ],images:[{src:"/projects/vonovia-1.webp",alt:"Aufgeschlagenes Saisonbuch mit einer Stadion-Bildstrecke",caption:"Editorial Design: große Bilder und klare Schrifthierarchien."},{src:"/projects/vonovia-2.webp",alt:"Cover-Mockup des Saisonbuchs",caption:"Ein quadratisches Buchformat für eine Saison voller Geschichten."},{src:"/projects/vonovia-3.webp",alt:"Vorder- und Rückseite des Saisonbuchs Zuhause ist hier",caption:"Der Buchumschlag: Zuhause ist hier."}]},
-  {page:"salzburg",title:"Flughafen Salzburg",description:"Ein Charakter. Viele Reiseziele.",category:"Kampagne · KI-Workflow · OOH",img:"/projects/salzburg-1.webp",year:"2026",role:"Art Direction · Campaign Design · KI-Workflow",headline:"FLIEG AB\nSALZBURG!",intro:"Eine humorvolle Ganzjahreskampagne zum 100-jährigen Jubiläum des Salzburg Airport. Ein wiederkehrender Affen-Charakter macht unterschiedliche Reiseziele zu einer erkennbaren Kampagnenwelt.",steps:[
+  ],images:[{src:"/projects/vonovia-1-detail.webp",alt:"Aufgeschlagenes Saisonbuch mit einer Stadion-Bildstrecke",caption:"Editorial Design: große Bilder und klare Schrifthierarchien."},{src:"/projects/vonovia-2-detail.webp",alt:"Cover-Mockup des Saisonbuchs",caption:"Ein quadratisches Buchformat für eine Saison voller Geschichten."},{src:"/projects/vonovia-3-detail.webp",alt:"Vorder- und Rückseite des Saisonbuchs Zuhause ist hier",caption:"Der Buchumschlag: Zuhause ist hier."}]},
+  {page:"salzburg",title:"Flughafen Salzburg",description:"Ein Charakter. Viele Reiseziele.",category:"Kampagne · KI-Workflow · OOH",img:"/projects/salzburg-1-detail.webp",year:"2026",role:"Art Direction · Campaign Design · KI-Workflow",headline:"FLIEG AB\nSALZBURG!",intro:"Eine humorvolle Ganzjahreskampagne zum 100-jährigen Jubiläum des Salzburg Airport. Ein wiederkehrender Affen-Charakter macht unterschiedliche Reiseziele zu einer erkennbaren Kampagnenwelt.",steps:[
     ["Die Aufgabe","Eine Dachkampagne entwickeln, die über das gesamte Jahr für unterschiedliche Reiseziele funktioniert und die Jubiläums-CI aufgreift."],
     ["Die Idee","Ein zentraler Charakter schafft Wiedererkennung. Neue Reiseziele und saisonale Anlässe lassen sich innerhalb derselben visuellen Sprache erzählen."],
     ["Die Umsetzung","KI-Generierung, Prompting und Harmonisierung der Motive sowie Adaptionen für OOH-Großflächen, Print-Folder, Social Media und QR-Landingpages."]
-  ],images:[{src:"/projects/salzburg-1.webp",alt:"Flieg ab Salzburg als großflächige Außenwerbung an einer Fassade",caption:"Die Kampagne im öffentlichen Raum."},{src:"/projects/salzburg-2.webp",alt:"Salzburg-Kampagnenmotiv auf einer Außenwerbefläche",caption:"Wiedererkennung über verschiedene Formate hinweg."},{src:"/projects/salzburg-3.webp",alt:"Weitere Anwendung der Salzburg-Flughafenkampagne",caption:"Ein konsistenter Kampagnenauftritt in weiteren Anwendungen."}]},
-  {page:"vestische",title:"125 Jahre Vestische",description:"Ein Jubiläum, das im Gedächtnis bleibt.",category:"Eventbranding · Kampagne · Print",img:"/projects/vestische-1.webp",year:"125-jähriges Jubiläum",role:"Art Direction · Key Visual · Event-Werbemittel",headline:"125 JAHRE.\nMITTEN IM LEBEN.",intro:"Für das Jubiläum der Vestischen Straßenbahnen entstand ein Event- und Branding-Konzept, das regionale Verbundenheit mit einem durchgängigen visuellen Auftritt verbindet.",steps:[
+  ],images:[{src:"/projects/salzburg-1-detail.webp",alt:"Flieg ab Salzburg als großflächige Außenwerbung an einer Fassade",caption:"Die Kampagne im öffentlichen Raum."},{src:"/projects/salzburg-2-detail.webp",alt:"Salzburg-Kampagnenmotiv auf einer Außenwerbefläche",caption:"Wiedererkennung über verschiedene Formate hinweg."},{src:"/projects/salzburg-3-detail.webp",alt:"Weitere Anwendung der Salzburg-Flughafenkampagne",caption:"Ein konsistenter Kampagnenauftritt in weiteren Anwendungen."}]},
+  {page:"vestische",title:"125 Jahre Vestische",description:"Ein Jubiläum, das im Gedächtnis bleibt.",category:"Eventbranding · Kampagne · Print",img:"/projects/vestische-1-detail.webp",year:"125-jähriges Jubiläum",role:"Art Direction · Key Visual · Event-Werbemittel",headline:"125 JAHRE.\nMITTEN IM LEBEN.",intro:"Für das Jubiläum der Vestischen Straßenbahnen entstand ein Event- und Branding-Konzept, das regionale Verbundenheit mit einem durchgängigen visuellen Auftritt verbindet.",steps:[
     ["Die Aufgabe","Das 125-jährige Bestehen als zusammenhängendes Markenerlebnis gestalten – im öffentlichen Raum und auf dem Veranstaltungsgelände."],
     ["Die Idee","Ein prägnantes Jubiläumsdesign verbindet große Werbeflächen mit kleinen, persönlichen Details. So entsteht Wiedererkennung an jedem Kontaktpunkt."],
     ["Die Umsetzung","Key Visual und Werbemittel: von Einladungen und Magazinen über Banner und Leitsysteme bis zu digitalen Adaptionen und Bus-Branding."]
-  ],images:[{src:"/projects/vestische-1.webp",alt:"Gestaltete Wegweiser für Bühne und Trinkplatz beim Vestische-Jubiläum",caption:"Orientierung mit Charakter: das Leitsystem auf dem Event."},{src:"/projects/vestische-2.webp",alt:"Event-Teamshirt mit dem Schriftzug Vest Team",caption:"Ein einheitlicher Auftritt für das Event-Team."}]}
+  ],images:[{src:"/projects/vestische-1-detail.webp",alt:"Gestaltete Wegweiser für Bühne und Trinkplatz beim Vestische-Jubiläum",caption:"Orientierung mit Charakter: das Leitsystem auf dem Event."},{src:"/projects/vestische-2-detail.webp",alt:"Event-Teamshirt mit dem Schriftzug Vest Team",caption:"Ein einheitlicher Auftritt für das Event-Team."}]}
 ];
 
 function ImageDetail({ image, onClose }) {
@@ -865,7 +870,7 @@ function ImageDetail({ image, onClose }) {
   }, []);
   return <dialog ref={ref} className="image-detail" aria-label="Projektmotiv in Großansicht" onClose={onClose} onClick={e=>{if(e.target===ref.current)ref.current.close();}}>
     <div className="image-detail-toolbar"><p>{image.caption}</p><button autoFocus className="poster-control" onClick={()=>ref.current.close()}>Schließen ×</button></div>
-    <div className="image-detail-body"><img src={image.src.replace('.webp','-detail.webp')} alt={image.alt}/></div>
+    <div className="image-detail-body"><img src={image.src} alt={image.alt}/></div>
   </dialog>;
 }
 
@@ -1087,7 +1092,7 @@ export default function Portfolio() {
                   if (e.metaKey || e.ctrlKey || e.shiftKey || e.altKey) return;
                   e.preventDefault(); navigateTo(project.page);
                 }}>
-                  <div className={"project-visual"+(["volksbank","vonovia","salzburg"].includes(project.page) ? " bank" : "")}><img src={project.img} alt={project.title+" – "+project.description} loading="lazy" width="1000" height="800" /><span className="project-open" aria-hidden="true">↗</span></div>
+                  <div className={"project-visual"+(["volksbank","vonovia","salzburg"].includes(project.page) ? " bank" : "")}><img src={project.img} alt={project.title+" – "+project.description} loading="lazy"  /><span className="project-open" aria-hidden="true">↗</span></div>
                   <div className="project-meta"><div><h3>{project.title}</h3><p>{project.category}</p><p>{project.description}</p></div><span className="project-index">0{i+1}</span></div>
                 </a>)}
               </div>
