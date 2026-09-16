@@ -312,7 +312,8 @@ const styles = `
   .case-image-stage { background:#f5f5f0; height:clamp(280px,48vw,640px); display:flex; align-items:center; justify-content:center; }
   .case-image-stage img { width:100%; height:100%; object-fit:contain; }
   .case-showcase figcaption { padding:18px 0; color:${GRAY}; font-size:14px; line-height:1.6; }
-  .case-thumbnails { display:flex; gap:12px; padding:6px 0; }
+  .case-thumbnails { display:flex; gap:12px; padding:6px 0; overflow-x:auto; scrollbar-width:thin; }
+  .case-thumbnails button { flex-shrink:0; }
   .case-thumbnails button { width:clamp(64px,12vw,150px); height:clamp(60px,9vw,105px); background:#f5f5f0; border:2px solid transparent; padding:4px; cursor:pointer; }
   .case-thumbnails button.selected { border-color:${LIME}; }
   .case-thumbnails img { width:100%; height:100%; object-fit:contain; }
@@ -337,6 +338,8 @@ const styles = `
   .project-visual img { width:100%; height:auto; object-fit:contain; }
   .project-visual.bank { background:transparent; }
   .project-visual.bank img { padding:0; }
+  .project-visual.cutout img { height:clamp(280px,40vw,540px); width:100%; object-fit:contain; }
+  .case-image-stage.cutout img { height:clamp(320px,65vw,740px); width:100%; object-fit:contain; }
   .image-detail { position:fixed; inset:0; width:100vw; max-width:100vw; height:100svh; max-height:100svh; margin:0; padding:0; border:0; background:#141412; color:${WHITE}; }
   .image-detail::backdrop { background:#141412; }
   .image-detail-toolbar { min-height:80px; display:flex; justify-content:space-between; align-items:center; gap:20px; padding:16px 28px; border-bottom:1px solid #444; }
@@ -853,11 +856,19 @@ const PROJECTS = [
     ["Die Idee","Ein zentraler Charakter schafft Wiedererkennung. Neue Reiseziele und saisonale Anlässe lassen sich innerhalb derselben visuellen Sprache erzählen."],
     ["Die Umsetzung","KI-Generierung, Prompting und Harmonisierung der Motive sowie Adaptionen für OOH-Großflächen, Print-Folder, Social Media und QR-Landingpages."]
   ],images:[{src:"/projects/salzburg-1-detail.webp",alt:"Flieg ab Salzburg als großflächige Außenwerbung an einer Fassade",caption:"Die Kampagne im öffentlichen Raum."},{src:"/projects/salzburg-2-detail.webp",alt:"Salzburg-Kampagnenmotiv auf einer Außenwerbefläche",caption:"Wiedererkennung über verschiedene Formate hinweg."},{src:"/projects/salzburg-3-detail.webp",alt:"Weitere Anwendung der Salzburg-Flughafenkampagne",caption:"Ein konsistenter Kampagnenauftritt in weiteren Anwendungen."}]},
-  {page:"vestische",title:"125 Jahre Vestische",description:"Ein Jubiläum, das im Gedächtnis bleibt.",category:"Eventbranding · Kampagne · Print",img:"/projects/vestische-1-detail.webp",year:"125-jähriges Jubiläum",role:"Art Direction · Key Visual · Event-Werbemittel",headline:"125 JAHRE.\nMITTEN IM LEBEN.",intro:"Für das Jubiläum der Vestischen Straßenbahnen entstand ein Event- und Branding-Konzept, das regionale Verbundenheit mit einem durchgängigen visuellen Auftritt verbindet.",steps:[
+  {page:"vestische",title:"125 Jahre Vestische",description:"Ein Jubiläum, das im Gedächtnis bleibt.",category:"Eventbranding · Kampagne · Print",img:"/projects/vestische-sign.webp",cutout:true,year:"125-jähriges Jubiläum",role:"Art Direction · Key Visual · Event-Werbemittel",headline:"125 JAHRE.\nMITTEN IM LEBEN.",intro:"Für das Jubiläum der Vestischen Straßenbahnen entstand ein Event- und Branding-Konzept, das regionale Verbundenheit mit einem durchgängigen visuellen Auftritt verbindet.",steps:[
     ["Die Aufgabe","Das 125-jährige Bestehen als zusammenhängendes Markenerlebnis gestalten – im öffentlichen Raum und auf dem Veranstaltungsgelände."],
     ["Die Idee","Ein prägnantes Jubiläumsdesign verbindet große Werbeflächen mit kleinen, persönlichen Details. So entsteht Wiedererkennung an jedem Kontaktpunkt."],
     ["Die Umsetzung","Key Visual und Werbemittel: von Einladungen und Magazinen über Banner und Leitsysteme bis zu digitalen Adaptionen und Bus-Branding."]
-  ],images:[{src:"/projects/vestische-1-detail.webp",alt:"Gestaltete Wegweiser für Bühne und Trinkplatz beim Vestische-Jubiläum",caption:"Orientierung mit Charakter: das Leitsystem auf dem Event."},{src:"/projects/vestische-2-detail.webp",alt:"Event-Teamshirt mit dem Schriftzug Vest Team",caption:"Ein einheitlicher Auftritt für das Event-Team."}]}
+  ],images:[
+    {src:"/projects/vestische-sign.webp",cutout:true,alt:"Freigestellte Wegweiser für Bühne und Trinkplatz",caption:"Leitsystem: klare Orientierung im orangefarbenen Eventdesign."},
+    {src:"/projects/vestische-team.webp",cutout:true,alt:"Philip im Teamshirt mit dem Schriftzug Vest Team",caption:"Teamwear: ein wiedererkennbarer Auftritt für das Event-Team."},
+    {src:"/projects/vestische-tram.webp",alt:"Historische Straßenbahn mit Blumendekoration beim Vestische-Jubiläum",caption:"125 Jahre Mobilität: eine historische Straßenbahn als Teil des Events."},
+    {src:"/projects/vestische-history.webp",alt:"Beleuchtete Jubiläumswand zur Geschichte der Vestischen am Abend",caption:"Geschichte im Raum: die Jubiläumswand in der abendlichen Eventatmosphäre."},
+    {src:"/projects/vestische-table.webp",alt:"Tischgestaltung mit Blumen, orangefarbenen Details und einer Karte mit dem Wort Trinkplatz",caption:"Gestaltung bis ins Detail: das Farbkonzept auf den Tischen."},
+    {src:"/projects/vestische-food.webp",alt:"Frisch angerichtete Bowl aus dem Food-Angebot des Events",caption:"Food und Begegnung: Einblicke in den Veranstaltungstag."}
+  ]}
+
 ];
 
 function ImageDetail({ image, onClose }) {
@@ -885,7 +896,7 @@ function ProjectPage({ project, onNavigate }) {
       <dl className="case-facts"><div><dt>Projekt</dt><dd>{project.year}</dd></div><div><dt>Mein Beitrag</dt><dd>{project.role}</dd></div><div><dt>Entstanden bei</dt><dd>Bounty Communication Group</dd></div></dl>
     </header>
     <section className="case-showcase section" aria-label="Projektgalerie">
-      <figure><button className="case-image-stage" onClick={()=>setDetailOpen(true)} aria-label="Motiv in Großansicht öffnen"><img src={project.images[activeImage].src} alt={project.images[activeImage].alt}/><span className="image-expand">Großansicht ⤢</span></button><figcaption aria-live="polite">{String(activeImage+1).padStart(2,"0")} / {String(project.images.length).padStart(2,"0")} — {project.images[activeImage].caption}</figcaption></figure>
+      <figure><button className={"case-image-stage" + (project.images[activeImage].cutout ? " cutout" : "")} onClick={()=>setDetailOpen(true)} aria-label="Motiv in Großansicht öffnen"><img src={project.images[activeImage].src} alt={project.images[activeImage].alt}/><span className="image-expand">Großansicht ⤢</span></button><figcaption aria-live="polite">{String(activeImage+1).padStart(2,"0")} / {String(project.images.length).padStart(2,"0")} — {project.images[activeImage].caption}</figcaption></figure>
       <div className="case-thumbnails">{project.images.map((im,i)=><button key={im.src} className={activeImage===i?"selected":""} aria-label={"Motiv "+(i+1)+": "+im.alt} aria-pressed={activeImage===i} onClick={()=>setActiveImage(i)}><img src={im.src} alt="" loading="lazy"/></button>)}</div>
       <div className="case-gallery-controls"><button className="btn-outline" onClick={()=>setActiveImage(i=>(i-1+project.images.length)%project.images.length)}>← Vorheriges Motiv</button><button className="btn-outline" onClick={()=>setActiveImage(i=>(i+1)%project.images.length)}>Nächstes Motiv →</button></div>
     </section>
@@ -1092,7 +1103,7 @@ export default function Portfolio() {
                   if (e.metaKey || e.ctrlKey || e.shiftKey || e.altKey) return;
                   e.preventDefault(); navigateTo(project.page);
                 }}>
-                  <div className={"project-visual"+(["volksbank","vonovia","salzburg"].includes(project.page) ? " bank" : "")}><img src={project.img} alt={project.title+" – "+project.description} loading="lazy"  /><span className="project-open" aria-hidden="true">↗</span></div>
+                  <div className={"project-visual"+(["volksbank","vonovia","salzburg"].includes(project.page) ? " bank" : "")+(project.cutout ? " cutout" : "")}><img src={project.img} alt={project.title+" – "+project.description} loading="lazy"  /><span className="project-open" aria-hidden="true">↗</span></div>
                   <div className="project-meta"><div><h3>{project.title}</h3><p>{project.category}</p><p>{project.description}</p></div><span className="project-index">0{i+1}</span></div>
                 </a>)}
               </div>
