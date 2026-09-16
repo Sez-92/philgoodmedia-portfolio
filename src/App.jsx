@@ -320,6 +320,60 @@ const styles = `
   .case-story p { color:#bdbdb3; font-size:16px; line-height:1.8; }
   @media(max-width:900px) { .case-story { grid-template-columns:1fr; gap:32px; } .case-intro { padding-top:120px; } .case-title { letter-spacing:-1px; } .case-image-stage { height:340px; } }
 
+  /* Consistent full-sized media presentation. */
+  .case-intro { padding-bottom:48px; }
+  .case-showcase { max-width:1600px; padding-left:4vw; padding-right:4vw; }
+  .case-image-stage { position:relative; width:100%; height:auto; aspect-ratio:3/2; border:0; padding:0; cursor:zoom-in; overflow:hidden; background:#f5f5f0; }
+  .case-image-stage img { display:block; width:100%; height:100%; object-fit:contain; }
+  .image-expand { position:absolute; right:20px; bottom:20px; background:#111; color:#f5f5f0; padding:12px 18px; font-size:13px; border:1px solid #555; }
+  .case-thumbnails button { width:120px; height:80px; padding:0; border:3px solid transparent; opacity:.65; }
+  .case-thumbnails button.selected { opacity:1; border-color:${LIME}; }
+  .case-thumbnails img { object-fit:contain; display:block; }
+  .case-gallery-controls { justify-content:space-between; }
+  .project-visual { aspect-ratio:3/2; background:#f5f5f0; }
+  .project-visual img { object-fit:contain; }
+  .project-visual.bank { background:#f5f5f0; }
+  .project-visual.bank img { padding:0; }
+  .image-detail { position:fixed; inset:0; width:100vw; max-width:100vw; height:100svh; max-height:100svh; margin:0; padding:0; border:0; background:#141412; color:${WHITE}; }
+  .image-detail::backdrop { background:#141412; }
+  .image-detail-toolbar { min-height:80px; display:flex; justify-content:space-between; align-items:center; gap:20px; padding:16px 28px; border-bottom:1px solid #444; }
+  .image-detail-toolbar p { color:#bdbdb3; font-size:15px; }
+  .image-detail-toolbar button { flex-shrink:0; }
+  .image-detail-body { height:calc(100svh - 88px); padding:20px; display:flex; align-items:center; justify-content:center; overflow:auto; }
+  .image-detail-body img { max-width:100%; max-height:100%; object-fit:contain; }
+  .bank-project-intro { padding-top:64px; padding-bottom:40px; max-width:1600px; }
+  .bank-project-intro .section-title { font-size:clamp(38px,5vw,72px); margin-bottom:24px; }
+  .bank-project-intro p { color:#bdbdb3; font-size:18px; line-height:1.7; max-width:720px; }
+  .bank-experience { scroll-margin-top:90px; margin:0 24px 80px; border:1px solid #44443c; background:#1c1c18; }
+  .bank-toolbar { display:flex; align-items:center; justify-content:space-between; gap:24px; padding:20px 24px; }
+  .bank-toolbar .section-label { margin-bottom:8px; }
+  .bank-hint { color:#bdbdb3; font-size:13px; }
+  .bank-actions { display:flex; gap:12px; flex-wrap:wrap; }
+  .bank-experience iframe { width:100%; height:calc(100svh - 150px); min-height:720px; border:0; display:block; background:white; }
+  .bank-fallback { padding:14px 24px; color:#bdbdb3; font-size:12px; line-height:1.6; }
+  .bank-fallback a { color:${LIME}; }
+  .bank-experience.expanded { position:fixed; inset:0; z-index:12000; margin:0; display:flex; flex-direction:column; border:0; }
+  .bank-experience.expanded iframe { flex:1; min-height:0; height:auto; }
+  .bank-experience.expanded .bank-fallback { margin:0; }
+  @media (max-width:900px) {
+    .nav-back { letter-spacing:1px; padding:10px; }
+    .case-showcase { padding-left:16px; padding-right:16px; }
+    .case-image-stage { height:auto; aspect-ratio:3/2; }
+    .image-expand { font-size:11px; padding:8px 10px; right:10px; bottom:10px; }
+    .case-thumbnails button { width:90px; height:60px; }
+    .case-gallery-controls .btn-outline { padding:12px; font-size:12px; }
+    .bank-experience { margin:0 12px 48px; }
+    .bank-toolbar { flex-wrap:wrap; padding:16px; gap:16px; }
+    .bank-actions { width:100%; }
+    .bank-actions > * { flex:1; text-align:center; padding:12px; font-size:13px; }
+    .bank-experience iframe { height:78svh; min-height:520px; }
+    .bank-experience.expanded iframe { min-height:0; }
+    .bank-fallback { padding:12px 16px; }
+    .image-detail-toolbar { padding:12px; min-height:88px; }
+    .image-detail-toolbar p { font-size:12px; }
+    .image-detail-body { padding:0; }
+  }
+
 `;
 
 const WORDS = ["Art Director", "Brand Designer", "Print & Digital", "Creative Mind"];
@@ -586,7 +640,16 @@ function MobileCardScroll() {
 
 /* ── VOLKSBANK PAGE ── */
 function VolksbankPage({ onBack, onNavigate }) {
-  const [iframeLoaded, setIframeLoaded] = useState(false);
+  const [expanded, setExpanded] = useState(false);
+  const expandButton = useRef(null);
+  useEffect(() => {
+    if (!expanded) return;
+    const before = document.body.style.overflow;
+    document.body.style.overflow = "hidden";
+    const onKey = e => { if (e.key === "Escape") setExpanded(false); };
+    window.addEventListener("keydown", onKey);
+    return () => { document.body.style.overflow = before; window.removeEventListener("keydown", onKey); expandButton.current?.focus({preventScroll:true}); };
+  }, [expanded]);
 
   return (
     <div style={{ minHeight:"100vh" }}>
@@ -612,59 +675,18 @@ function VolksbankPage({ onBack, onNavigate }) {
         </div>
       </section>
 
-      {/* LAPTOP MOCKUP */}
-      <section style={{ padding:"100px 40px 60px" }}>
-        <div style={{ maxWidth:1100, margin:"0 auto" }}>
-          <div className="section-label">Das Projekt</div>
-          <h2 className="section-title">VERLAUF DER<br />VERÄNDERUNG</h2>
-          <p style={{ fontSize:15, lineHeight:1.8, color:"#BBBBB5", fontWeight:300, maxWidth:520, marginTop:-36, marginBottom:64 }}>
-            Geschäftsbericht der Dortmunder Volksbank – Leitmotiv, Key Visual, Web und Print.
-          </p>
-          <div style={{ maxWidth:860, margin:"0 auto" }}>
-            <img
-              src="/vob_laptop.png"
-              alt="Dortmunder Volksbank"
-              style={{ width:"100%", display:"block", filter:"drop-shadow(0 32px 64px rgba(0,0,0,0.85))" }}
-            />
-          </div>
-        </div>
+      <section className="bank-project-intro section">
+        <div className="section-label">Digitaler Geschäftsbericht</div>
+        <h2 className="section-title">VERLAUF DER VERÄNDERUNG</h2>
+        <p>Leitmotiv, Key Visual, Web und Print. Erkunde den Geschäftsbericht direkt hier – oder öffne ihn in einer eigenen Ansicht.</p>
       </section>
-
-      {/* LIVE WEBSITE */}
-      <section style={{ padding:"0 0 80px" }}>
-        <div style={{ maxWidth:1100, margin:"0 auto", padding:"0 40px" }}>
-          <div style={{ display:"flex", alignItems:"center", justifyContent:"space-between", flexWrap:"wrap", gap:16, marginBottom:28 }}>
-            <div className="section-label" style={{ margin:0 }}>Live Website</div>
-            <a href="https://geschaeftsbericht.dovoba.de/" target="_blank" rel="noreferrer" className="btn-outline">↗ Im Browser öffnen</a>
-          </div>
-
-          <div style={{ maxWidth:880, margin:"0 auto", borderRadius:"10px 10px 0 0", overflow:"hidden", border:"1px solid rgba(255,255,255,0.12)", boxShadow:"0 -16px 60px rgba(0,0,0,0.55)" }}>
-            <div style={{ background:"#1e1e1e", padding:"12px 20px", display:"flex", alignItems:"center", gap:12, borderBottom:"1px solid rgba(255,255,255,0.08)" }}>
-              <div style={{ display:"flex", gap:6 }}>
-                {["#ff5f57","#ffbd2e","#28c840"].map(c => <div key={c} style={{ width:12, height:12, borderRadius:"50%", background:c, opacity:0.8 }} />)}
-              </div>
-              <div style={{ flex:1, background:"rgba(255,255,255,0.07)", borderRadius:6, padding:"5px 16px", fontFamily:"'Space Mono',monospace", fontSize:11, color:GRAY }}>
-                geschaeftsbericht.dovoba.de
-              </div>
-              <div style={{ width:20 }} />
-            </div>
-            <div style={{ position:"relative" }}>
-              {!iframeLoaded && (
-                <div style={{ position:"absolute", inset:0, background:"#161616", display:"flex", flexDirection:"column", alignItems:"center", justifyContent:"center", gap:16, zIndex:2, minHeight:500 }}>
-                  <div style={{ width:36, height:36, border:"2px solid rgba(212,237,42,0.2)", borderTopColor:LIME, borderRadius:"50%", animation:"spin 0.8s linear infinite" }} />
-                  <span style={{ fontFamily:"'Space Mono',monospace", fontSize:10, letterSpacing:3, textTransform:"uppercase", color:GRAY }}>Website wird geladen…</span>
-                </div>
-              )}
-              <iframe
-                src="https://geschaeftsbericht.dovoba.de/"
-                title="Dortmunder Volksbank"
-                onLoad={() => setIframeLoaded(true)}
-                style={{ width:"100%", height:"72vh", minHeight:500, border:"none", display:"block" }}
-                loading="lazy"
-              />
-            </div>
-          </div>
+      <section className={"bank-experience" + (expanded ? " expanded" : "")} aria-label="Interaktiver Geschäftsbericht">
+        <div className="bank-toolbar">
+          <div><span className="section-label">Dortmunder Volksbank</span><span className="bank-hint">Interaktiven Geschäftsbericht entdecken</span></div>
+          <div className="bank-actions"><button ref={expandButton} className="btn-outline" onClick={()=>setExpanded(v=>!v)} aria-pressed={expanded}>{expanded ? "Ansicht schließen ×" : "Große Ansicht ⤢"}</button><a href="https://geschaeftsbericht.dovoba.de/" target="_blank" rel="noreferrer" className="btn-primary">Website öffnen ↗</a></div>
         </div>
+        <iframe src="https://geschaeftsbericht.dovoba.de/" title="Interaktiver Geschäftsbericht der Dortmunder Volksbank" loading="eager" allowFullScreen />
+        <p className="bank-fallback">Falls die Einbettung in deinem Browser nicht angezeigt wird: <a href="https://geschaeftsbericht.dovoba.de/" target="_blank" rel="noreferrer">Geschäftsbericht direkt öffnen ↗</a></p>
       </section>
 
       <div style={{ padding:"52px 40px", borderTop:"1px solid rgba(255,255,255,0.06)", display:"flex", alignItems:"center", justifyContent:"space-between", flexWrap:"wrap", gap:24 }}>
@@ -820,20 +842,36 @@ const PROJECTS = [
     ["Die Aufgabe","Ein Saisonbuch gestalten, das die Verbundenheit zwischen Hauptsponsor, Verein und Region sichtbar macht."],
     ["Die Idee","Ein flexibles Magazinraster verbindet Bildstrecken, Spielerporträts und Infografiken. Prägnante Typografie und Cutout-Collagen geben den Geschichten ihren eigenen Rhythmus."],
     ["Die Umsetzung","Editorial Design und Layout bis zur Druckvorstufe: Doppelseiten, Composings und ein quadratisches Sonderformat als zusammenhängendes Buchkonzept."]
-  ],images:[{src:"/projects/vonovia-1.webp",alt:"Aufgeschlagenes Saisonbuch mit einer Stadion-Bildstrecke",caption:"Editorial Design: große Bilder und klare Schrifthierarchien."},{src:"/projects/vonovia-2.webp",alt:"Cover-Mockup des Saisonbuchs",caption:"Ein quadratisches Buchformat für eine Saison voller Geschichten."},{src:"/projects/vonovia-3.webp",alt:"Weitere gestaltete Doppelseite des Vonovia-Saisonbuchs",caption:"Ein flexibles Raster hält unterschiedliche Inhalte zusammen."}]},
+  ],images:[{src:"/projects/vonovia-1.webp",alt:"Aufgeschlagenes Saisonbuch mit einer Stadion-Bildstrecke",caption:"Editorial Design: große Bilder und klare Schrifthierarchien."},{src:"/projects/vonovia-2.webp",alt:"Cover-Mockup des Saisonbuchs",caption:"Ein quadratisches Buchformat für eine Saison voller Geschichten."},{src:"/projects/vonovia-3.webp",alt:"Vorder- und Rückseite des Saisonbuchs Zuhause ist hier",caption:"Der Buchumschlag: Zuhause ist hier."}]},
   {page:"salzburg",title:"Flughafen Salzburg",description:"Ein Charakter. Viele Reiseziele.",category:"Kampagne · KI-Workflow · OOH",img:"/projects/salzburg-1.webp",year:"2026",role:"Art Direction · Campaign Design · KI-Workflow",headline:"FLIEG AB\nSALZBURG!",intro:"Eine humorvolle Ganzjahreskampagne zum 100-jährigen Jubiläum des Salzburg Airport. Ein wiederkehrender Affen-Charakter macht unterschiedliche Reiseziele zu einer erkennbaren Kampagnenwelt.",steps:[
     ["Die Aufgabe","Eine Dachkampagne entwickeln, die über das gesamte Jahr für unterschiedliche Reiseziele funktioniert und die Jubiläums-CI aufgreift."],
     ["Die Idee","Ein zentraler Charakter schafft Wiedererkennung. Neue Reiseziele und saisonale Anlässe lassen sich innerhalb derselben visuellen Sprache erzählen."],
     ["Die Umsetzung","KI-Generierung, Prompting und Harmonisierung der Motive sowie Adaptionen für OOH-Großflächen, Print-Folder, Social Media und QR-Landingpages."]
-  ],images:[{src:"/projects/salzburg-1.webp",alt:"Flieg ab Salzburg als großflächige Außenwerbung an einer Fassade",caption:"Die Kampagne im öffentlichen Raum."},{src:"/projects/salzburg-2.webp",alt:"Salzburg-Kampagnenmotiv auf einer Außenwerbefläche",caption:"Wiedererkennung über verschiedene Formate hinweg."},{src:"/projects/salzburg-3.webp",alt:"Affen-Charakter mit Reise-Outfit auf einem Motorroller",caption:"Der zentrale Charakter als flexibel einsetzbares Kampagnenmotiv."}]},
+  ],images:[{src:"/projects/salzburg-1.webp",alt:"Flieg ab Salzburg als großflächige Außenwerbung an einer Fassade",caption:"Die Kampagne im öffentlichen Raum."},{src:"/projects/salzburg-2.webp",alt:"Salzburg-Kampagnenmotiv auf einer Außenwerbefläche",caption:"Wiedererkennung über verschiedene Formate hinweg."},{src:"/projects/salzburg-3.webp",alt:"Weitere Anwendung der Salzburg-Flughafenkampagne",caption:"Ein konsistenter Kampagnenauftritt in weiteren Anwendungen."}]},
   {page:"vestische",title:"125 Jahre Vestische",description:"Ein Jubiläum, das im Gedächtnis bleibt.",category:"Eventbranding · Kampagne · Print",img:"/projects/vestische-1.webp",year:"125-jähriges Jubiläum",role:"Art Direction · Key Visual · Event-Werbemittel",headline:"125 JAHRE.\nMITTEN IM LEBEN.",intro:"Für das Jubiläum der Vestischen Straßenbahnen entstand ein Event- und Branding-Konzept, das regionale Verbundenheit mit einem durchgängigen visuellen Auftritt verbindet.",steps:[
     ["Die Aufgabe","Das 125-jährige Bestehen als zusammenhängendes Markenerlebnis gestalten – im öffentlichen Raum und auf dem Veranstaltungsgelände."],
     ["Die Idee","Ein prägnantes Jubiläumsdesign verbindet große Werbeflächen mit kleinen, persönlichen Details. So entsteht Wiedererkennung an jedem Kontaktpunkt."],
     ["Die Umsetzung","Key Visual und Werbemittel: von Einladungen und Magazinen über Banner und Leitsysteme bis zu digitalen Adaptionen und Bus-Branding."]
-  ],images:[{src:"/projects/vestische-1.webp",alt:"Gebrandete Süßigkeitentüte mit Vestische-Motiv Die Mischung macht’s",caption:"Markengestaltung bis ins Detail: die Mischung macht’s."},{src:"/projects/vestische-2.webp",alt:"Candy-Bar beim Vestische-Jubiläum mit gestalteten Schildern",caption:"Der visuelle Auftritt im Einsatz auf dem Event."},{src:"/projects/vestische-3.webp",alt:"Mockup einer gestalteten Jubiläums-Werbefläche",caption:"Ein wiedererkennbares System für die Event-Werbemittel."},{src:"/projects/vestische-4.webp",alt:"Gestaltetes Werbemittel aus der Vestische-Jubiläumskampagne",caption:"Das Jubiläumsdesign in weiteren Anwendungen."}]}
+  ],images:[{src:"/projects/vestische-1.webp",alt:"Gestaltete Wegweiser für Bühne und Trinkplatz beim Vestische-Jubiläum",caption:"Orientierung mit Charakter: das Leitsystem auf dem Event."},{src:"/projects/vestische-2.webp",alt:"Event-Teamshirt mit dem Schriftzug Vest Team",caption:"Ein einheitlicher Auftritt für das Event-Team."}]}
 ];
+
+function ImageDetail({ image, onClose }) {
+  const ref = useRef(null);
+  useEffect(() => {
+    const previousFocus = document.activeElement;
+    const overflow = document.body.style.overflow;
+    ref.current.showModal(); document.body.style.overflow = "hidden";
+    return () => { document.body.style.overflow = overflow; previousFocus?.focus({preventScroll:true}); };
+  }, []);
+  return <dialog ref={ref} className="image-detail" aria-label="Projektmotiv in Großansicht" onClose={onClose} onClick={e=>{if(e.target===ref.current)ref.current.close();}}>
+    <div className="image-detail-toolbar"><p>{image.caption}</p><button autoFocus className="poster-control" onClick={()=>ref.current.close()}>Schließen ×</button></div>
+    <div className="image-detail-body"><img src={image.src.replace('.webp','-detail.webp')} alt={image.alt}/></div>
+  </dialog>;
+}
+
 function ProjectPage({ project, onNavigate }) {
   const [activeImage, setActiveImage] = useState(0);
+  const [detailOpen, setDetailOpen] = useState(false);
   return <article className="project-case">
     <header className="case-intro section">
       <div className="section-label">Case Study / {project.title}</div>
@@ -842,11 +880,12 @@ function ProjectPage({ project, onNavigate }) {
       <dl className="case-facts"><div><dt>Projekt</dt><dd>{project.year}</dd></div><div><dt>Mein Beitrag</dt><dd>{project.role}</dd></div><div><dt>Entstanden bei</dt><dd>Bounty Communication Group</dd></div></dl>
     </header>
     <section className="case-showcase section" aria-label="Projektgalerie">
-      <figure><div className="case-image-stage"><img src={project.images[activeImage].src} alt={project.images[activeImage].alt}/></div><figcaption aria-live="polite">{String(activeImage+1).padStart(2,"0")} / {String(project.images.length).padStart(2,"0")} — {project.images[activeImage].caption}</figcaption></figure>
+      <figure><button className="case-image-stage" onClick={()=>setDetailOpen(true)} aria-label="Motiv in Großansicht öffnen"><img src={project.images[activeImage].src} alt={project.images[activeImage].alt}/><span className="image-expand">Großansicht ⤢</span></button><figcaption aria-live="polite">{String(activeImage+1).padStart(2,"0")} / {String(project.images.length).padStart(2,"0")} — {project.images[activeImage].caption}</figcaption></figure>
       <div className="case-thumbnails">{project.images.map((im,i)=><button key={im.src} className={activeImage===i?"selected":""} aria-label={"Motiv "+(i+1)+": "+im.alt} aria-pressed={activeImage===i} onClick={()=>setActiveImage(i)}><img src={im.src} alt="" loading="lazy"/></button>)}</div>
       <div className="case-gallery-controls"><button className="btn-outline" onClick={()=>setActiveImage(i=>(i-1+project.images.length)%project.images.length)}>← Vorheriges Motiv</button><button className="btn-outline" onClick={()=>setActiveImage(i=>(i+1)%project.images.length)}>Nächstes Motiv →</button></div>
     </section>
     <section className="case-story section" aria-label="Aufgabe, Idee und Umsetzung">{project.steps.map(([title,body],i)=><div key={title}><div className="section-label">0{i+1}</div><h2>{title}</h2><p>{body}</p></div>)}</section>
+    {detailOpen && <ImageDetail image={project.images[activeImage]} onClose={()=>setDetailOpen(false)}/>}
     <CaseNext page={project.page} onNavigate={onNavigate}/>
     <footer className="footer"><button className="btn-outline" onClick={()=>onNavigate("home")}>← Alle Projekte</button><div className="footer-copy">Philip Spiekermann · {project.title}</div></footer>
   </article>;
