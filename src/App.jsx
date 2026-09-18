@@ -380,6 +380,24 @@ const styles = `
     .image-detail-body { padding:0; }
   }
 
+
+  /* Spacious desktop project rows with natural image proportions. */
+  #work { max-width:1680px; }
+  #work .project-grid { grid-template-columns:minmax(0,1fr); gap:80px; }
+  #work .project-link { display:grid; grid-template-columns:minmax(0,1.9fr) minmax(260px,1fr); align-items:center; gap:clamp(32px,5vw,88px); padding-bottom:64px; border-bottom:1px solid #33332e; }
+  #work .project-visual { display:flex; align-items:center; justify-content:center; min-width:0; background:transparent; }
+  #work .project-visual img, #work .project-visual.cutout img { width:auto; height:auto; max-width:100%; max-height:720px; object-fit:contain; }
+  #work .project-meta { padding-top:0; gap:16px; }
+  #work .project-meta h3 { font-size:clamp(38px,3.5vw,60px); line-height:1.05; }
+  #work .project-meta p { font-size:16px; line-height:1.7; margin-top:16px; }
+  #work .project-index { padding-top:6px; }
+  @media (max-width:900px) {
+    #work .project-grid { gap:48px; }
+    #work .project-link { grid-template-columns:minmax(0,1fr); gap:24px; padding-bottom:40px; }
+    #work .project-visual img, #work .project-visual.cutout img { max-height:620px; }
+    #work .project-meta h3 { font-size:36px; }
+    #work .project-meta p { font-size:14px; margin-top:8px; }
+  }
 `;
 
 const WORDS = ["Art Director", "Brand Designer", "Print & Digital", "Creative Mind"];
