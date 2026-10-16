@@ -522,27 +522,35 @@ html,body{background:var(--pg-paper);color:var(--pg-ink)}
 @media(max-width:600px){.hero-name{font-size:clamp(64px,14.7vw,96px);line-height:.92;letter-spacing:-.075em}}
 
 
-/* Color direction v3: butter yellow / aubergine / cobalt blue */
-.portfolio-root{background:#211923}
-.nav{background:rgba(33,25,35,.94);border-bottom-color:rgba(248,241,227,.17)}
-.hero{background:radial-gradient(ellipse 48% 65% at 95% 16%,rgba(77,82,237,.18),transparent 80%),#211923}
-.hero-name{font-size:clamp(74px,10.7vw,188px);letter-spacing:-.088em;line-height:.86}
-.hero-name span{color:#F2E5AE}
-.hero-tag{color:#F2E5AE}
-.hero-tag:before{background:#F2E5AE}
+
+/* Final contrast repair: dark aubergine + butter, one consistent palette */
+:root{--pg-paper:#F2E5AE;--pg-oxblood:#8A2442;--pg-ink:#211923;--pg-acid:#4D52ED}
+.portfolio-root{background:#211923;color:#F8F1E3}
+.nav{background:rgba(33,25,35,.97);border-bottom:1px solid rgba(242,229,174,.25)}
+.nav-logo{color:#F8F1E3!important}
+.nav-logo span{color:#F2E5AE!important}
+.nav-link,.nav-back{color:#F8F1E3!important}
+.nav-link:hover,.nav-link.active{color:#F2E5AE!important}
+.hero{background:radial-gradient(ellipse 50% 55% at 90% 15%,rgba(77,82,237,.14),transparent 80%),#211923}
+.hero-name{color:#F8F1E3!important;font-size:clamp(74px,10.7vw,188px);line-height:.9;letter-spacing:-.085em}
+.hero-name span{color:#F2E5AE!important}
+.hero-tag,.hero-typewriter{color:#F2E5AE!important}
+.hero-tag:before,.typewriter-cursor{background:#F2E5AE}
+.hero-desc{color:#E4DBD1!important}
 .hero-bg-text{color:rgba(242,229,174,.045)}
+.btn-primary{background:#4D52ED!important;color:#fff!important}
+.btn-outline{color:#F8F1E3!important;border-color:rgba(248,241,227,.5)!important}
+.btn-outline:hover{border-color:#F2E5AE!important;color:#F2E5AE!important}
 .hero-right{transform:rotate(-3deg) translateY(25px)}
 .hero-right:after{content:'DESIGN WITH CHARACTER ↗';position:absolute;right:-12px;bottom:2%;z-index:2;background:#4D52ED;color:#fff;font:700 10px 'Space Mono',monospace;letter-spacing:.05em;padding:15px 18px;transform:rotate(7deg)}
 #work{background:#F2E5AE;color:#211923}
-#work .section-label,#work .section-title,#work .work-intro,#work .project-link,#work .project-index{color:#211923}
+#work .section-label,#work .section-title,#work .work-intro,#work .project-link,#work .project-index,#work .project-meta h3{color:#211923!important}
 #work .project-meta{border-top-color:#211923}
 #work .project-open{background:#4D52ED;color:#fff}
 #work .project-visual.fs-project-visual .project-open{background:#4D52ED;color:#fff}
-.btn-primary{background:#4D52ED;color:#fff}
-.btn-primary:hover{background:#F2E5AE;color:#211923}
-.btn-outline:hover{border-color:#F2E5AE;color:#F2E5AE}
 @media(max-width:900px){.hero-right{transform:rotate(-3deg)}}
-@media(max-width:600px){.hero-name{font-size:clamp(62px,16.7vw,100px);letter-spacing:-.085em}.hero-right:after{right:-8px;font-size:8px;padding:10px 12px}}
+@media(max-width:600px){.hero-name{font-size:clamp(60px,15vw,100px);line-height:.94}.hero-right:after{right:-8px;font-size:8px;padding:10px 12px}}
+
 `;
 
 const WORDS = ["Art Director", "Brand Designer", "Print & Digital", "Creative Mind"];
