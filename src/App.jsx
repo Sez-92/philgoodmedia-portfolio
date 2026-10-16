@@ -483,6 +483,44 @@ const styles = `
 #work .project-open{width:50px;height:50px}
 }
 @media(prefers-reduced-motion:reduce){.hero-name,.hero-tag,.hero-desc,.hero-typewriter,.hero-cta,.hero-right{animation:none!important;opacity:1!important}}
+/* --- 2026 palette: butter / oxblood / cobalt; no neon mint --- */
+:root{--pg-paper:#F6EDCE;--pg-acid:#3555F6;--pg-oxblood:#651D35;--pg-ink:#231D1B}
+html,body{background:var(--pg-paper);color:var(--pg-ink)}
+.portfolio-root{background:var(--pg-paper);color:var(--pg-ink)}
+.nav{background:rgba(246,237,206,.96);border-bottom:1px solid rgba(35,29,27,.18)}
+.nav-logo{color:var(--pg-ink)}
+.nav-logo span,.nav-link:hover,.nav-link.active{color:var(--pg-oxblood)}
+.nav-link{color:#5C514A}
+.nav-link:after{background:var(--pg-oxblood)}
+.nav-back{color:var(--pg-ink);border-color:rgba(35,29,27,.3)}
+.nav-back:hover{color:var(--pg-oxblood);border-color:var(--pg-oxblood)}
+.hero{background:var(--pg-paper)}
+.hero-bg-text{color:rgba(101,29,53,.045)}
+.hero-tag{color:var(--pg-oxblood)}
+.hero-tag:before{background:var(--pg-oxblood)}
+.hero-name{color:var(--pg-ink);font-size:clamp(80px,10vw,172px);letter-spacing:-.085em;line-height:.88}
+.hero-name span{color:var(--pg-oxblood)}
+.hero-desc{color:#51453E}
+.hero-typewriter{color:#7C6B60}
+.typewriter-cursor{background:var(--pg-oxblood)}
+.btn-primary{background:var(--pg-oxblood);color:var(--pg-paper)}
+.btn-primary:hover{background:var(--pg-ink);color:var(--pg-paper)}
+.btn-outline{color:var(--pg-ink);border-color:rgba(35,29,27,.35)}
+.btn-outline:hover{color:var(--pg-oxblood);border-color:var(--pg-oxblood)}
+.photo-label{background:var(--pg-oxblood)!important;color:var(--pg-paper)!important}
+#work{background:#E4E9F7;color:var(--pg-ink)}
+#work .section-label,#work .section-title,#work .work-intro{color:var(--pg-ink)}
+#work .project-link{color:var(--pg-ink)}
+#work .project-meta{border-color:var(--pg-ink)}
+#work .project-meta h3,#work .project-index{color:var(--pg-ink)}
+#work .project-open{background:var(--pg-oxblood);color:var(--pg-paper)}
+#work .project-visual.fs-project-visual .project-open{background:#F1E2BF;color:#7B1528}
+.scroll-progress-bar{background:var(--pg-oxblood)}
+.cursor-dot{background:var(--pg-oxblood)}
+.cursor-ring{border-color:var(--pg-oxblood)}
+@media(max-width:900px){.hero-name{font-size:clamp(65px,13vw,125px)}}
+@media(max-width:600px){.hero-name{font-size:clamp(64px,14.7vw,96px);line-height:.92;letter-spacing:-.075em}}
+
 
 /* Color direction v3: butter yellow / aubergine / cobalt blue */
 .portfolio-root{background:#211923}
@@ -1149,7 +1187,7 @@ export default function Portfolio() {
                   <div className="hero-tag">Philip Spiekermann / Art Direction / Ruhrgebiet</div>
                   <h1 className="hero-name">GUTE<br/><span>IDEEN.</span><br/>BLEIBEN.</h1>
                   <Typewriter />
-                  <p className="hero-desc">Art Direction, Marken und visuelle Ideen mit Ecken, Kanten und Charakter. Aus dem Ruhrgebiet. Für überall.</p>
+                  <p className="hero-desc">Branding, Kampagnen und digitale Erlebnisse. Konzeptionell stark, visuell eigenständig. Aus dem Ruhrgebiet.</p>
                   <div className="hero-cta">
                     <button className="btn-primary" onClick={() => scrollTo("work")}>Projekte entdecken ↓</button>
                     <button className="btn-outline" onClick={() => scrollTo("contact")}>Lass uns sprechen ↗</button>
