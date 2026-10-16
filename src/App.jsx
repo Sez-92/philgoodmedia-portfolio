@@ -564,6 +564,17 @@ html,body{background:var(--pg-paper);color:var(--pg-ink)}
 .portfolio-root .btn-outline{color:#F8F1E3!important;opacity:1!important}
 .portfolio-root .nav-menu-btn{color:#F8F1E3!important;border-color:rgba(248,241,227,.55)!important}
 @media(max-width:600px){.portfolio-root .hero-name{font-size:clamp(56px,14.3vw,94px)!important;line-height:.97!important;letter-spacing:-.075em!important;overflow-wrap:normal;word-break:normal}.portfolio-root .hero{padding-top:130px!important}}
+
+/* Editorial hero repair: one caption, centered portrait, no overlapping ribbons */
+.portfolio-root .hero-right{width:100%;justify-content:center!important;opacity:1!important;animation:none!important}
+.portfolio-root .hero-right>div{width:100%;max-width:480px!important;transform:none!important}
+.portfolio-root .photo-frame{width:min(100%,440px)!important;aspect-ratio:4/5!important;margin-inline:auto!important}
+.portfolio-root .photo-frame::before,.portfolio-root .photo-frame::after{display:none!important}
+.portfolio-root .photo-frame-inner{overflow:hidden!important}
+.portfolio-root .hero-photo{object-fit:contain!important;object-position:center bottom!important}
+.portfolio-root .photo-label{position:absolute!important;bottom:0!important;left:0!important;right:auto!important;max-width:100%!important;transform:none!important;rotate:0deg!important;white-space:normal!important;z-index:5!important;background:#F2E5AE!important;color:#251D25!important;padding:11px 15px!important;font-size:10px!important;letter-spacing:.14em!important}
+.portfolio-root .photo-frame .photo-label::before,.portfolio-root .photo-frame .photo-label::after{display:none!important}
+@media(max-width:900px){.portfolio-root .hero-right{justify-content:center!important}.portfolio-root .hero-right>div{max-width:440px!important}.portfolio-root .photo-frame{width:min(86vw,420px)!important}}
 `;
 
 const WORDS = ["Art Director", "Brand Designer", "Print & Digital", "Creative Mind"];
