@@ -890,6 +890,59 @@ function FruehschichtPage({ onNavigate }) {
       .case-fruehschicht .fs-footer{padding:24px max(22px,7vw);background:var(--fs-winedeep);color:rgba(244,238,227,.75);font-size:11px;display:flex;justify-content:space-between;gap:18px;flex-wrap:wrap}
       .case-fruehschicht .fs-back{background:transparent;border:1px solid currentColor;color:inherit;padding:12px 16px;font:11px 'Space Mono',monospace;cursor:pointer}
       @media(max-width:700px){.case-fruehschicht .fs-facts{grid-template-columns:repeat(2,minmax(0,1fr))}.case-fruehschicht .fs-principles{grid-template-columns:1fr}.case-fruehschicht .fs-colors{grid-template-columns:repeat(2,1fr)}.case-fruehschicht .fs-gallery{grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}.case-fruehschicht .fs-gallery-item figcaption{display:block;font-size:12px}.case-fruehschicht .fs-gallery-item figcaption span{display:block;margin-top:4px}}
+      /* Editorial refresh: intentional scale, asymmetric imagery and energetic interactions */
+      .case-fruehschicht{overflow:hidden}
+      .case-fruehschicht .fs-hero{min-height:min(88svh,900px);display:flex;flex-direction:column;justify-content:center;isolation:isolate;background:#7B1528;padding-top:clamp(115px,15vw,190px);padding-bottom:clamp(100px,12vw,170px)}
+      .case-fruehschicht .fs-hero::before{content:"";position:absolute;right:-12%;top:5%;width:min(65vw,780px);aspect-ratio:1;background:radial-gradient(circle at 50% 50%,rgba(241,226,191,.16),transparent 62%);z-index:-1;pointer-events:none}
+      .case-fruehschicht .fs-hero::after{content:"EARLY BIRDS CLUB  /  RUHRGEBIET";position:absolute;right:4%;bottom:6%;font:10px 'Space Mono',monospace;letter-spacing:.18em;transform:rotate(-3deg);color:var(--fs-butter)}
+      .case-fruehschicht .fs-wordmark{font-size:clamp(72px,17vw,230px);line-height:.86;max-width:none;letter-spacing:-.07em;transform:rotate(-2deg);transform-origin:left center;text-shadow:6px 8px 0 rgba(44,6,17,.24);animation:fs-pop .75s cubic-bezier(.16,1,.3,1) both}
+      .case-fruehschicht .fs-kicker{display:inline-block;width:max-content;max-width:100%;padding:10px 13px;border:1px solid rgba(241,226,191,.5);transform:rotate(-2deg)}
+      .case-fruehschicht .fs-intro{font-weight:600;max-width:650px}
+      .case-fruehschicht .fs-badge{border-radius:100px;background:var(--fs-butter);color:var(--fs-wine);border:0;font-weight:700;transform:rotate(3deg)}
+      .case-fruehschicht .fs-section{max-width:none}
+      .case-fruehschicht .fs-heading{font-size:clamp(46px,8.4vw,118px);line-height:.91;letter-spacing:-.06em}
+      .case-fruehschicht .fs-story{position:relative;overflow:hidden}
+      .case-fruehschicht .fs-story::after{content:"✳";position:absolute;right:-.08em;top:-.28em;font-size:clamp(200px,37vw,600px);color:rgba(123,21,40,.075);pointer-events:none}
+      .case-fruehschicht .fs-principles{gap:0;transform:rotate(-1.5deg);position:relative;z-index:1}
+      .case-fruehschicht .fs-principle{font-size:clamp(34px,5vw,74px);padding:35px 22px;transition:transform .25s ease,background .25s ease}
+      .case-fruehschicht .fs-principle:nth-child(2){background:var(--fs-butter);color:var(--fs-wine);transform:translateY(15px) rotate(2deg)}
+      .case-fruehschicht .fs-principle:hover{transform:translateY(-10px) rotate(-2deg)}
+      .case-fruehschicht .fs-gallery{grid-template-columns:repeat(12,minmax(0,1fr));gap:clamp(16px,2.8vw,42px);align-items:start;margin-top:clamp(36px,6vw,90px)}
+      .case-fruehschicht .fs-gallery-item{grid-column:span 6}
+      .case-fruehschicht .fs-gallery-item-0{grid-column:span 7}
+      .case-fruehschicht .fs-gallery-item-1{grid-column:span 5;margin-top:15%}
+      .case-fruehschicht .fs-gallery-item-2{grid-column:span 5;margin-top:10%}
+      .case-fruehschicht .fs-gallery-item-3{grid-column:span 7}
+      .case-fruehschicht .fs-gallery-item-4{grid-column:3/span 8}
+      .case-fruehschicht .fs-image{aspect-ratio:4/5;overflow:hidden;background:#EAE1D0}
+      .case-fruehschicht .fs-gallery-item-0 .fs-image,.case-fruehschicht .fs-gallery-item-3 .fs-image{aspect-ratio:5/4}
+      .case-fruehschicht .fs-gallery-item-4 .fs-image{aspect-ratio:16/10}
+      .case-fruehschicht .fs-image img{transition:transform .65s cubic-bezier(.2,.7,.1,1);will-change:transform}
+      .case-fruehschicht .fs-gallery-item:hover .fs-image img{transform:scale(1.055)}
+      .case-fruehschicht .fs-image-index{position:absolute;top:14px;left:14px;background:var(--fs-butter);color:var(--fs-wine);font:700 10px 'Space Mono',monospace;padding:10px 12px;letter-spacing:.12em;z-index:2}
+      .case-fruehschicht .fs-gallery-item figcaption{display:block;border:0;padding:16px 0 0}
+      .case-fruehschicht .fs-gallery-item figcaption strong{display:block;font-family:'Bagel Fat One',Georgia,serif;font-size:clamp(24px,3vw,44px);font-weight:400;line-height:1.05;color:var(--fs-wine)}
+      .case-fruehschicht .fs-gallery-item figcaption span{display:block;margin-top:7px;color:var(--fs-muted);font-size:clamp(12px,1.25vw,15px);line-height:1.4}
+      .case-fruehschicht .fs-contact{position:relative;overflow:hidden}
+      .case-fruehschicht .fs-contact::after{content:"↗";position:absolute;right:4%;top:0;font-family:'Bagel Fat One',Georgia,serif;font-size:clamp(120px,25vw,350px);color:rgba(241,226,191,.12);pointer-events:none}
+      .case-fruehschicht .fs-contact a{position:relative;z-index:1;border-radius:100px;font-weight:700;font-size:12px;transition:transform .2s}
+      .case-fruehschicht .fs-contact a:hover{transform:translateY(-4px) rotate(-2deg)}
+      @keyframes fs-pop{from{opacity:0;transform:translateY(40px) rotate(2deg)}to{opacity:1;transform:translateY(0) rotate(-2deg)}}
+      @media(max-width:700px){
+        .case-fruehschicht .fs-hero{min-height:72svh}
+        .case-fruehschicht .fs-wordmark{font-size:clamp(57px,14.7vw,112px);letter-spacing:-.075em;overflow-wrap:normal}
+        .case-fruehschicht .fs-hero::after{font-size:8px;bottom:4%}
+        .case-fruehschicht .fs-gallery{grid-template-columns:repeat(2,minmax(0,1fr));gap:14px 12px}
+        .case-fruehschicht .fs-gallery-item,.case-fruehschicht .fs-gallery-item-0,.case-fruehschicht .fs-gallery-item-1,.case-fruehschicht .fs-gallery-item-2,.case-fruehschicht .fs-gallery-item-3,.case-fruehschicht .fs-gallery-item-4{grid-column:span 1;margin-top:0}
+        .case-fruehschicht .fs-gallery-item-0,.case-fruehschicht .fs-gallery-item-4{grid-column:span 2}
+        .case-fruehschicht .fs-image,.case-fruehschicht .fs-gallery-item-0 .fs-image,.case-fruehschicht .fs-gallery-item-3 .fs-image,.case-fruehschicht .fs-gallery-item-4 .fs-image{aspect-ratio:4/5}
+        .case-fruehschicht .fs-gallery-item-0 .fs-image,.case-fruehschicht .fs-gallery-item-4 .fs-image{aspect-ratio:5/4}
+        .case-fruehschicht .fs-gallery-item figcaption strong{font-size:clamp(20px,5.2vw,32px)}
+        .case-fruehschicht .fs-gallery-item figcaption span{font-size:12px}
+        .case-fruehschicht .fs-image-index{font-size:9px;padding:7px 8px;top:8px;left:8px}
+        .case-fruehschicht .fs-principles{transform:none}
+        .case-fruehschicht .fs-principle:nth-child(2){transform:rotate(2deg)}
+      }
       @media(prefers-reduced-motion:reduce){.case-fruehschicht *{scroll-behavior:auto!important;animation:none!important;transition:none!important}}
     `}</style>
     <header className="fs-hero">
@@ -922,7 +975,16 @@ function FruehschichtPage({ onNavigate }) {
     <section className="fs-section">
       <div className="fs-label">04 / Anwendungen</div>
       <h2 className="fs-heading">Eine Marke. Viele Berührungspunkte.</h2>
-      <div className="fs-gallery">{gallery.map((item,i)=><figure className="fs-gallery-item" key={item.src}><div className="fs-image"><div className="fs-image-fallback">{item.title}</div><img src={item.src} alt={item.title+" — Frühschicht Branding Mockup"} loading={i===0?"eager":"lazy"} onError={e=>{e.currentTarget.style.display="none"}}/><span style={{position:"absolute",left:12,bottom:12,background:"#F1E2BF",color:"#1E1A17",padding:"6px 8px",font:"10px 'Space Mono',monospace"}}>FRÜHSCHICHT</span></div><figcaption><strong>{item.title}</strong><span>{item.caption}</span></figcaption></figure>)}</div>
+      <div className="fs-gallery">
+        {gallery.map((item,i)=><figure className={"fs-gallery-item fs-gallery-item-"+i} key={item.src}>
+          <div className="fs-image">
+            <div className="fs-image-fallback">{item.title}</div>
+            <img src={item.src} alt={item.title+" — Frühschicht Branding Mockup"} loading={i===0?"eager":"lazy"} onError={e=>{e.currentTarget.style.display="none"}}/>
+            <span className="fs-image-index">0{i+1} / 05</span>
+          </div>
+          <figcaption><strong>{item.title}</strong><span>{item.caption}</span></figcaption>
+        </figure>)}
+      </div>
     </section>
     <section className="fs-section fs-contact">
       <div className="fs-label">Ein freies Konzeptprojekt</div>
