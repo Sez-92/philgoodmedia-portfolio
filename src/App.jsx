@@ -1070,7 +1070,9 @@ export default function Portfolio() {
       <main id="main-content" tabIndex={-1} style={{ opacity:transitioning?0:1, transform:transitioning?"translateY(22px)":"none", transition:"opacity 0.42s ease,transform 0.42s ease" }}>
         {PROJECTS.find(project => project.page === currentPage)?.images ? (
           <ProjectPage key={currentPage} project={PROJECTS.find(project => project.page === currentPage)} onNavigate={navigateTo}/>
-        ) : currentPage === "fruehschicht" ? (\n          <FruehschichtPage onNavigate={navigateTo} />\n        ) : currentPage === "glutenfry" ? (
+        ) : currentPage === "fruehschicht" ? (
+          <FruehschichtPage onNavigate={navigateTo} />
+        ) : currentPage === "glutenfry" ? (
           <GlutenfryPage onBack={() => navigateTo("home")} onNavigate={navigateTo} />
         ) : (
           <>
