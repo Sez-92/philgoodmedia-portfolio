@@ -862,6 +862,7 @@ function FruehschichtPage({ onNavigate }) {
   ];
   return <article className="case-fruehschicht">
     <style>{`
+      @import url('https://fonts.googleapis.com/css2?family=Bagel+Fat+One&family=Inter+Tight:wght@400;500;600;700&display=swap');
       .case-fruehschicht{--fs-cream:#F4EEE3;--fs-cream2:#EAE1D0;--fs-wine:#7B1528;--fs-winedeep:#5A0F1D;--fs-butter:#F1E2BF;--fs-ink:#1E1A17;--fs-muted:#6E655C;--fs-line:rgba(30,26,23,.14);background:var(--fs-cream);color:var(--fs-ink);font-family:'Inter Tight',sans-serif}
       .case-fruehschicht *{box-sizing:border-box}.case-fruehschicht .fs-hero{background:var(--fs-wine);color:var(--fs-cream);padding:clamp(120px,17vw,210px) max(22px,7vw) 76px;position:relative;overflow:hidden}
       .case-fruehschicht .fs-kicker{font:11px 'Space Mono',monospace;letter-spacing:2px;text-transform:uppercase;color:var(--fs-butter);margin-bottom:28px}
