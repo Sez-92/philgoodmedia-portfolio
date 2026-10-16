@@ -575,6 +575,21 @@ html,body{background:var(--pg-paper);color:var(--pg-ink)}
 .portfolio-root .photo-label{position:absolute!important;bottom:0!important;left:0!important;right:auto!important;max-width:100%!important;transform:none!important;rotate:0deg!important;white-space:normal!important;z-index:5!important;background:#F2E5AE!important;color:#251D25!important;padding:11px 15px!important;font-size:10px!important;letter-spacing:.14em!important}
 .portfolio-root .photo-frame .photo-label::before,.portfolio-root .photo-frame .photo-label::after{display:none!important}
 @media(max-width:900px){.portfolio-root .hero-right{justify-content:center!important}.portfolio-root .hero-right>div{max-width:440px!important}.portfolio-root .photo-frame{width:min(86vw,420px)!important}}
+
+/* Editorial Ruhrgebiet refresh: one image, centered, no stacked stickers */
+.hero{position:relative;isolation:isolate;overflow:hidden}
+.ruhr-tower{position:absolute;right:-3%;top:7%;height:86%;width:min(43vw,540px);color:#F2E5AE;opacity:.15;pointer-events:none;z-index:0}
+.hero-bg-text,.hero-grid-dots{display:none!important}
+.hero-right{transform:none!important;animation:none!important;opacity:1!important;position:relative;z-index:1}
+.hero-right:after,.photo-frame:before,.photo-frame:after,.photo-label{display:none!important;content:none!important}
+.hero-right>div{transform:none!important;width:100%;display:flex;justify-content:center}
+.photo-frame{width:min(100%,440px)!important;aspect-ratio:4/5!important;border:1px solid rgba(242,229,174,.45);overflow:hidden;background:#211923;margin-inline:auto}
+.photo-frame-inner{position:absolute;inset:0;overflow:hidden}
+.photo-frame .hero-photo{width:100%;height:100%;object-fit:cover;object-position:center 28%;filter:grayscale(100%) contrast(1.05);opacity:1!important;transform:none!important}
+.hero-cta{display:flex;align-items:center;gap:14px;flex-wrap:wrap}
+.hero-cta .btn-primary,.hero-cta .btn-outline{margin:0!important;transform:none!important}
+@media(max-width:900px){.ruhr-tower{top:4%;right:-18%;width:65vw;height:55%;opacity:.11}.hero-right{width:100%;margin:32px auto 0!important}.photo-frame{width:min(78vw,430px)!important;aspect-ratio:4/5!important}}
+@media(max-width:600px){.hero{padding-top:110px!important}.hero-right{padding:0!important;margin:48px auto 0!important;justify-content:center!important}.hero-right>div{width:100%!important}.photo-frame{width:min(82vw,390px)!important;aspect-ratio:4/5!important}.hero-cta{gap:12px!important}.hero-cta .btn-primary,.hero-cta .btn-outline{width:auto!important;max-width:100%;padding:14px 18px!important}.ruhr-tower{right:-28%;top:4%;width:95vw;height:45%;opacity:.12}}
 `;
 
 const WORDS = ["Art Director", "Brand Designer", "Print & Digital", "Creative Mind"];
@@ -904,18 +919,7 @@ function GlutenfryPage({ onBack, onNavigate }) {
 
 /* ── MAIN COMPONENT ── */
 function PhotoSwitcher() {
-  const [show2, setShow2] = useState(false);
-  useEffect(() => {
-    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
-    const interval = setInterval(() => setShow2(v => !v), 3500);
-    return () => clearInterval(interval);
-  }, []);
-  return (
-    <>
-      <img src={philipPhoto}  alt="Philip Spiekermann" className={"hero-photo " + (show2 ? "hidden" : "visible")} />
-      <img src={philipPhoto2} alt="Philip Spiekermann" className={"hero-photo " + (show2 ? "visible" : "hidden")} />
-    </>
-  );
+  return <img src={philipPhoto} alt="Philip Spiekermann" className="hero-photo visible" />;
 }
 
 
@@ -1213,7 +1217,13 @@ export default function Portfolio() {
           <>
             <section id="hero" className="hero">
               <div ref={parallaxBg} className="hero-bg-text">PHILGOOD.</div>
-              <div className="hero-grid-dots" />
+              <svg className="ruhr-tower" viewBox="0 0 300 520" aria-hidden="true" focusable="false">
+                <g fill="none" stroke="currentColor" strokeWidth="5" strokeLinejoin="miter">
+                  <path d="M58 490 L107 142 L193 142 L242 490 M80 330 H220 M95 235 H205 M58 490 H242 M112 142 L112 75 H188 V142 M150 75 V26 M112 75 L188 142 M188 75 L112 142"/>
+                  <path d="M107 142 L193 235 L95 330 L242 490 M193 142 L107 235 L220 330 L58 490"/>
+                  <circle cx="150" cy="93" r="38"/><circle cx="150" cy="93" r="9"/><path d="M150 55 V131 M112 93 H188 M123 66 L177 120 M177 66 L123 120"/>
+                </g>
+              </svg>
               <div className="hero-left">
                 <div ref={heroLeftRef} style={{ transition:"transform 0.18s ease-out" }}>
                   <div className="hero-tag">Philip Spiekermann / Art Direction / Ruhrgebiet</div>
@@ -1232,7 +1242,7 @@ export default function Portfolio() {
                     <div className="photo-frame-inner">
                       <PhotoSwitcher />
                     </div>
-                    <div className="photo-label">Recklinghausen · Ruhrgebiet</div>
+                    
                   </div>
                 </div>
               </div>
