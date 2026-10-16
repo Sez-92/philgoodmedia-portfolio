@@ -795,7 +795,8 @@ function PosterGallery() {
 
 
 const PROJECTS = [
-  {page:"glutenfry",title:"Glutenfry",description:"Eine mutige Marke für glutenfreies Soul Food.",category:"Brand Design · Packaging · Print",img:"/gf_brand.png"},]
+  {page:"glutenfry",title:"Glutenfry",description:"Eine mutige Marke für glutenfreies Soul Food.",category:"Brand Design · Packaging · Print",img:"/gf_brand.png"}
+];
 
 function ImageDetail({ image, onClose }) {
   const ref = useRef(null);
