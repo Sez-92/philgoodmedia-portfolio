@@ -409,6 +409,80 @@ const styles = `
     #work .project-meta h3 { font-size:36px; }
     #work .project-meta p { font-size:14px; margin-top:8px; }
   }
+
+/* --- PHILGOOD / editorial art-direction system v2 --- */
+:root{--pg-paper:#F0EDE5;--pg-acid:#D9FF55}
+.portfolio-root{background:#151515;color:var(--pg-paper)}
+.nav{background:rgba(21,21,21,.93);border-bottom:1px solid rgba(240,237,229,.18)}
+.nav-logo{color:var(--pg-paper);font-family:'Karla',sans-serif;font-weight:800;letter-spacing:-.06em;font-size:26px}
+.nav-logo span{color:var(--pg-acid)}
+.hero{grid-template-columns:minmax(0,1.25fr) minmax(0,.75fr);gap:2vw;padding:150px clamp(24px,5vw,90px) 100px;min-height:95svh;background:#151515}
+.hero-grid-dots{display:none}
+.hero-bg-text{bottom:-4vw;left:-.03em;font-size:clamp(110px,23vw,380px);color:rgba(255,255,255,.028);letter-spacing:-.06em;line-height:.75}
+.hero-tag{font-size:11px;color:var(--pg-acid);letter-spacing:.13em}
+.hero-tag:before{background:var(--pg-acid)}
+.hero-name{font-family:'Karla',Arial,sans-serif;font-weight:800;letter-spacing:-.095em;font-size:clamp(84px,11.8vw,215px);line-height:.79;margin:0 0 40px;overflow:visible}
+.hero-name span{color:var(--pg-acid)}
+.hero-desc{font-size:clamp(18px,1.6vw,24px);font-weight:400;line-height:1.42;color:#e3dfd5;max-width:460px}
+.hero-typewriter{font-size:11px;letter-spacing:.16em;color:#b5b1a8}
+.btn-primary{background:var(--pg-acid);color:#151515;border-radius:0;font-weight:700}
+.btn-primary:hover{background:var(--pg-paper)}
+.hero-right{transform:rotate(3deg) translateY(25px)}
+.photo-frame{border:0!important}
+.photo-frame-inner{filter:grayscale(1) contrast(1.15)}
+.photo-label{background:var(--pg-acid)!important;color:#151515!important}
+#work{background:var(--pg-paper);color:#151515}
+#work .section-label,#work .section-title,#work .work-intro{color:#151515}
+#work .work-heading{align-items:end}
+#work .section-title{font-family:'Karla',sans-serif;font-weight:800;letter-spacing:-.08em;font-size:clamp(60px,10vw,160px);line-height:.84}
+#work .work-intro{font-size:clamp(16px,1.6vw,21px);line-height:1.35}
+#work .project-grid{display:grid;grid-template-columns:repeat(12,minmax(0,1fr));column-gap:clamp(16px,2.5vw,40px);row-gap:clamp(55px,8vw,140px)}
+#work .project-link{grid-column:span 7;color:#151515;min-width:0}
+#work .project-link:nth-child(even){grid-column:span 5;margin-top:clamp(40px,10vw,160px)}
+#work .project-link:nth-child(3n){grid-column:span 8;margin-top:0}
+#work .project-visual{aspect-ratio:4/3;background:#262626}
+#work .project-link:nth-child(even) .project-visual{aspect-ratio:3/4}
+#work .project-meta{border-top:2px solid #151515;padding-top:16px;margin-top:20px}
+#work .project-meta h3{font-family:'Karla',sans-serif;font-weight:800;letter-spacing:-.055em;font-size:clamp(31px,4vw,70px);line-height:1}
+#work .project-meta p{color:#4d4a45}
+#work .project-index{color:#151515}
+#work .project-open{background:var(--pg-acid);border-radius:0;right:0;bottom:0;width:56px;height:56px;font-size:30px}
+#work .project-visual.fs-project-visual{background:#7B1528}
+#work .project-visual.fs-project-visual .fs-cover-photo{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center 48%;filter:none;z-index:0}
+#work .project-visual.fs-project-visual .fs-cover-shade{display:none}
+#work .project-visual.fs-project-visual .fs-cover-overline,
+#work .project-visual.fs-project-visual .fs-cover-wordmark,
+#work .project-visual.fs-project-visual .fs-cover-foot{display:none}
+#work .project-visual.fs-project-visual:after{content:'IDENTITY / 2026';position:absolute;left:0;top:0;background:#7B1528;color:#F1E2BF;font:700 11px 'Space Mono',monospace;letter-spacing:.06em;padding:12px 14px;z-index:2}
+#work .project-visual.fs-project-visual .project-open{background:#F1E2BF;color:#7B1528}
+@media(max-width:900px){
+.hero{grid-template-columns:1fr;gap:38px;min-height:0;padding:145px 24px 75px}
+.hero-name{font-size:clamp(70px,16.8vw,135px);line-height:.83;letter-spacing:-.09em;margin-bottom:28px}
+.hero-right{max-width:460px;width:86%;justify-self:end;transform:rotate(3deg) translateY(0)}
+.hero-desc{font-size:19px;line-height:1.4}
+#work .project-grid{grid-template-columns:repeat(2,minmax(0,1fr));row-gap:65px;column-gap:16px}
+#work .project-link,#work .project-link:nth-child(even),#work .project-link:nth-child(3n){grid-column:span 1;margin-top:0}
+#work .project-link:nth-child(even){margin-top:80px}
+#work .project-meta h3{font-size:clamp(26px,4vw,44px)}
+}
+@media(max-width:600px){
+.hero{padding:130px 20px 60px}
+.hero-tag{font-size:9px;letter-spacing:.08em;margin-bottom:30px}
+.hero-name{font-size:clamp(66px,18.5vw,104px);letter-spacing:-.085em;line-height:.81}
+.hero-desc{max-width:29ch}
+.hero-right{width:78%;margin-top:12px}
+#work .work-heading{display:block}
+#work .work-intro{margin-top:20px}
+#work .project-grid{display:flex;flex-direction:column;gap:70px}
+#work .project-link,#work .project-link:nth-child(even),#work .project-link:nth-child(3n){width:100%;margin:0}
+#work .project-link:nth-child(even){width:87%;align-self:flex-end}
+#work .project-visual,#work .project-link:nth-child(even) .project-visual{aspect-ratio:4/3}
+#work .project-visual.fs-project-visual{aspect-ratio:4/3}
+#work .project-meta h3{font-size:clamp(35px,10vw,54px)}
+#work .project-meta p{font-size:13px}
+#work .project-open{width:50px;height:50px}
+}
+@media(prefers-reduced-motion:reduce){.hero-name,.hero-tag,.hero-desc,.hero-typewriter,.hero-cta,.hero-right{animation:none!important;opacity:1!important}}
 `;
 
 const WORDS = ["Art Director", "Brand Designer", "Print & Digital", "Creative Mind"];
@@ -1046,14 +1120,14 @@ export default function Portfolio() {
         ) : (
           <>
             <section id="hero" className="hero">
-              <div ref={parallaxBg} className="hero-bg-text">ART DIRECTOR</div>
+              <div ref={parallaxBg} className="hero-bg-text">NO ORDINARY.</div>
               <div className="hero-grid-dots" />
               <div className="hero-left">
                 <div ref={heroLeftRef} style={{ transition:"transform 0.18s ease-out" }}>
-                  <div className="hero-tag">Philip Spiekermann · Ruhrgebiet</div>
-                  <h1 className="hero-name">GUTE IDEEN.<br /><span>BLEIBEN.</span></h1>
+                  <div className="hero-tag">Independent creative thinking / Ruhrgebiet</div>
+                  <h1 className="hero-name">NICHT<br/><span>BRAV.</span><br/>SONDERN<br/>GUT.</h1>
                   <Typewriter />
-                  <p className="hero-desc">Ich bin Philip. Art Director aus dem Ruhrgebiet. Ich mache aus guten Ideen Marken, die hängenbleiben.</p>
+                  <p className="hero-desc">Art Direction, Marken und visuelle Ideen mit Ecken, Kanten und Charakter. Aus dem Ruhrgebiet. Für überall.</p>
                   <div className="hero-cta">
                     <button className="btn-primary" onClick={() => scrollTo("work")}>Projekte entdecken ↓</button>
                     <button className="btn-outline" onClick={() => scrollTo("contact")}>Lass uns sprechen ↗</button>
@@ -1077,7 +1151,7 @@ export default function Portfolio() {
             <section id="work" className="section">
               <div className="work-heading">
                 <div><div className="section-label">01 / Ausgewählte Arbeiten</div><h2 className="section-title">IDEEN WERDEN<br />SICHTBAR.</h2></div>
-                <p className="work-intro">Von der ersten Idee bis ins Detail. Fünf Projekte aus Branding, Kampagne, Editorial und Eventgestaltung.</p>
+                <p className="work-intro">Ausgewählte Arbeiten. Unterschiedliche Welten. Eine Haltung: niemals beliebig.</p>
               </div>
               <div className="project-grid">
                 {PROJECTS.map((project,i) => <a key={project.page} className="project-link" href={"/#"+project.page} onClick={e => {
