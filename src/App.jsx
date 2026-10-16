@@ -136,6 +136,7 @@ const styles = `
   .fade-in { opacity:0; transform:translateY(30px); transition:opacity 0.7s ease,transform 0.7s ease; }
   .fade-in.visible { opacity:1; transform:translateY(0); }
   .cs-hero { min-height:80vh; display:flex; flex-direction:column; justify-content:flex-end; padding:140px 40px 80px; position:relative; overflow:hidden; border-bottom:1px solid rgba(255,255,255,0.06); }
+  .fs-project-visual{background:#7B1528!important;color:#F4EEE3;display:flex;flex-direction:column;justify-content:center;align-items:flex-start;padding:8% 7%;aspect-ratio:4/3;overflow:hidden;position:relative}.fs-project-visual::before{content:"";position:absolute;inset:7%;border:1px solid rgba(244,238,227,.28);transform:rotate(-3deg)}.fs-project-label{font-family:'Georgia',serif;font-weight:900;font-size:clamp(28px,4vw,68px);letter-spacing:-.07em;line-height:.9;z-index:1}.fs-project-sub{font:9px 'Space Mono',monospace;letter-spacing:2px;margin-top:16px;color:#F1E2BF;z-index:1}
   .mobile-cards-scroll { display:flex; overflow-x:auto; scroll-snap-type:x mandatory; -webkit-overflow-scrolling:touch; gap:16px; padding:4px 20px 24px; scrollbar-width:none; }
   .mobile-cards-scroll::-webkit-scrollbar { display:none; }
   .mobile-card { flex-shrink:0; width:78vw; max-width:300px; scroll-snap-align:center; background:rgba(16,16,16,0.96); border:1px solid rgba(255,255,255,0.1); overflow:hidden; position:relative; }
@@ -795,7 +796,8 @@ function PosterGallery() {
 
 
 const PROJECTS = [
-  {page:"glutenfry",title:"Glutenfry",description:"Eine mutige Marke für glutenfreies Soul Food.",category:"Brand Design · Packaging · Print",img:"/gf_brand.png"}
+  {page:"glutenfry",title:"Glutenfry",description:"Eine mutige Marke für glutenfreies Soul Food.",category:"Brand Design · Packaging · Print",img:"/gf_brand.png"},
+  {page:"fruehschicht",title:"Frühschicht",description:"Eine Bäckerei mit Ruhrgebiets-DNA.",category:"Branding · Packaging · Interior",img:"/fruehschicht/01-storefront.jpg"}
 ];
 
 function ImageDetail({ image, onClose }) {
@@ -847,6 +849,88 @@ function CaseNext({ page, onNavigate }) {
       <button className="btn-outline" onClick={() => onNavigate(PROJECTS[(PROJECTS.findIndex(project => project.page === page)+1)%PROJECTS.length].page)}>Nächstes Projekt →</button>
     </div>
   </section>;
+}
+
+
+function FruehschichtPage({ onNavigate }) {
+  const gallery = [
+    {src:"/fruehschicht/01-storefront.jpg", title:"Ladenschild", caption:"Ein Auftritt, der schon von Weitem Haltung zeigt"},
+    {src:"/fruehschicht/02-interior.jpg", title:"Interior", caption:"Warm, ehrlich und mitten im Ruhrgebiet"},
+    {src:"/fruehschicht/03-cups.jpg", title:"Becher", caption:"Die Identität zum Mitnehmen"},
+    {src:"/fruehschicht/04-bag.jpg", title:"Bäckertüte", caption:"Schichtrot trifft Mehlweiß"},
+    {src:"/fruehschicht/05-box.jpg", title:"Box", caption:"Ein System über alle Touchpoints"}
+  ];
+  return <article className="case-fruehschicht">
+    <style>{`
+      .case-fruehschicht{--fs-cream:#F4EEE3;--fs-cream2:#EAE1D0;--fs-wine:#7B1528;--fs-winedeep:#5A0F1D;--fs-butter:#F1E2BF;--fs-ink:#1E1A17;--fs-muted:#6E655C;--fs-line:rgba(30,26,23,.14);background:var(--fs-cream);color:var(--fs-ink);font-family:'Inter Tight',sans-serif}
+      .case-fruehschicht *{box-sizing:border-box}.case-fruehschicht .fs-hero{background:var(--fs-wine);color:var(--fs-cream);padding:clamp(120px,17vw,210px) max(22px,7vw) 76px;position:relative;overflow:hidden}
+      .case-fruehschicht .fs-kicker{font:11px 'Space Mono',monospace;letter-spacing:2px;text-transform:uppercase;color:var(--fs-butter);margin-bottom:28px}
+      .case-fruehschicht .fs-wordmark{font-family:'Bagel Fat One','Cooper Black',Georgia,serif;font-size:clamp(66px,15vw,190px);line-height:.78;letter-spacing:-.055em;margin:0 0 42px;max-width:1100px;overflow-wrap:anywhere}
+      .case-fruehschicht .fs-intro{font-size:clamp(20px,2.7vw,34px);line-height:1.18;max-width:760px;letter-spacing:-.025em}
+      .case-fruehschicht .fs-badge{display:inline-block;margin-top:32px;padding:10px 14px;border:1px solid rgba(244,238,227,.45);font-size:11px;letter-spacing:1px;text-transform:uppercase}
+      .case-fruehschicht .fs-section{padding:clamp(58px,9vw,110px) max(22px,7vw);max-width:1440px;margin:auto}
+      .case-fruehschicht .fs-label{font:11px 'Space Mono',monospace;letter-spacing:2px;text-transform:uppercase;color:var(--fs-wine);margin-bottom:22px}
+      .case-fruehschicht .fs-heading{font-family:'Bagel Fat One','Cooper Black',Georgia,serif;font-size:clamp(38px,7vw,82px);line-height:.95;letter-spacing:-.035em;max-width:900px;margin:0 0 28px}
+      .case-fruehschicht .fs-copy{font-size:clamp(17px,2vw,21px);line-height:1.65;max-width:760px;color:#433a33}
+      .case-fruehschicht .fs-facts{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:1px;background:var(--fs-line);border:1px solid var(--fs-line);margin-top:48px}
+      .case-fruehschicht .fs-fact{background:var(--fs-cream);padding:22px}.case-fruehschicht .fs-fact dt{font:10px 'Space Mono',monospace;text-transform:uppercase;letter-spacing:1px;color:var(--fs-muted);margin-bottom:10px}.case-fruehschicht .fs-fact dd{font-size:15px;margin:0}
+      .case-fruehschicht .fs-story{background:var(--fs-cream2)}.case-fruehschicht .fs-quote{font-family:'Bagel Fat One','Cooper Black',Georgia,serif;font-size:clamp(30px,5vw,62px);line-height:1.04;color:var(--fs-wine);max-width:900px;margin:36px 0}
+      .case-fruehschicht .fs-principles{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-top:42px}
+      .case-fruehschicht .fs-principle{background:var(--fs-wine);color:var(--fs-cream);padding:30px 24px;font-family:'Bagel Fat One','Cooper Black',Georgia,serif;font-size:clamp(26px,4vw,48px)}
+      .case-fruehschicht .fs-colors{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin-top:38px}
+      .case-fruehschicht .fs-color{min-height:120px;padding:14px;display:flex;flex-direction:column;justify-content:flex-end;font:10px 'Space Mono',monospace;letter-spacing:.5px}
+      .case-fruehschicht .fs-gallery{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:18px;margin-top:40px}
+      .case-fruehschicht .fs-gallery-item{margin:0;min-width:0}.case-fruehschicht .fs-image{aspect-ratio:4/3;background:var(--fs-wine);position:relative;overflow:hidden;display:grid;place-items:center}
+      .case-fruehschicht .fs-image img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;display:block}
+      .case-fruehschicht .fs-image-fallback{color:var(--fs-butter);font-family:'Bagel Fat One','Cooper Black',Georgia,serif;font-size:clamp(24px,5vw,54px);text-align:center;padding:20px}
+      .case-fruehschicht .fs-gallery-item figcaption{padding:13px 0;border-bottom:1px solid var(--fs-line);font-size:13px;display:flex;justify-content:space-between;gap:12px}
+      .case-fruehschicht .fs-contact{background:var(--fs-wine);color:var(--fs-cream)}.case-fruehschicht .fs-contact .fs-label{color:var(--fs-butter)}.case-fruehschicht .fs-contact .fs-heading{max-width:850px}
+      .case-fruehschicht .fs-contact a{display:inline-block;margin-top:24px;background:var(--fs-butter);color:var(--fs-ink);padding:15px 22px;text-decoration:none;font:11px 'Space Mono',monospace;letter-spacing:1px;text-transform:uppercase}
+      .case-fruehschicht .fs-footer{padding:24px max(22px,7vw);background:var(--fs-winedeep);color:rgba(244,238,227,.75);font-size:11px;display:flex;justify-content:space-between;gap:18px;flex-wrap:wrap}
+      .case-fruehschicht .fs-back{background:transparent;border:1px solid currentColor;color:inherit;padding:12px 16px;font:11px 'Space Mono',monospace;cursor:pointer}
+      @media(max-width:700px){.case-fruehschicht .fs-facts{grid-template-columns:repeat(2,minmax(0,1fr))}.case-fruehschicht .fs-principles{grid-template-columns:1fr}.case-fruehschicht .fs-colors{grid-template-columns:repeat(2,1fr)}.case-fruehschicht .fs-gallery{grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}.case-fruehschicht .fs-gallery-item figcaption{display:block;font-size:12px}.case-fruehschicht .fs-gallery-item figcaption span{display:block;margin-top:4px}}
+      @media(prefers-reduced-motion:reduce){.case-fruehschicht *{scroll-behavior:auto!important;animation:none!important;transition:none!important}}
+    `}</style>
+    <header className="fs-hero">
+      <div className="fs-kicker">Feelgood Media / Brand Concept / Ruhrgebiet</div>
+      <h1 className="fs-wordmark">Frühschicht</h1>
+      <p className="fs-intro">Eine Bäckerei für das Ruhrgebiet, die da anfängt, wo hier früher jeder Tag anfing: in der Frühschicht.</p>
+      <span className="fs-badge">Selbstinitiiertes Konzept · 2026</span>
+    </header>
+    <section className="fs-section">
+      <div className="fs-label">01 / Die Idee</div>
+      <h2 className="fs-heading">Wer früh anfängt, macht das Beste draus.</h2>
+      <p className="fs-copy">Eine Bäckerei-Marke mit Ruhrgebiets-DNA. Inspiriert von den Menschen, die früh aufstehen, anpacken und ihre Arbeit ernst nehmen. Die Geschichte verbindet die traditionelle Frühschicht im Revier mit dem Duft frischer Backwaren — ohne in Nostalgie zu kippen.</p>
+      <dl className="fs-facts">
+        <div className="fs-fact"><dt>Leistung</dt><dd>Naming & Branding</dd></div><div className="fs-fact"><dt>Touchpoints</dt><dd>Packaging & Signage</dd></div><div className="fs-fact"><dt>Raum</dt><dd>Interior-Konzept</dd></div><div className="fs-fact"><dt>Region</dt><dd>Ruhrgebiet</dd></div>
+      </dl>
+    </section>
+    <section className="fs-section fs-story">
+      <div className="fs-label">02 / Haltung</div>
+      <h2 className="fs-heading">Keine Folklore. Charakter.</h2>
+      <p className="fs-copy">Ich habe selbst fast zehn Jahre unter Tage gearbeitet, bevor ich in die Gestaltung gewechselt bin. Frühschicht ist deshalb mehr als ein Wortspiel — es ist eine Verbindung zur Region und zu den Menschen, die sie prägen.</p>
+      <blockquote className="fs-quote">„Kein Zechen-Kitsch. Die Herkunft steckt im Namen – nicht in Fördertürmen auf der Tüte.“</blockquote>
+      <div className="fs-principles"><div className="fs-principle">Warm.</div><div className="fs-principle">Laut.</div><div className="fs-principle">Ehrlich.</div></div>
+    </section>
+    <section className="fs-section">
+      <div className="fs-label">03 / Visuelle Identität</div>
+      <h2 className="fs-heading">Schichtrot. Butter. Mehl. Edelstahl.</h2>
+      <p className="fs-copy">Eine warme, eigenständige Farbwelt mit kräftigem Schichtrot, gebrochenen Mehltönen und buttergelben Akzenten. Klare Kontraste halten die Marke laut, ohne laut um Aufmerksamkeit zu betteln.</p>
+      <div className="fs-colors"><div className="fs-color" style={{background:"#7B1528",color:"#F4EEE3"}}>SCHICHTROT<br/>#7B1528</div><div className="fs-color" style={{background:"#F1E2BF",color:"#1E1A17"}}>BUTTER<br/>#F1E2BF</div><div className="fs-color" style={{background:"#F4EEE3",color:"#1E1A17",border:"1px solid #ddd4c5"}}>MEHL<br/>#F4EEE3</div><div className="fs-color" style={{background:"linear-gradient(135deg,#d5d6d6,#8e9296,#f0f0ee)",color:"#1E1A17"}}>EDELSTAHL<br/>METALLIC</div></div>
+    </section>
+    <section className="fs-section">
+      <div className="fs-label">04 / Anwendungen</div>
+      <h2 className="fs-heading">Eine Marke. Viele Berührungspunkte.</h2>
+      <div className="fs-gallery">{gallery.map((item,i)=><figure className="fs-gallery-item" key={item.src}><div className="fs-image"><div className="fs-image-fallback">{item.title}</div><img src={item.src} alt={item.title+" — Frühschicht Branding Mockup"} loading={i===0?"eager":"lazy"} onError={e=>{e.currentTarget.style.display="none"}}/><span style={{position:"absolute",left:12,bottom:12,background:"#F1E2BF",color:"#1E1A17",padding:"6px 8px",font:"10px 'Space Mono',monospace"}}>FRÜHSCHICHT</span></div><figcaption><strong>{item.title}</strong><span>{item.caption}</span></figcaption></figure>)}</div>
+    </section>
+    <section className="fs-section fs-contact">
+      <div className="fs-label">Ein freies Konzeptprojekt</div>
+      <h2 className="fs-heading">Eine gute Idee verdient einen guten Auftritt.</h2>
+      <p className="fs-copy" style={{color:"rgba(244,238,227,.8)"}}>Frühschicht ist ein freies Konzeptprojekt. Wenn ihr einen Laden, Verein oder ein Produkt habt, das mehr Charakter verdient – lasst uns reden.</p>
+      <a href="mailto:philipspiekermann@hotmail.com?subject=Fr%C3%BChschicht%20%2F%20Projektanfrage">Projekt anfragen ↗</a>
+    </section>
+    <div className="fs-footer"><span>Konzept, Naming & Design: Feelgood Media · Visualisierungen KI-gestützt erstellt</span><button className="fs-back" onClick={()=>onNavigate("home")}>← Alle Projekte</button></div>
+  </article>;
 }
 
 export default function Portfolio() {
@@ -985,7 +1069,7 @@ export default function Portfolio() {
       <main id="main-content" tabIndex={-1} style={{ opacity:transitioning?0:1, transform:transitioning?"translateY(22px)":"none", transition:"opacity 0.42s ease,transform 0.42s ease" }}>
         {PROJECTS.find(project => project.page === currentPage)?.images ? (
           <ProjectPage key={currentPage} project={PROJECTS.find(project => project.page === currentPage)} onNavigate={navigateTo}/>
-        ) : currentPage === "glutenfry" ? (
+        ) : currentPage === "fruehschicht" ? (\n          <FruehschichtPage onNavigate={navigateTo} />\n        ) : currentPage === "glutenfry" ? (
           <GlutenfryPage onBack={() => navigateTo("home")} onNavigate={navigateTo} />
         ) : (
           <>
@@ -1028,7 +1112,7 @@ export default function Portfolio() {
                   if (e.metaKey || e.ctrlKey || e.shiftKey || e.altKey) return;
                   e.preventDefault(); navigateTo(project.page);
                 }}>
-                  <div className={"project-visual"+(["volksbank","vonovia","salzburg"].includes(project.page) ? " bank" : "")+(project.cutout ? " cutout" : "")}><img src={project.img} alt={project.title+" – "+project.description} loading="lazy"  /><span className="project-open" aria-hidden="true">↗</span></div>
+                  <div className={"project-visual"+(["volksbank","vonovia","salzburg"].includes(project.page) ? " bank" : "")+(project.cutout ? " cutout" : "")+(project.page==="fruehschicht" ? " fs-project-visual" : "")}>{project.page==="fruehschicht" ? <><span className="fs-project-label">FRÜHSCHICHT</span><span className="fs-project-sub">BROT. BUTTER. REVIER.</span></> : <img src={project.img} alt={project.title+" – "+project.description} loading="lazy" />}<span className="project-open" aria-hidden="true">↗</span></div>
                   <div className="project-meta"><div><h3>{project.title}</h3><p>{project.category}</p><p>{project.description}</p></div><span className="project-index">0{i+1}</span></div>
                 </a>)}
               </div>
