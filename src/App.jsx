@@ -2,10 +2,10 @@ import { useState, useEffect, useRef } from "react";
 import philipPhoto from "/philip.png";
 import philipPhoto2 from "/philip2.png";
 
-const LIME = "#B9E5D4";
-const BLACK = "#111111";
-const WHITE = "#F5F5F0";
-const GRAY = "#A6A69C";
+const LIME = "#F2E5AE";
+const BLACK = "#211923";
+const WHITE = "#F8F1E3";
+const GRAY = "#C2B6B6";
 
 const GLUTENFRY_CARDS = [
   { id: 1, label: "01 — Briefing",        title: "Der Auftrag",   desc: "Soul Food. Glutenfrei. Ein Brand der das genauso mutig sagt.",           img: "/gf_brand.png",  rot: -11, offX: -320, topOff: 80, zi: 1 },
@@ -411,41 +411,41 @@ const styles = `
   }
 
 /* --- PHILGOOD / editorial art-direction system v2 --- */
-:root{--pg-paper:#F0EDE5;--pg-acid:#D9FF55}
-.portfolio-root{background:#151515;color:var(--pg-paper)}
+:root{--pg-paper:#F8F1E3;--pg-acid:#F2E5AE;--pg-cobalt:#4D52ED}
+.portfolio-root{background:#211923;color:var(--pg-paper)}
 .nav{background:rgba(21,21,21,.93);border-bottom:1px solid rgba(240,237,229,.18)}
 .nav-logo{color:var(--pg-paper);font-family:'Karla',sans-serif;font-weight:800;letter-spacing:-.06em;font-size:26px}
 .nav-logo span{color:var(--pg-acid)}
-.hero{grid-template-columns:minmax(0,1.25fr) minmax(0,.75fr);gap:2vw;padding:150px clamp(24px,5vw,90px) 100px;min-height:95svh;background:#151515}
+.hero{grid-template-columns:minmax(0,1.25fr) minmax(0,.75fr);gap:2vw;padding:150px clamp(24px,5vw,90px) 100px;min-height:95svh;background:#211923}
 .hero-grid-dots{display:none}
 .hero-bg-text{bottom:-4vw;left:-.03em;font-size:clamp(110px,23vw,380px);color:rgba(255,255,255,.028);letter-spacing:-.06em;line-height:.75}
 .hero-tag{font-size:11px;color:var(--pg-acid);letter-spacing:.13em}
 .hero-tag:before{background:var(--pg-acid)}
 .hero-name{font-family:'Karla',Arial,sans-serif;font-weight:800;letter-spacing:-.095em;font-size:clamp(84px,11.8vw,215px);line-height:.79;margin:0 0 40px;overflow:visible}
 .hero-name span{color:var(--pg-acid)}
-.hero-desc{font-size:clamp(18px,1.6vw,24px);font-weight:400;line-height:1.42;color:#e3dfd5;max-width:460px}
-.hero-typewriter{font-size:11px;letter-spacing:.16em;color:#b5b1a8}
-.btn-primary{background:var(--pg-acid);color:#151515;border-radius:0;font-weight:700}
+.hero-desc{font-size:clamp(18px,1.6vw,24px);font-weight:400;line-height:1.42;color:#F8F1E3;max-width:460px}
+.hero-typewriter{font-size:11px;letter-spacing:.16em;color:#D6C7CA}
+.btn-primary{background:var(--pg-acid);color:#211923;border-radius:0;font-weight:700}
 .btn-primary:hover{background:var(--pg-paper)}
 .hero-right{transform:rotate(3deg) translateY(25px)}
 .photo-frame{border:0!important}
 .photo-frame-inner{filter:grayscale(1) contrast(1.15)}
-.photo-label{background:var(--pg-acid)!important;color:#151515!important}
-#work{background:var(--pg-paper);color:#151515}
-#work .section-label,#work .section-title,#work .work-intro{color:#151515}
+.photo-label{background:var(--pg-acid)!important;color:#211923!important}
+#work{background:var(--pg-paper);color:#211923}
+#work .section-label,#work .section-title,#work .work-intro{color:#211923}
 #work .work-heading{align-items:end}
 #work .section-title{font-family:'Karla',sans-serif;font-weight:800;letter-spacing:-.08em;font-size:clamp(60px,10vw,160px);line-height:.84}
 #work .work-intro{font-size:clamp(16px,1.6vw,21px);line-height:1.35}
 #work .project-grid{display:grid;grid-template-columns:repeat(12,minmax(0,1fr));column-gap:clamp(16px,2.5vw,40px);row-gap:clamp(55px,8vw,140px)}
-#work .project-link{grid-column:span 7;color:#151515;min-width:0}
+#work .project-link{grid-column:span 7;color:#211923;min-width:0}
 #work .project-link:nth-child(even){grid-column:span 5;margin-top:clamp(40px,10vw,160px)}
 #work .project-link:nth-child(3n){grid-column:span 8;margin-top:0}
-#work .project-visual{aspect-ratio:4/3;background:#262626}
+#work .project-visual{aspect-ratio:4/3;background:#342733}
 #work .project-link:nth-child(even) .project-visual{aspect-ratio:3/4}
-#work .project-meta{border-top:2px solid #151515;padding-top:16px;margin-top:20px}
+#work .project-meta{border-top:2px solid #211923;padding-top:16px;margin-top:20px}
 #work .project-meta h3{font-family:'Karla',sans-serif;font-weight:800;letter-spacing:-.055em;font-size:clamp(31px,4vw,70px);line-height:1}
-#work .project-meta p{color:#4d4a45}
-#work .project-index{color:#151515}
+#work .project-meta p{color:#51404A}
+#work .project-index{color:#211923}
 #work .project-open{background:var(--pg-acid);border-radius:0;right:0;bottom:0;width:56px;height:56px;font-size:30px}
 #work .project-visual.fs-project-visual{background:#7B1528}
 #work .project-visual.fs-project-visual .fs-cover-photo{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center 48%;filter:none;z-index:0}
@@ -483,6 +483,28 @@ const styles = `
 #work .project-open{width:50px;height:50px}
 }
 @media(prefers-reduced-motion:reduce){.hero-name,.hero-tag,.hero-desc,.hero-typewriter,.hero-cta,.hero-right{animation:none!important;opacity:1!important}}
+
+/* Color direction v3: butter yellow / aubergine / cobalt blue */
+.portfolio-root{background:#211923}
+.nav{background:rgba(33,25,35,.94);border-bottom-color:rgba(248,241,227,.17)}
+.hero{background:radial-gradient(ellipse 48% 65% at 95% 16%,rgba(77,82,237,.18),transparent 80%),#211923}
+.hero-name{font-size:clamp(74px,10.7vw,188px);letter-spacing:-.088em;line-height:.86}
+.hero-name span{color:#F2E5AE}
+.hero-tag{color:#F2E5AE}
+.hero-tag:before{background:#F2E5AE}
+.hero-bg-text{color:rgba(242,229,174,.045)}
+.hero-right{transform:rotate(-3deg) translateY(25px)}
+.hero-right:after{content:'DESIGN WITH CHARACTER ↗';position:absolute;right:-12px;bottom:2%;z-index:2;background:#4D52ED;color:#fff;font:700 10px 'Space Mono',monospace;letter-spacing:.05em;padding:15px 18px;transform:rotate(7deg)}
+#work{background:#F2E5AE;color:#211923}
+#work .section-label,#work .section-title,#work .work-intro,#work .project-link,#work .project-index{color:#211923}
+#work .project-meta{border-top-color:#211923}
+#work .project-open{background:#4D52ED;color:#fff}
+#work .project-visual.fs-project-visual .project-open{background:#4D52ED;color:#fff}
+.btn-primary{background:#4D52ED;color:#fff}
+.btn-primary:hover{background:#F2E5AE;color:#211923}
+.btn-outline:hover{border-color:#F2E5AE;color:#F2E5AE}
+@media(max-width:900px){.hero-right{transform:rotate(-3deg)}}
+@media(max-width:600px){.hero-name{font-size:clamp(62px,16.7vw,100px);letter-spacing:-.085em}.hero-right:after{right:-8px;font-size:8px;padding:10px 12px}}
 `;
 
 const WORDS = ["Art Director", "Brand Designer", "Print & Digital", "Creative Mind"];
@@ -1120,12 +1142,12 @@ export default function Portfolio() {
         ) : (
           <>
             <section id="hero" className="hero">
-              <div ref={parallaxBg} className="hero-bg-text">NO ORDINARY.</div>
+              <div ref={parallaxBg} className="hero-bg-text">PHILGOOD.</div>
               <div className="hero-grid-dots" />
               <div className="hero-left">
                 <div ref={heroLeftRef} style={{ transition:"transform 0.18s ease-out" }}>
-                  <div className="hero-tag">Independent creative thinking / Ruhrgebiet</div>
-                  <h1 className="hero-name">NICHT<br/><span>BRAV.</span><br/>SONDERN<br/>GUT.</h1>
+                  <div className="hero-tag">Philip Spiekermann / Art Direction / Ruhrgebiet</div>
+                  <h1 className="hero-name">GUTE<br/><span>IDEEN.</span><br/>BLEIBEN.</h1>
                   <Typewriter />
                   <p className="hero-desc">Art Direction, Marken und visuelle Ideen mit Ecken, Kanten und Charakter. Aus dem Ruhrgebiet. Für überall.</p>
                   <div className="hero-cta">
