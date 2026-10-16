@@ -854,145 +854,41 @@ function CaseNext({ page, onNavigate }) {
 
 function FruehschichtPage({ onNavigate }) {
   const gallery = [
-    {src:"/fruehschicht/01-storefront.jpg", title:"Ladenschild", caption:"Ein Auftritt, der schon von Weitem Haltung zeigt"},
-    {src:"/fruehschicht/02-interior.jpg", title:"Interior", caption:"Warm, ehrlich und mitten im Ruhrgebiet"},
-    {src:"/fruehschicht/03-cups.jpg", title:"Becher", caption:"Die Identität zum Mitnehmen"},
-    {src:"/fruehschicht/04-bag.jpg", title:"Bäckertüte", caption:"Schichtrot trifft Mehlweiß"},
-    {src:"/fruehschicht/05-box.jpg", title:"Box", caption:"Ein System über alle Touchpoints"}
-  ];
+{src:"/fruehschicht/03-cups.jpg",title:"Coffee to go",caption:"Der erste Kaffee gehört uns."},
+{src:"/fruehschicht/04-bag.jpg",title:"Daily bread",caption:"Gutes Brot. Klare Haltung."},
+{src:"/fruehschicht/02-interior.jpg",title:"The space",caption:"Ein Laden, der sich nach Zuhause anfühlt."},
+{src:"/fruehschicht/05-box.jpg",title:"Take a piece",caption:"Branding bis zum letzten Krümel."},
+{src:"/fruehschicht/01-storefront.jpg",title:"The storefront",caption:"Von der Straße direkt ins Herz."}
+];
   return <article className="case-fruehschicht">
-    <style>{`
-      @import url('https://fonts.googleapis.com/css2?family=Bagel+Fat+One&family=Inter+Tight:wght@400;500;600;700&display=swap');
-      .case-fruehschicht{--fs-cream:#F4EEE3;--fs-cream2:#EAE1D0;--fs-wine:#7B1528;--fs-winedeep:#5A0F1D;--fs-butter:#F1E2BF;--fs-ink:#1E1A17;--fs-muted:#6E655C;--fs-line:rgba(30,26,23,.14);background:var(--fs-cream);color:var(--fs-ink);font-family:'Inter Tight',sans-serif}
-      .case-fruehschicht *{box-sizing:border-box}.case-fruehschicht .fs-hero{background:var(--fs-wine);color:var(--fs-cream);padding:clamp(120px,17vw,210px) max(22px,7vw) 76px;position:relative;overflow:hidden}
-      .case-fruehschicht .fs-kicker{font:11px 'Space Mono',monospace;letter-spacing:2px;text-transform:uppercase;color:var(--fs-butter);margin-bottom:28px}
-      .case-fruehschicht .fs-wordmark{font-family:'Bagel Fat One','Cooper Black',Georgia,serif;font-size:clamp(66px,15vw,190px);line-height:.78;letter-spacing:-.055em;margin:0 0 42px;max-width:1100px;overflow-wrap:anywhere}
-      .case-fruehschicht .fs-intro{font-size:clamp(20px,2.7vw,34px);line-height:1.18;max-width:760px;letter-spacing:-.025em}
-      .case-fruehschicht .fs-badge{display:inline-block;margin-top:32px;padding:10px 14px;border:1px solid rgba(244,238,227,.45);font-size:11px;letter-spacing:1px;text-transform:uppercase}
-      .case-fruehschicht .fs-section{padding:clamp(58px,9vw,110px) max(22px,7vw);max-width:1440px;margin:auto}
-      .case-fruehschicht .fs-label{font:11px 'Space Mono',monospace;letter-spacing:2px;text-transform:uppercase;color:var(--fs-wine);margin-bottom:22px}
-      .case-fruehschicht .fs-heading{font-family:'Bagel Fat One','Cooper Black',Georgia,serif;font-size:clamp(38px,7vw,82px);line-height:.95;letter-spacing:-.035em;max-width:900px;margin:0 0 28px}
-      .case-fruehschicht .fs-copy{font-size:clamp(17px,2vw,21px);line-height:1.65;max-width:760px;color:#433a33}
-      .case-fruehschicht .fs-facts{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:1px;background:var(--fs-line);border:1px solid var(--fs-line);margin-top:48px}
-      .case-fruehschicht .fs-fact{background:var(--fs-cream);padding:22px}.case-fruehschicht .fs-fact dt{font:10px 'Space Mono',monospace;text-transform:uppercase;letter-spacing:1px;color:var(--fs-muted);margin-bottom:10px}.case-fruehschicht .fs-fact dd{font-size:15px;margin:0}
-      .case-fruehschicht .fs-story{background:var(--fs-cream2)}.case-fruehschicht .fs-quote{font-family:'Bagel Fat One','Cooper Black',Georgia,serif;font-size:clamp(30px,5vw,62px);line-height:1.04;color:var(--fs-wine);max-width:900px;margin:36px 0}
-      .case-fruehschicht .fs-principles{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-top:42px}
-      .case-fruehschicht .fs-principle{background:var(--fs-wine);color:var(--fs-cream);padding:30px 24px;font-family:'Bagel Fat One','Cooper Black',Georgia,serif;font-size:clamp(26px,4vw,48px)}
-      .case-fruehschicht .fs-colors{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin-top:38px}
-      .case-fruehschicht .fs-color{min-height:120px;padding:14px;display:flex;flex-direction:column;justify-content:flex-end;font:10px 'Space Mono',monospace;letter-spacing:.5px}
-      .case-fruehschicht .fs-gallery{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:18px;margin-top:40px}
-      .case-fruehschicht .fs-gallery-item{margin:0;min-width:0}.case-fruehschicht .fs-image{aspect-ratio:4/3;background:var(--fs-wine);position:relative;overflow:hidden;display:grid;place-items:center}
-      .case-fruehschicht .fs-image img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;display:block}
-      .case-fruehschicht .fs-image-fallback{color:var(--fs-butter);font-family:'Bagel Fat One','Cooper Black',Georgia,serif;font-size:clamp(24px,5vw,54px);text-align:center;padding:20px}
-      .case-fruehschicht .fs-gallery-item figcaption{padding:13px 0;border-bottom:1px solid var(--fs-line);font-size:13px;display:flex;justify-content:space-between;gap:12px}
-      .case-fruehschicht .fs-contact{background:var(--fs-wine);color:var(--fs-cream)}.case-fruehschicht .fs-contact .fs-label{color:var(--fs-butter)}.case-fruehschicht .fs-contact .fs-heading{max-width:850px}
-      .case-fruehschicht .fs-contact a{display:inline-block;margin-top:24px;background:var(--fs-butter);color:var(--fs-ink);padding:15px 22px;text-decoration:none;font:11px 'Space Mono',monospace;letter-spacing:1px;text-transform:uppercase}
-      .case-fruehschicht .fs-footer{padding:24px max(22px,7vw);background:var(--fs-winedeep);color:rgba(244,238,227,.75);font-size:11px;display:flex;justify-content:space-between;gap:18px;flex-wrap:wrap}
-      .case-fruehschicht .fs-back{background:transparent;border:1px solid currentColor;color:inherit;padding:12px 16px;font:11px 'Space Mono',monospace;cursor:pointer}
-      @media(max-width:700px){.case-fruehschicht .fs-facts{grid-template-columns:repeat(2,minmax(0,1fr))}.case-fruehschicht .fs-principles{grid-template-columns:1fr}.case-fruehschicht .fs-colors{grid-template-columns:repeat(2,1fr)}.case-fruehschicht .fs-gallery{grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}.case-fruehschicht .fs-gallery-item figcaption{display:block;font-size:12px}.case-fruehschicht .fs-gallery-item figcaption span{display:block;margin-top:4px}}
-      /* Editorial refresh: intentional scale, asymmetric imagery and energetic interactions */
-      .case-fruehschicht{overflow:hidden}
-      .case-fruehschicht .fs-hero{min-height:min(88svh,900px);display:flex;flex-direction:column;justify-content:center;isolation:isolate;background:#7B1528;padding-top:clamp(115px,15vw,190px);padding-bottom:clamp(100px,12vw,170px)}
-      .case-fruehschicht .fs-hero::before{content:"";position:absolute;right:-12%;top:5%;width:min(65vw,780px);aspect-ratio:1;background:radial-gradient(circle at 50% 50%,rgba(241,226,191,.16),transparent 62%);z-index:-1;pointer-events:none}
-      .case-fruehschicht .fs-hero::after{content:"EARLY BIRDS CLUB  /  RUHRGEBIET";position:absolute;right:4%;bottom:6%;font:10px 'Space Mono',monospace;letter-spacing:.18em;transform:rotate(-3deg);color:var(--fs-butter)}
-      .case-fruehschicht .fs-wordmark{font-size:clamp(72px,17vw,230px);line-height:.86;max-width:none;letter-spacing:-.07em;transform:rotate(-2deg);transform-origin:left center;text-shadow:6px 8px 0 rgba(44,6,17,.24);animation:fs-pop .75s cubic-bezier(.16,1,.3,1) both}
-      .case-fruehschicht .fs-kicker{display:inline-block;width:max-content;max-width:100%;padding:10px 13px;border:1px solid rgba(241,226,191,.5);transform:rotate(-2deg)}
-      .case-fruehschicht .fs-intro{font-weight:600;max-width:650px}
-      .case-fruehschicht .fs-badge{border-radius:100px;background:var(--fs-butter);color:var(--fs-wine);border:0;font-weight:700;transform:rotate(3deg)}
-      .case-fruehschicht .fs-section{max-width:none}
-      .case-fruehschicht .fs-heading{font-size:clamp(46px,8.4vw,118px);line-height:.91;letter-spacing:-.06em}
-      .case-fruehschicht .fs-story{position:relative;overflow:hidden}
-      .case-fruehschicht .fs-story::after{content:"✳";position:absolute;right:-.08em;top:-.28em;font-size:clamp(200px,37vw,600px);color:rgba(123,21,40,.075);pointer-events:none}
-      .case-fruehschicht .fs-principles{gap:0;transform:rotate(-1.5deg);position:relative;z-index:1}
-      .case-fruehschicht .fs-principle{font-size:clamp(34px,5vw,74px);padding:35px 22px;transition:transform .25s ease,background .25s ease}
-      .case-fruehschicht .fs-principle:nth-child(2){background:var(--fs-butter);color:var(--fs-wine);transform:translateY(15px) rotate(2deg)}
-      .case-fruehschicht .fs-principle:hover{transform:translateY(-10px) rotate(-2deg)}
-      .case-fruehschicht .fs-gallery{grid-template-columns:repeat(12,minmax(0,1fr));gap:clamp(16px,2.8vw,42px);align-items:start;margin-top:clamp(36px,6vw,90px)}
-      .case-fruehschicht .fs-gallery-item{grid-column:span 6}
-      .case-fruehschicht .fs-gallery-item-0{grid-column:span 7}
-      .case-fruehschicht .fs-gallery-item-1{grid-column:span 5;margin-top:15%}
-      .case-fruehschicht .fs-gallery-item-2{grid-column:span 5;margin-top:10%}
-      .case-fruehschicht .fs-gallery-item-3{grid-column:span 7}
-      .case-fruehschicht .fs-gallery-item-4{grid-column:3/span 8}
-      .case-fruehschicht .fs-image{aspect-ratio:4/5;overflow:hidden;background:#EAE1D0}
-      .case-fruehschicht .fs-gallery-item-0 .fs-image,.case-fruehschicht .fs-gallery-item-3 .fs-image{aspect-ratio:5/4}
-      .case-fruehschicht .fs-gallery-item-4 .fs-image{aspect-ratio:16/10}
-      .case-fruehschicht .fs-image img{transition:transform .65s cubic-bezier(.2,.7,.1,1);will-change:transform}
-      .case-fruehschicht .fs-gallery-item:hover .fs-image img{transform:scale(1.055)}
-      .case-fruehschicht .fs-image-index{position:absolute;top:14px;left:14px;background:var(--fs-butter);color:var(--fs-wine);font:700 10px 'Space Mono',monospace;padding:10px 12px;letter-spacing:.12em;z-index:2}
-      .case-fruehschicht .fs-gallery-item figcaption{display:block;border:0;padding:16px 0 0}
-      .case-fruehschicht .fs-gallery-item figcaption strong{display:block;font-family:'Bagel Fat One',Georgia,serif;font-size:clamp(24px,3vw,44px);font-weight:400;line-height:1.05;color:var(--fs-wine)}
-      .case-fruehschicht .fs-gallery-item figcaption span{display:block;margin-top:7px;color:var(--fs-muted);font-size:clamp(12px,1.25vw,15px);line-height:1.4}
-      .case-fruehschicht .fs-contact{position:relative;overflow:hidden}
-      .case-fruehschicht .fs-contact::after{content:"↗";position:absolute;right:4%;top:0;font-family:'Bagel Fat One',Georgia,serif;font-size:clamp(120px,25vw,350px);color:rgba(241,226,191,.12);pointer-events:none}
-      .case-fruehschicht .fs-contact a{position:relative;z-index:1;border-radius:100px;font-weight:700;font-size:12px;transition:transform .2s}
-      .case-fruehschicht .fs-contact a:hover{transform:translateY(-4px) rotate(-2deg)}
-      @keyframes fs-pop{from{opacity:0;transform:translateY(40px) rotate(2deg)}to{opacity:1;transform:translateY(0) rotate(-2deg)}}
-      @media(max-width:700px){
-        .case-fruehschicht .fs-hero{min-height:72svh}
-        .case-fruehschicht .fs-wordmark{font-size:clamp(57px,14.7vw,112px);letter-spacing:-.075em;overflow-wrap:normal}
-        .case-fruehschicht .fs-hero::after{font-size:8px;bottom:4%}
-        .case-fruehschicht .fs-gallery{grid-template-columns:repeat(2,minmax(0,1fr));gap:14px 12px}
-        .case-fruehschicht .fs-gallery-item,.case-fruehschicht .fs-gallery-item-0,.case-fruehschicht .fs-gallery-item-1,.case-fruehschicht .fs-gallery-item-2,.case-fruehschicht .fs-gallery-item-3,.case-fruehschicht .fs-gallery-item-4{grid-column:span 1;margin-top:0}
-        .case-fruehschicht .fs-gallery-item-0,.case-fruehschicht .fs-gallery-item-4{grid-column:span 2}
-        .case-fruehschicht .fs-image,.case-fruehschicht .fs-gallery-item-0 .fs-image,.case-fruehschicht .fs-gallery-item-3 .fs-image,.case-fruehschicht .fs-gallery-item-4 .fs-image{aspect-ratio:4/5}
-        .case-fruehschicht .fs-gallery-item-0 .fs-image,.case-fruehschicht .fs-gallery-item-4 .fs-image{aspect-ratio:5/4}
-        .case-fruehschicht .fs-gallery-item figcaption strong{font-size:clamp(20px,5.2vw,32px)}
-        .case-fruehschicht .fs-gallery-item figcaption span{font-size:12px}
-        .case-fruehschicht .fs-image-index{font-size:9px;padding:7px 8px;top:8px;left:8px}
-        .case-fruehschicht .fs-principles{transform:none}
-        .case-fruehschicht .fs-principle:nth-child(2){transform:rotate(2deg)}
-      }
-      @media(prefers-reduced-motion:reduce){.case-fruehschicht *{scroll-behavior:auto!important;animation:none!important;transition:none!important}}
-    `}</style>
-    <header className="fs-hero">
-      <div className="fs-kicker">Feelgood Media / Brand Concept / Ruhrgebiet</div>
-      <h1 className="fs-wordmark">Frühschicht</h1>
-      <p className="fs-intro">Eine Bäckerei für das Ruhrgebiet, die da anfängt, wo hier früher jeder Tag anfing: in der Frühschicht.</p>
-      <span className="fs-badge">Selbstinitiiertes Konzept · 2026</span>
-    </header>
-    <section className="fs-section">
-      <div className="fs-label">01 / Die Idee</div>
-      <h2 className="fs-heading">Wer früh anfängt, macht das Beste draus.</h2>
-      <p className="fs-copy">Eine Bäckerei-Marke mit Ruhrgebiets-DNA. Inspiriert von den Menschen, die früh aufstehen, anpacken und ihre Arbeit ernst nehmen. Die Geschichte verbindet die traditionelle Frühschicht im Revier mit dem Duft frischer Backwaren — ohne in Nostalgie zu kippen.</p>
-      <dl className="fs-facts">
-        <div className="fs-fact"><dt>Leistung</dt><dd>Naming & Branding</dd></div><div className="fs-fact"><dt>Touchpoints</dt><dd>Packaging & Signage</dd></div><div className="fs-fact"><dt>Raum</dt><dd>Interior-Konzept</dd></div><div className="fs-fact"><dt>Region</dt><dd>Ruhrgebiet</dd></div>
-      </dl>
-    </section>
-    <section className="fs-section fs-story">
-      <div className="fs-label">02 / Haltung</div>
-      <h2 className="fs-heading">Keine Folklore. Charakter.</h2>
-      <p className="fs-copy">Ich habe selbst fast zehn Jahre unter Tage gearbeitet, bevor ich in die Gestaltung gewechselt bin. Frühschicht ist deshalb mehr als ein Wortspiel — es ist eine Verbindung zur Region und zu den Menschen, die sie prägen.</p>
-      <blockquote className="fs-quote">„Kein Zechen-Kitsch. Die Herkunft steckt im Namen – nicht in Fördertürmen auf der Tüte.“</blockquote>
-      <div className="fs-principles"><div className="fs-principle">Warm.</div><div className="fs-principle">Laut.</div><div className="fs-principle">Ehrlich.</div></div>
-    </section>
-    <section className="fs-section">
-      <div className="fs-label">03 / Visuelle Identität</div>
-      <h2 className="fs-heading">Schichtrot. Butter. Mehl. Edelstahl.</h2>
-      <p className="fs-copy">Eine warme, eigenständige Farbwelt mit kräftigem Schichtrot, gebrochenen Mehltönen und buttergelben Akzenten. Klare Kontraste halten die Marke laut, ohne laut um Aufmerksamkeit zu betteln.</p>
-      <div className="fs-colors"><div className="fs-color" style={{background:"#7B1528",color:"#F4EEE3"}}>SCHICHTROT<br/>#7B1528</div><div className="fs-color" style={{background:"#F1E2BF",color:"#1E1A17"}}>BUTTER<br/>#F1E2BF</div><div className="fs-color" style={{background:"#F4EEE3",color:"#1E1A17",border:"1px solid #ddd4c5"}}>MEHL<br/>#F4EEE3</div><div className="fs-color" style={{background:"linear-gradient(135deg,#d5d6d6,#8e9296,#f0f0ee)",color:"#1E1A17"}}>EDELSTAHL<br/>METALLIC</div></div>
-    </section>
-    <section className="fs-section">
-      <div className="fs-label">04 / Anwendungen</div>
-      <h2 className="fs-heading">Eine Marke. Viele Berührungspunkte.</h2>
-      <div className="fs-gallery">
-        {gallery.map((item,i)=><figure className={"fs-gallery-item fs-gallery-item-"+i} key={item.src}>
-          <div className="fs-image">
-            <div className="fs-image-fallback">{item.title}</div>
-            <img src={item.src} alt={item.title+" — Frühschicht Branding Mockup"} loading={i===0?"eager":"lazy"} onError={e=>{e.currentTarget.style.display="none"}}/>
-            <span className="fs-image-index">0{i+1} / 05</span>
-          </div>
-          <figcaption><strong>{item.title}</strong><span>{item.caption}</span></figcaption>
-        </figure>)}
+    <style>{"@import url('https://fonts.googleapis.com/css2?family=Bagel+Fat+One&family=Inter+Tight:wght@400;500;600;700;800;900&display=swap');\n\n.case-fruehschicht{--wine:#7B1528;--deep:#4E0E1D;--cream:#F4EEE3;--butter:#F1E2BF;--ink:#221b19;background:var(--cream);color:var(--ink);font-family:'Inter Tight',Arial,sans-serif;overflow:hidden}\n.case-fruehschicht *{box-sizing:border-box}\n.case-fruehschicht h1,.case-fruehschicht h2,.case-fruehschicht p,.case-fruehschicht figure{margin:0}\n.case-fruehschicht img{display:block;width:100%;height:100%;object-fit:cover}\n.case-fruehschicht .cb-mono{font-family:monospace;font-size:11px;letter-spacing:.13em;text-transform:uppercase}\n.case-fruehschicht .cb-display{font-family:'Bagel Fat One',Georgia,serif;font-weight:400;letter-spacing:-.065em;line-height:.91}\n.case-fruehschicht .cb-hero{position:relative;min-height:clamp(640px,94svh,1100px);background:var(--deep);color:var(--cream);display:flex;flex-direction:column;isolation:isolate}\n.case-fruehschicht .cb-hero-photo{position:absolute;inset:0;z-index:-2;overflow:hidden}\n.case-fruehschicht .cb-hero-photo img{filter:brightness(.65) saturate(.9);object-position:center 58%;animation:cb-zoom 1.5s ease-out both}\n.case-fruehschicht .cb-hero:after{content:\"\";position:absolute;inset:0;background:linear-gradient(180deg,rgba(25,8,9,.5) 0%,rgba(25,8,9,.05) 35%,rgba(25,8,9,.82) 100%);z-index:-1}\n.case-fruehschicht .cb-topline{display:flex;align-items:center;justify-content:space-between;gap:12px;padding:clamp(22px,4vw,52px) clamp(22px,5vw,80px);color:var(--cream)}\n.case-fruehschicht .cb-topline span:last-child{border:1px solid rgba(255,255,255,.6);padding:10px 13px;border-radius:50px}\n.case-fruehschicht .cb-hero-inner{margin-top:auto;padding:40px clamp(20px,5vw,80px) clamp(46px,7vw,110px)}\n.case-fruehschicht .cb-hero-title{font-size:clamp(65px,14.7vw,225px);white-space:nowrap;color:var(--butter);text-shadow:0 12px 40px rgba(0,0,0,.25);animation:cb-rise .9s both}\n.case-fruehschicht .cb-hero-bottom{display:flex;justify-content:space-between;align-items:end;gap:30px;margin-top:clamp(30px,5vw,70px);max-width:1250px}\n.case-fruehschicht .cb-hero-bottom p{max-width:570px;font-size:clamp(19px,2.3vw,32px);line-height:1.13;font-weight:600;letter-spacing:-.03em}\n.case-fruehschicht .cb-hero-bottom a{flex-shrink:0;color:var(--deep);background:var(--butter);text-decoration:none;width:72px;height:72px;border-radius:50%;display:grid;place-items:center;font-size:32px;transition:transform .25s}\n.case-fruehschicht .cb-hero-bottom a:hover{transform:translateY(7px)}\n.case-fruehschicht .cb-ticker{background:var(--butter);color:var(--wine);overflow:hidden;white-space:nowrap;padding:17px 0;font-size:clamp(18px,2.7vw,35px);font-weight:800;letter-spacing:-.03em}\n.case-fruehschicht .cb-ticker-track{display:flex;gap:40px;width:max-content;animation:cb-marquee 24s linear infinite}\n.case-fruehschicht .cb-ticker-track span{display:inline-block}\n.case-fruehschicht .cb-story{padding:clamp(90px,13vw,180px) clamp(22px,7vw,110px);display:grid;grid-template-columns:1fr 1.1fr;gap:clamp(40px,8vw,140px);align-items:start}\n.case-fruehschicht .cb-story h2{font-size:clamp(52px,7.2vw,120px);color:var(--wine);margin-top:20px}\n.case-fruehschicht .cb-story-copy{padding-top:clamp(15px,8vw,115px)}\n.case-fruehschicht .cb-story-copy p{font-size:clamp(18px,2vw,25px);line-height:1.48;max-width:640px}\n.case-fruehschicht .cb-story-copy p+p{margin-top:26px}\n.case-fruehschicht .cb-note{margin-top:40px;padding-top:20px;border-top:1px solid #c6b9a6;display:flex;justify-content:space-between;gap:12px;color:var(--wine)}\n.case-fruehschicht .cb-feature{position:relative;min-height:clamp(520px,80vw,950px);background:var(--wine);color:var(--cream);overflow:hidden;display:grid;grid-template-columns:1fr 1fr}\n.case-fruehschicht .cb-feature-copy{padding:clamp(32px,6vw,100px);display:flex;flex-direction:column;justify-content:space-between;gap:40px;z-index:1}\n.case-fruehschicht .cb-feature h2{font-size:clamp(60px,8vw,138px);color:var(--butter)}\n.case-fruehschicht .cb-feature-copy p{max-width:450px;font-size:clamp(18px,2.1vw,26px);line-height:1.25}\n.case-fruehschicht .cb-feature-photo{min-height:100%;overflow:hidden}\n.case-fruehschicht .cb-feature-photo img{object-position:center;transition:transform .8s}\n.case-fruehschicht .cb-feature:hover img{transform:scale(1.04)}\n.case-fruehschicht .cb-stamp{position:absolute;left:calc(50% - 85px);top:calc(50% - 85px);width:170px;height:170px;border-radius:50%;background:var(--butter);color:var(--wine);display:grid;place-items:center;text-align:center;transform:rotate(-14deg);font-weight:900;font-size:19px;line-height:1.05;z-index:2;box-shadow:0 10px 30px rgba(0,0,0,.12)}\n.case-fruehschicht .cb-statement{background:var(--butter);padding:clamp(85px,12vw,160px) clamp(22px,7vw,110px);text-align:center}\n.case-fruehschicht .cb-statement h2{max-width:1250px;margin:20px auto 0;font-size:clamp(46px,8.8vw,145px);color:var(--wine)}\n.case-fruehschicht .cb-statement p{max-width:700px;margin:35px auto 0;font-size:clamp(17px,2vw,24px);line-height:1.5}\n.case-fruehschicht .cb-chapter{padding:clamp(90px,12vw,170px) clamp(22px,6vw,100px)}\n.case-fruehschicht .cb-chapter-head{display:flex;justify-content:space-between;align-items:end;gap:24px;margin-bottom:clamp(45px,6vw,85px)}\n.case-fruehschicht .cb-chapter-head h2{font-size:clamp(52px,8vw,130px);color:var(--wine);max-width:850px}\n.case-fruehschicht .cb-chapter-head p{max-width:280px;line-height:1.4}\n.case-fruehschicht .cb-showcase{display:grid;grid-template-columns:repeat(12,minmax(0,1fr));gap:clamp(24px,4vw,70px) clamp(15px,3vw,50px);align-items:start}\n.case-fruehschicht .cb-shot{grid-column:span 6;min-width:0}\n.case-fruehschicht .cb-shot:nth-child(2){grid-column:span 5;margin-top:25%}\n.case-fruehschicht .cb-shot:nth-child(1){grid-column:span 7}\n.case-fruehschicht .cb-shot:nth-child(3){grid-column:span 5;margin-top:16%}\n.case-fruehschicht .cb-shot:nth-child(4){grid-column:span 7}\n.case-fruehschicht .cb-shot:nth-child(5){grid-column:3/span 8}\n.case-fruehschicht .cb-shot-frame{position:relative;overflow:hidden;background:#e7dccb;aspect-ratio:4/5}\n.case-fruehschicht .cb-shot:nth-child(1) .cb-shot-frame,.case-fruehschicht .cb-shot:nth-child(4) .cb-shot-frame{aspect-ratio:5/4}\n.case-fruehschicht .cb-shot:nth-child(5) .cb-shot-frame{aspect-ratio:16/10}\n.case-fruehschicht .cb-shot-frame img{transition:transform .65s cubic-bezier(.2,.7,.1,1)}\n.case-fruehschicht .cb-shot:hover img{transform:scale(1.055)}\n.case-fruehschicht .cb-shot-meta{display:flex;justify-content:space-between;gap:14px;padding-top:16px;border-top:1px solid #bfb3a3;margin-top:15px;align-items:baseline}\n.case-fruehschicht .cb-shot-meta strong{font-size:clamp(19px,2.3vw,31px);letter-spacing:-.04em}\n.case-fruehschicht .cb-shot-meta span{font-size:12px;text-align:right;max-width:200px}\n.case-fruehschicht .cb-values{background:var(--wine);color:var(--butter);padding:clamp(80px,10vw,145px) clamp(22px,6vw,100px)}\n.case-fruehschicht .cb-values h2{font-size:clamp(70px,13vw,210px);max-width:1200px}\n.case-fruehschicht .cb-values p{margin-top:40px;max-width:650px;font-size:clamp(18px,2.3vw,28px);line-height:1.3}\n.case-fruehschicht .cb-palette{display:grid;grid-template-columns:repeat(4,1fr);margin-top:70px;gap:8px}\n.case-fruehschicht .cb-swatch{min-height:150px;display:flex;align-items:end;padding:15px;font-size:12px}\n.case-fruehschicht .cb-end{background:var(--deep);color:var(--cream);padding:clamp(90px,12vw,180px) clamp(22px,7vw,110px)}\n.case-fruehschicht .cb-end h2{font-size:clamp(55px,10vw,150px);max-width:1200px;color:var(--butter)}\n.case-fruehschicht .cb-end p{max-width:700px;font-size:clamp(18px,2vw,24px);line-height:1.45;margin-top:36px}\n.case-fruehschicht .cb-end a{display:inline-block;margin-top:45px;padding:19px 30px;border-radius:50px;background:var(--butter);color:var(--deep);text-decoration:none;font-weight:800;transition:transform .2s}\n.case-fruehschicht .cb-end a:hover{transform:translateY(-4px)}\n.case-fruehschicht .cb-footer{background:#300913;color:#d3bfb7;display:flex;justify-content:space-between;gap:25px;align-items:center;padding:28px clamp(22px,7vw,110px);font-size:12px}\n.case-fruehschicht .cb-footer button{background:none;border:1px solid #d3bfb7;color:inherit;padding:12px 15px;cursor:pointer}\n@keyframes cb-rise{from{opacity:0;transform:translateY(40px)}to{opacity:1;transform:translateY(0)}}\n@keyframes cb-zoom{from{transform:scale(1.06)}to{transform:scale(1)}}\n@keyframes cb-marquee{to{transform:translateX(-50%)}}\n@media(max-width:800px){\n.case-fruehschicht .cb-hero{min-height:80svh}\n.case-fruehschicht .cb-hero-title{font-size:clamp(46px,13.8vw,110px);letter-spacing:-.075em}\n.case-fruehschicht .cb-hero-bottom a{width:54px;height:54px}\n.case-fruehschicht .cb-story{grid-template-columns:1fr}\n.case-fruehschicht .cb-story-copy{padding-top:0}\n.case-fruehschicht .cb-feature{grid-template-columns:1fr;display:flex;flex-direction:column}\n.case-fruehschicht .cb-feature-copy{min-height:350px}\n.case-fruehschicht .cb-feature-photo{height:450px}\n.case-fruehschicht .cb-stamp{left:auto;right:20px;top:calc(350px - 70px);width:140px;height:140px}\n.case-fruehschicht .cb-chapter-head{display:block}\n.case-fruehschicht .cb-chapter-head p{margin-top:24px}\n.case-fruehschicht .cb-showcase{grid-template-columns:repeat(2,minmax(0,1fr));gap:36px 12px}\n.case-fruehschicht .cb-shot,.case-fruehschicht .cb-shot:nth-child(1),.case-fruehschicht .cb-shot:nth-child(2),.case-fruehschicht .cb-shot:nth-child(3),.case-fruehschicht .cb-shot:nth-child(4),.case-fruehschicht .cb-shot:nth-child(5){grid-column:span 1;margin-top:0}\n.case-fruehschicht .cb-shot:nth-child(1),.case-fruehschicht .cb-shot:nth-child(5){grid-column:span 2}\n.case-fruehschicht .cb-shot-frame,.case-fruehschicht .cb-shot:nth-child(1) .cb-shot-frame,.case-fruehschicht .cb-shot:nth-child(4) .cb-shot-frame,.case-fruehschicht .cb-shot:nth-child(5) .cb-shot-frame{aspect-ratio:4/5}\n.case-fruehschicht .cb-shot:nth-child(1) .cb-shot-frame,.case-fruehschicht .cb-shot:nth-child(5) .cb-shot-frame{aspect-ratio:5/4}\n.case-fruehschicht .cb-shot-meta{display:block}\n.case-fruehschicht .cb-shot-meta span{display:block;text-align:left;margin-top:6px}\n.case-fruehschicht .cb-palette{grid-template-columns:repeat(2,1fr)}\n.case-fruehschicht .cb-footer{display:block}\n.case-fruehschicht .cb-footer button{margin-top:20px}\n}\n@media(max-width:390px){.case-fruehschicht .cb-hero-title{font-size:13.3vw}.case-fruehschicht .cb-topline{font-size:9px}.case-fruehschicht .cb-hero-bottom p{font-size:18px}}\n@media(prefers-reduced-motion:reduce){.case-fruehschicht *{animation:none!important;transition:none!important}}\n"}</style>
+    <header className="cb-hero">
+      <div className="cb-hero-photo"><img src="/fruehschicht/01-storefront.jpg" alt="Frühschicht Bäckerei – Storefront Branding" fetchPriority="high"/></div>
+      <div className="cb-topline cb-mono"><span>Philgood Media / Selected Work</span><span>Independent Concept — 2026</span></div>
+      <div className="cb-hero-inner">
+        <div className="cb-mono" style={{marginBottom:25}}>01 / Good mornings start here.</div>
+        <h1 className="cb-display cb-hero-title">Frühschicht.</h1>
+        <div className="cb-hero-bottom"><p>Eine Bäckerei für das Ruhrgebiet, die da anfängt, wo hier früher jeder Tag anfing: in der Frühschicht.</p><a href="#cb-story" aria-label="Zum Konzept scrollen">↓</a></div>
       </div>
+    </header>
+    <div className="cb-ticker" aria-label="Fresh bread. Early mornings. Ruhrgebiet."><div className="cb-ticker-track">{Array.from({length:4},(_,i)=><span key={i}>FRESH BREAD ✳ EARLY MORNINGS ✳ RUHRGEBIET ✳ GOOD STUFF ✳ </span>)}</div></div>
+    <section className="cb-story" id="cb-story">
+      <div><div className="cb-mono">01 — The story / Die Idee</div><h2 className="cb-display">Morgens.<br/>Malochen.<br/>Machen.</h2></div>
+      <div className="cb-story-copy"><p>Wer früh anfängt, macht das Beste draus. Frühschicht ist eine Bäckerei-Marke mit Ruhrgebiets-DNA. Inspiriert von den Menschen, die früh aufstehen, anpacken und ihre Arbeit ernst nehmen.</p><p>Ich habe selbst fast zehn Jahre unter Tage gearbeitet, bevor ich in die Gestaltung gewechselt bin. Diese Geschichte steckt im Namen – nicht als Zechen-Kitsch, sondern als Haltung.</p><div className="cb-note cb-mono"><span>Naming · Identity · Packaging · Interior</span><span>Ruhrgebiet / 2026</span></div></div>
     </section>
-    <section className="fs-section fs-contact">
-      <div className="fs-label">Ein freies Konzeptprojekt</div>
-      <h2 className="fs-heading">Eine gute Idee verdient einen guten Auftritt.</h2>
-      <p className="fs-copy" style={{color:"rgba(244,238,227,.8)"}}>Frühschicht ist ein freies Konzeptprojekt. Wenn ihr einen Laden, Verein oder ein Produkt habt, das mehr Charakter verdient – lasst uns reden.</p>
-      <a href="mailto:philipspiekermann@hotmail.com?subject=Fr%C3%BChschicht%20%2F%20Projektanfrage">Projekt anfragen ↗</a>
+    <section className="cb-feature">
+      <div className="cb-feature-copy"><div className="cb-mono">02 — A place to stay</div><h2 className="cb-display">Nicht nur<br/>Brot.<br/>Gefühl.</h2><p>Warmes Licht, ehrliche Materialien und eine Marke, die man sofort wiedererkennt. Kein Zechenmuseum. Eine Bäckerei von heute.</p></div>
+      <div className="cb-feature-photo"><img src="/fruehschicht/02-interior.jpg" loading="lazy" alt="Frühschicht Interior-Konzept"/></div>
+      <div className="cb-stamp">GOOD<br/>MORNINGS<br/>ONLY ✳</div>
     </section>
-    <div className="fs-footer"><span>Konzept, Naming & Design: Feelgood Media · Visualisierungen KI-gestützt erstellt</span><button className="fs-back" onClick={()=>onNavigate("home")}>← Alle Projekte</button></div>
+    <section className="cb-statement"><div className="cb-mono">Our philosophy / Unsere Haltung</div><h2 className="cb-display">Kein Zechen-Kitsch.<br/>Nur Charakter.</h2><p>Warm. Laut. Ehrlich. Eine Marke, die ihre Herkunft kennt, aber nicht in der Vergangenheit lebt.</p></section>
+    <section className="cb-chapter">
+      <div className="cb-chapter-head"><div><div className="cb-mono">03 — Made to be remembered</div><h2 className="cb-display">Eine Marke.<br/>Jeden Morgen.</h2></div><p>Vom ersten Kaffee bis zur letzten Krume: ein konsistenter Auftritt über alle Touchpoints.</p></div>
+      <div className="cb-showcase">{gallery.map((item,i)=><figure className="cb-shot" key={item.src}><div className="cb-shot-frame"><img src={item.src} alt={item.title+" – Frühschicht Markenanwendung"} loading="lazy"/></div><figcaption className="cb-shot-meta"><strong>{item.title}</strong><span>{item.caption}</span></figcaption></figure>)}</div>
+    </section>
+    <section className="cb-values"><div className="cb-mono">04 — Brand ingredients</div><h2 className="cb-display">Warm.<br/>Laut.<br/>Ehrlich.</h2><p>Schichtrot, Butter, Mehl und Edelstahl. Eine visuelle Sprache zwischen Bäckerei-Kultur und urbanem Ruhrgebiet.</p><div className="cb-palette"><div className="cb-swatch" style={{background:"#7B1528",border:"1px solid #b55a6c"}}>Schichtrot / #7B1528</div><div className="cb-swatch" style={{background:"#F1E2BF",color:"#221b19"}}>Butter / #F1E2BF</div><div className="cb-swatch" style={{background:"#F4EEE3",color:"#221b19"}}>Mehl / #F4EEE3</div><div className="cb-swatch" style={{background:"linear-gradient(135deg,#a2a6a7,#e3e4e1,#7c8183)",color:"#221b19"}}>Edelstahl / Metallic</div></div></section>
+    <section className="cb-end"><div className="cb-mono">05 — Let's make something good</div><h2 className="cb-display">Hungrig auf<br/>mehr?</h2><p>Frühschicht ist ein selbstinitiiertes Konzeptprojekt. Wenn ihr einen Laden, Verein oder ein Produkt habt, das mehr Charakter verdient – lasst uns reden.</p><a href="mailto:philipspiekermann@hotmail.com?subject=Fr%C3%BChschicht%20%2F%20Projektanfrage">Projekt anfragen ↗</a></section>
+    <footer className="cb-footer"><span>Selbstinitiiertes Konzept · 2026 — Konzept, Naming & Design: Philgood Media · Visualisierungen KI-gestützt erstellt</span><button onClick={()=>onNavigate("home")}>← Alle Projekte</button></footer>
   </article>;
 }
 
