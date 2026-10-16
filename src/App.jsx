@@ -862,32 +862,7 @@ function PosterGallery() {
 
 
 const PROJECTS = [
-  {page:"glutenfry",title:"Glutenfry",description:"Eine mutige Marke für glutenfreies Soul Food.",category:"Brand Design · Packaging · Print",img:"/gf_brand.png"},
-  {page:"volksbank",title:"Dortmunder Volksbank",description:"Veränderung sichtbar machen. Digital und gedruckt.",category:"Art Direction · Geschäftsbericht",img:"/vob_laptop.png"},
-  {page:"vonovia",title:"Vonovia × VfL Bochum",description:"Fußballkultur zum Durchblättern.",category:"Editorial Design · Saisonbuch",img:"/projects/vonovia-1-detail.webp",year:"2025/26",role:"Art Direction · Editorial Design · Layout",headline:"EIN VEREIN.\nVIELE GESCHICHTEN.",intro:"Das Saisonbuch für Vonovia und den VfL Bochum 1848 verbindet Fußball, Nachbarschaft und die Emotionen des Ruhrgebiets in einem quadratischen Buchformat.",steps:[
-    ["Die Aufgabe","Ein Saisonbuch gestalten, das die Verbundenheit zwischen Hauptsponsor, Verein und Region sichtbar macht."],
-    ["Die Idee","Ein flexibles Magazinraster verbindet Bildstrecken, Spielerporträts und Infografiken. Prägnante Typografie und Cutout-Collagen geben den Geschichten ihren eigenen Rhythmus."],
-    ["Die Umsetzung","Editorial Design und Layout bis zur Druckvorstufe: Doppelseiten, Composings und ein quadratisches Sonderformat als zusammenhängendes Buchkonzept."]
-  ],images:[{src:"/projects/vonovia-1-detail.webp",alt:"Aufgeschlagenes Saisonbuch mit einer Stadion-Bildstrecke",caption:"Editorial Design: große Bilder und klare Schrifthierarchien."},{src:"/projects/vonovia-2-detail.webp",alt:"Cover-Mockup des Saisonbuchs",caption:"Ein quadratisches Buchformat für eine Saison voller Geschichten."},{src:"/projects/vonovia-3-detail.webp",alt:"Vorder- und Rückseite des Saisonbuchs Zuhause ist hier",caption:"Der Buchumschlag: Zuhause ist hier."}]},
-  {page:"salzburg",title:"Flughafen Salzburg",description:"Ein Charakter. Viele Reiseziele.",category:"Kampagne · KI-Workflow · OOH",img:"/projects/salzburg-1-detail.webp",year:"2026",role:"Art Direction · Campaign Design · KI-Workflow",headline:"FLIEG AB\nSALZBURG!",intro:"Eine humorvolle Ganzjahreskampagne zum 100-jährigen Jubiläum des Salzburg Airport. Ein wiederkehrender Affen-Charakter macht unterschiedliche Reiseziele zu einer erkennbaren Kampagnenwelt.",steps:[
-    ["Die Aufgabe","Eine Dachkampagne entwickeln, die über das gesamte Jahr für unterschiedliche Reiseziele funktioniert und die Jubiläums-CI aufgreift."],
-    ["Die Idee","Ein zentraler Charakter schafft Wiedererkennung. Neue Reiseziele und saisonale Anlässe lassen sich innerhalb derselben visuellen Sprache erzählen."],
-    ["Die Umsetzung","KI-Generierung, Prompting und Harmonisierung der Motive sowie Adaptionen für OOH-Großflächen, Print-Folder, Social Media und QR-Landingpages."]
-  ],images:[{src:"/projects/salzburg-1-detail.webp",alt:"Flieg ab Salzburg als großflächige Außenwerbung an einer Fassade",caption:"Die Kampagne im öffentlichen Raum."},{src:"/projects/salzburg-2-detail.webp",alt:"Salzburg-Kampagnenmotiv auf einer Außenwerbefläche",caption:"Wiedererkennung über verschiedene Formate hinweg."},{src:"/projects/salzburg-3-detail.webp",alt:"Weitere Anwendung der Salzburg-Flughafenkampagne",caption:"Ein konsistenter Kampagnenauftritt in weiteren Anwendungen."}]},
-  {page:"vestische",title:"125 Jahre Vestische",description:"Ein Jubiläum, das im Gedächtnis bleibt.",category:"Eventbranding · Kampagne · Print",img:"/projects/vestische-sign.webp",cutout:true,year:"125-jähriges Jubiläum",role:"Art Direction · Key Visual · Event-Werbemittel",headline:"125 JAHRE.\nMITTEN IM LEBEN.",intro:"Für das Jubiläum der Vestischen Straßenbahnen entstand ein Event- und Branding-Konzept, das regionale Verbundenheit mit einem durchgängigen visuellen Auftritt verbindet.",steps:[
-    ["Die Aufgabe","Das 125-jährige Bestehen als zusammenhängendes Markenerlebnis gestalten – im öffentlichen Raum und auf dem Veranstaltungsgelände."],
-    ["Die Idee","Ein prägnantes Jubiläumsdesign verbindet große Werbeflächen mit kleinen, persönlichen Details. So entsteht Wiedererkennung an jedem Kontaktpunkt."],
-    ["Die Umsetzung","Key Visual und Werbemittel: von Einladungen und Magazinen über Banner und Leitsysteme bis zu digitalen Adaptionen und Bus-Branding."]
-  ],images:[
-    {src:"/projects/vestische-sign.webp",cutout:true,alt:"Freigestellte Wegweiser für Bühne und Trinkplatz",caption:"Leitsystem: klare Orientierung im orangefarbenen Eventdesign."},
-    {src:"/projects/vestische-team.webp",cutout:true,alt:"Philip im Teamshirt mit dem Schriftzug Vest Team",caption:"Teamwear: ein wiedererkennbarer Auftritt für das Event-Team."},
-    {src:"/projects/vestische-tram.webp",alt:"Historische Straßenbahn mit Blumendekoration beim Vestische-Jubiläum",caption:"125 Jahre Mobilität: eine historische Straßenbahn als Teil des Events."},
-    {src:"/projects/vestische-history.webp",alt:"Beleuchtete Jubiläumswand zur Geschichte der Vestischen am Abend",caption:"Geschichte im Raum: die Jubiläumswand in der abendlichen Eventatmosphäre."},
-    {src:"/projects/vestische-table.webp",alt:"Tischgestaltung mit Blumen, orangefarbenen Details und einer Karte mit dem Wort Trinkplatz",caption:"Gestaltung bis ins Detail: das Farbkonzept auf den Tischen."},
-    {src:"/projects/vestische-food.webp",alt:"Frisch angerichtete Bowl aus dem Food-Angebot des Events",caption:"Food und Begegnung: Einblicke in den Veranstaltungstag."}
-  ]}
-
-];
+  {page:"glutenfry",title:"Glutenfry",description:"Eine mutige Marke für glutenfreies Soul Food.",category:"Brand Design · Packaging · Print",img:"/gf_brand.png"},]
 
 function ImageDetail({ image, onClose }) {
   const ref = useRef(null);
@@ -1166,10 +1141,7 @@ export default function Portfolio() {
                   <div className="exp-item">
                     <div><div className="exp-company">Bounty Communication Group</div><div className="exp-period">2024 — heute</div></div>
                     <ul className="exp-bullets">
-                      <li>Kampagnen für den Salzburger Flughafen – Social Media, Google Ads, Print.</li>
-                      <li>Geschäftsbericht & Kampagnen für die Dortmunder Volksbank – Konzept bis Reinzeichnung.</li>
                       <li>Visuelle Auftritte für Events & Festivals – Markenentwicklung, Key Visuals, Werbemittel.</li>
-                      <li>Printprojekte: Vonovia × VfL Bochum, H. Klostermann Nachhaltigkeitsbericht.</li>
                     </ul>
                   </div>
                 </FadeIn>
