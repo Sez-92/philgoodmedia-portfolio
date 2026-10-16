@@ -675,7 +675,7 @@ function GlutenfryPage({ onBack, onNavigate }) {
         <div style={{ position:"absolute", inset:0, backgroundImage:"radial-gradient(circle,rgba(212,237,42,0.07) 1px,transparent 1px)", backgroundSize:"60px 60px", WebkitMaskImage:"radial-gradient(ellipse 50% 70% at 95% 25%,black,transparent)", maskImage:"radial-gradient(ellipse 50% 70% at 95% 25%,black,transparent)", pointerEvents:"none" }} />
         <div style={{ position:"absolute", bottom:-60, right:-30, fontFamily:"'Bebas Neue',sans-serif", fontSize:"clamp(120px,20vw,300px)", color:"rgba(255,255,255,0.018)", pointerEvents:"none", userSelect:"none", letterSpacing:-6, lineHeight:0.85 }}>GLUTEN<br/>FREE</div>
         <div style={{ position:"relative", zIndex:1 }}>
-          <div className="section-label" style={{ animation:"slideUp 0.7s 0.1s both" }}>Case Study · Bounty Communication Group · 2024</div>
+          <div className="section-label" style={{ animation:"slideUp 0.7s 0.1s both" }}>Case Study · Brand Design · 2024</div>
           <div style={{ fontFamily:"'Bebas Neue',sans-serif", fontSize:"clamp(80px,15vw,220px)", lineHeight:0.82, letterSpacing:-5, animation:"slideUp 0.7s 0.2s both" }}>
             <span style={{ color:WHITE, display:"block" }}>GLUTEN</span>
             <span style={{ color:LIME, display:"block" }}>FRY</span>
@@ -820,7 +820,7 @@ function ProjectPage({ project, onNavigate }) {
       <div className="section-label">Case Study / {project.title}</div>
       <h1 className="case-title">{project.headline.split("\n").map((line,i)=><span key={line} className={i===1?"accent":""}>{line}</span>)}</h1>
       <p className="case-lead">{project.intro}</p>
-      <dl className="case-facts"><div><dt>Projekt</dt><dd>{project.year}</dd></div><div><dt>Mein Beitrag</dt><dd>{project.role}</dd></div><div><dt>Entstanden bei</dt><dd>Bounty Communication Group</dd></div></dl>
+      <dl className="case-facts"><div><dt>Projekt</dt><dd>{project.year}</dd></div><div><dt>Mein Beitrag</dt><dd>{project.role}</dd></div></dl>
     </header>
     <section className="case-showcase section" aria-label="Projektgalerie">
       <figure><button className={"case-image-stage" + (project.images[activeImage].cutout ? " cutout" : "")} onClick={()=>setDetailOpen(true)} aria-label="Motiv in Großansicht öffnen"><img src={project.images[activeImage].src} alt={project.images[activeImage].alt}/><span className="image-expand">Großansicht ⤢</span></button><figcaption aria-live="polite">{String(activeImage+1).padStart(2,"0")} / {String(project.images.length).padStart(2,"0")} — {project.images[activeImage].caption}</figcaption></figure>
@@ -1032,7 +1032,7 @@ export default function Portfolio() {
                   <div className="project-meta"><div><h3>{project.title}</h3><p>{project.category}</p><p>{project.description}</p></div><span className="project-index">0{i+1}</span></div>
                 </a>)}
               </div>
-              <p className="work-footnote">Entstanden im Rahmen meiner Arbeit bei Bounty Communication Group.</p>
+
             </section>
 
             <PosterGallery />
@@ -1061,22 +1061,6 @@ export default function Portfolio() {
                     </div>
                   </FadeIn>
                 </div>
-              </div>
-            </section>
-
-            <div className="full-divider" />
-
-            <section id="experience">
-              <div className="section">
-                <FadeIn><div className="section-label">Werdegang</div><h2 className="section-title">ERFAHRUNG</h2></FadeIn>
-                <FadeIn delay={100}>
-                  <div className="exp-item">
-                    <div><div className="exp-company">Bounty Communication Group</div><div className="exp-period">2024 — heute</div></div>
-                    <ul className="exp-bullets">
-                      <li>Visuelle Auftritte für Events & Festivals – Markenentwicklung, Key Visuals, Werbemittel.</li>
-                    </ul>
-                  </div>
-                </FadeIn>
               </div>
             </section>
 
