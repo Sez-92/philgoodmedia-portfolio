@@ -551,6 +551,19 @@ html,body{background:var(--pg-paper);color:var(--pg-ink)}
 @media(max-width:900px){.hero-right{transform:rotate(-3deg)}}
 @media(max-width:600px){.hero-name{font-size:clamp(60px,15vw,100px);line-height:.94}.hero-right:after{right:-8px;font-size:8px;padding:10px 12px}}
 
+
+/* Mobile legibility and hero lockup: fix low contrast in Vercel screenshots */
+.portfolio-root .nav-logo,.portfolio-root .nav-logo span{color:#F8F1E3!important;opacity:1!important}
+.portfolio-root .nav-logo span{color:#F2E5AE!important}
+.portfolio-root .hero-name{color:#F8F1E3!important;opacity:1!important;animation:none!important;text-shadow:none!important}
+.portfolio-root .hero-name span{color:#F2E5AE!important}
+.portfolio-root .hero-desc{color:#F8F1E3!important;opacity:1!important;animation:none!important}
+.portfolio-root .hero-typewriter{color:#F2E5AE!important;opacity:1!important;animation:none!important}
+.portfolio-root .hero-cta{opacity:1!important;animation:none!important}
+.portfolio-root .hero-tag{color:#F2E5AE!important;opacity:1!important;animation:none!important}
+.portfolio-root .btn-outline{color:#F8F1E3!important;opacity:1!important}
+.portfolio-root .nav-menu-btn{color:#F8F1E3!important;border-color:rgba(248,241,227,.55)!important}
+@media(max-width:600px){.portfolio-root .hero-name{font-size:clamp(56px,14.3vw,94px)!important;line-height:.97!important;letter-spacing:-.075em!important;overflow-wrap:normal;word-break:normal}.portfolio-root .hero{padding-top:130px!important}}
 `;
 
 const WORDS = ["Art Director", "Brand Designer", "Print & Digital", "Creative Mind"];
@@ -1193,7 +1206,7 @@ export default function Portfolio() {
               <div className="hero-left">
                 <div ref={heroLeftRef} style={{ transition:"transform 0.18s ease-out" }}>
                   <div className="hero-tag">Philip Spiekermann / Art Direction / Ruhrgebiet</div>
-                  <h1 className="hero-name">GUTE<br/><span>IDEEN.</span><br/>BLEIBEN.</h1>
+                  <h1 className="hero-name">IDEEN, DIE<br/><span>BLEIBEN.</span></h1>
                   <Typewriter />
                   <p className="hero-desc">Branding, Kampagnen und digitale Erlebnisse. Konzeptionell stark, visuell eigenständig. Aus dem Ruhrgebiet.</p>
                   <div className="hero-cta">
