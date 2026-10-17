@@ -1049,7 +1049,7 @@ function PosterGallery() {
 
 const PROJECTS = [
   {page:"glutenfry",title:"Glutenfry",description:"Eine mutige Marke für glutenfreies Soul Food.",category:"Brand Design · Packaging · Print",img:"/gf_brand.png"},
-  {page:"fruehschicht",title:"Frühschicht",description:"Eine Bäckerei mit Ruhrgebiets-DNA.",category:"Branding · Packaging · Interior",img:""}
+  {page:"fruehschicht",title:"Frühschicht",description:"Eine Bäckerei mit Ruhrgebiets-DNA.",category:"Branding · Packaging · Interior",img:"/fruehschicht/01-storefront.jpg"}
 ];
 
 function ImageDetail({ image, onClose }) {
@@ -1181,7 +1181,7 @@ function FruehschichtPage({ onNavigate }) {
     <section className="fs-section">
       <div className="fs-label">04 / Anwendungen</div>
       <h2 className="fs-heading">Eine Marke. Viele Berührungspunkte.</h2>
-      <div className="fs-gallery">{gallery.map((item,i)=><figure className="fs-gallery-item" key={item.src}><div className="fs-image"><div className="fs-image-fallback"><span className="fs-art-mark">FRÜH<br/>SCHICHT.</span><small>{item.title}</small></div><span style={{position:"absolute",left:12,bottom:12,background:"#F1E2BF",color:"#1E1A17",padding:"6px 8px",font:"10px 'Space Mono',monospace"}}>FRÜHSCHICHT</span></div><figcaption><strong>{item.title}</strong><span>{item.caption}</span></figcaption></figure>)}</div>
+      <div className="fs-gallery">{gallery.map((item,i)=><figure className="fs-gallery-item" key={item.src}><div className="fs-image"><div className="fs-image-fallback">{item.title}</div><img src={item.src} alt={item.title+" — Frühschicht Branding Mockup"} loading={i===0?"eager":"lazy"} onError={e=>{e.currentTarget.style.display="none"}}/><span style={{position:"absolute",left:12,bottom:12,background:"#F1E2BF",color:"#1E1A17",padding:"6px 8px",font:"10px 'Space Mono',monospace"}}>FRÜHSCHICHT</span></div><figcaption><strong>{item.title}</strong><span>{item.caption}</span></figcaption></figure>)}</div>
     </section>
     <section className="fs-section fs-contact">
       <div className="fs-label">Ein freies Konzeptprojekt</div>
