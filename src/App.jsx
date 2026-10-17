@@ -171,6 +171,45 @@ const styles = `
   }
 
 
+  /* Mobile-first refinement: make the experience work without hover */
+  @media(max-width:700px) {
+    html,body,.portfolio-root { overflow-x:clip !important; }
+    .hero-reimagined { padding:70px 10px 12px !important; }
+    .hero-topline { font-size:9px; gap:8px; }
+    .hero-topline span:nth-child(2) { text-align:right; max-width:145px; }
+    .hero-reimagined-grid { display:flex !important; flex-direction:column; gap:8px; }
+    .hero-statement { min-height:460px !important; padding:22px 17px 24px !important; }
+    .hero-monument { font-size:clamp(65px,16.5vw,105px) !important; line-height:.84 !important; margin:22px 0 !important; letter-spacing:-.07em !important; }
+    .hero-edition { font-size:10px; }
+    .hero-statement-bottom { font-size:10px; align-items:end; }
+    .hero-statement-bottom button { padding:12px !important; font-size:9px !important; }
+    .hero-image-panel { height:340px !important; min-height:340px !important; }
+    .hero-image-stamp { width:60px !important; height:60px !important; font-size:14px !important; }
+    .hero-bottomline { gap:12px; }
+    .hero-bottomline span:first-child { max-width:220px; }
+    .section { padding:70px 14px !important; }
+    .section-title { font-size:clamp(54px,12vw,85px) !important; overflow-wrap:anywhere; }
+    .work-heading { display:block !important; }
+    .work-intro { margin-top:22px; max-width:310px; }
+    .project-grid { display:flex !important; flex-direction:column; gap:30px !important; }
+    .project-link { width:100%; }
+    .project-visual,.project-link:nth-child(2) .project-visual { aspect-ratio:1/1.04 !important; }
+    .project-meta { padding:15px 16px 0 !important; }
+    .project-meta h3 { font-size:48px !important; }
+    .poster-grid { grid-template-columns:repeat(2,minmax(0,1fr)) !important; gap:10px !important; }
+    .reactive-dot-field i { width:4px; height:4px; }
+    .dot-field-label { display:none; }
+    .hero-image-panel img { filter:grayscale(.55) contrast(1.1) !important; }
+    .hero-image-panel:active img { filter:grayscale(0) contrast(1.08) !important; }
+    .project-link:active .project-visual img { transform:scale(1.05); }
+    button,a { -webkit-tap-highlight-color:transparent; }
+  }
+  @media(max-width:380px) {
+    .hero-monument { font-size:15.5vw !important; }
+    .hero-statement { min-height:425px !important; }
+    .hero-statement-bottom { flex-wrap:wrap; }
+    .hero-image-panel { height:280px !important; min-height:280px !important; }
+  }
   /* Interaction layer: kinetic dot field, editorial image hover and responsive motion */
   .hero-statement { position:relative; isolation:isolate; }
   .reactive-dot-field { position:absolute; inset:0; z-index:0; overflow:hidden; touch-action:pan-y; }
@@ -870,7 +909,7 @@ function ReactiveDotField() {
   return <div className="reactive-dot-field" onPointerMove={e=>{
     const r=e.currentTarget.getBoundingClientRect();
     setCursor({x:(e.clientX-r.left)/r.width*100,y:(e.clientY-r.top)/r.height*100});
-  }} onPointerLeave={()=>setCursor(null)} aria-hidden="true">
+  }} onPointerLeave={()=>setCursor(null)} onTouchStart={e=>{const t=e.touches[0],r=e.currentTarget.getBoundingClientRect();if(t)setCursor({x:(t.clientX-r.left)/r.width*100,y:(t.clientY-r.top)/r.height*100});}} onTouchMove={e=>{const t=e.touches[0],r=e.currentTarget.getBoundingClientRect();if(t)setCursor({x:(t.clientX-r.left)/r.width*100,y:(t.clientY-r.top)/r.height*100});}} onTouchEnd={()=>setCursor(null)} aria-hidden="true">
     {dots.map((dot,i)=>{
       const dx=cursor?dot.x-cursor.x:0,dy=cursor?dot.y-cursor.y:0;
       const d=Math.hypot(dx,dy),force=cursor?Math.max(0,1-d/22):0;
