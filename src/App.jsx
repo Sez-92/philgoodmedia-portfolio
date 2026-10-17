@@ -169,6 +169,99 @@ const styles = `
     .cs-cards-desktop { display:block; }
     .cs-cards-mobile { display:none; }
   }
+
+  /* PHILGOOD / 2026: Independent editorial redesign, intentionally not a card-based portfolio */
+  :root { color-scheme:light; }
+  html,body,.portfolio-root { background:#ece9df !important; color:#171714 !important; }
+  body::after { opacity:.018; }
+  .nav,.nav.scrolled { background:#ece9df !important; border-bottom:1px solid #171714 !important; padding:15px 3vw !important; }
+  .nav-logo,.logo-name { color:#171714 !important; font-family:'Space Mono',monospace !important; letter-spacing:-1px; font-weight:700; }
+  .nav-link,.nav-link:hover,.nav-link.active { color:#171714 !important; }
+  .nav-link::after { background:#ed4b27 !important; }
+  .menu-toggle { color:#171714 !important; border-color:#171714 !important; }
+  .nav-links.open { background:#ece9df !important; }
+  .scroll-progress-bar { background:#ed4b27 !important; }
+  .hero-reimagined { display:block !important; min-height:0 !important; padding:100px 3vw 20px !important; background:#ece9df; }
+  .hero-topline,.hero-bottomline { display:flex; justify-content:space-between; gap:20px; font:10px 'Space Mono',monospace; letter-spacing:.04em; border-bottom:1px solid #171714; padding:10px 0 14px; }
+  .hero-bottomline { border-top:1px solid #171714; border-bottom:0; margin-top:12px; }
+  .hero-reimagined-grid { display:grid; grid-template-columns:1.35fr .65fr; gap:12px; margin-top:12px; min-height:650px; }
+  .hero-statement { background:#ef4c27; color:#171714; display:flex; flex-direction:column; justify-content:space-between; padding:28px 3vw 32px; overflow:hidden; }
+  .hero-edition { font:11px 'Space Mono',monospace; }
+  .hero-monument { font-family:Impact,'Arial Black',sans-serif; font-weight:900; font-size:clamp(76px,10.5vw,190px); line-height:.79; letter-spacing:-.065em; transform:scaleX(.93); transform-origin:left; margin:34px 0; }
+  .hero-monument em { color:#ece9df; font-style:normal; }
+  .hero-statement-bottom { display:flex; align-items:end; justify-content:space-between; gap:16px; font:12px/1.5 'Space Mono',monospace; }
+  .hero-statement-bottom button { border:1px solid #171714; background:#171714; color:#ece9df; padding:18px; font:11px 'Space Mono',monospace; cursor:pointer; text-align:left; }
+  .hero-statement-bottom button span { margin-left:35px; font-size:22px; }
+  .hero-image-panel { position:relative; overflow:hidden; min-height:650px; background:#1a1a19; }
+  .hero-image-panel img { width:100%; height:100%; object-fit:cover; filter:grayscale(1) contrast(1.15); }
+  .hero-image-panel > div:first-child { height:100%; }
+  .hero-image-stamp { position:absolute; top:25px; right:25px; border-radius:50%; background:#e9e5d8; color:#151515; width:85px; height:85px; display:flex; align-items:center; justify-content:center; font:19px/1 'Space Mono',monospace; transform:rotate(13deg); text-align:center; }
+  .hero-image-caption { position:absolute; bottom:20px; left:20px; right:20px; color:white; font:10px 'Space Mono',monospace; letter-spacing:.1em; }
+  .section { max-width:none !important; padding:110px 3vw !important; }
+  .section-label { color:#ef4c27 !important; }
+  .section-label::before { background:#ef4c27 !important; }
+  .section-title { color:#171714 !important; font-family:Impact,'Arial Black',sans-serif !important; font-weight:900; font-size:clamp(60px,8vw,150px) !important; letter-spacing:-.055em !important; line-height:.88 !important; }
+  .work-heading { align-items:end; border-bottom:1px solid #171714; padding-bottom:36px; }
+  .work-intro { color:#393932 !important; }
+  .project-grid { display:grid !important; grid-template-columns:1.3fr .7fr !important; gap:12px !important; }
+  .project-link { background:#d6d3ca; padding:0 0 18px; color:#171714 !important; }
+  .project-link:nth-child(2) { margin-top:120px; background:#a5a4c8; }
+  .project-visual { aspect-ratio:4/4.6 !important; background:#c7bfb3 !important; }
+  .project-link:nth-child(2) .project-visual { aspect-ratio:4/5 !important; }
+  .project-visual img { object-fit:cover !important; padding:0 !important; }
+  .project-meta { padding:20px 22px 0 !important; }
+  .project-meta h3 { font-family:Impact,'Arial Black',sans-serif !important; font-size:clamp(34px,4vw,70px) !important; line-height:.95; letter-spacing:-.04em; }
+  .project-meta p,.project-index { color:#383832 !important; }
+  .project-open { background:#ef4c27 !important; color:#171714 !important; border-radius:0 !important; }
+  .poster-section { background:#171714; }
+  .poster-section .section-title { color:#ece9df !important; }
+  .poster-section .work-intro { color:#c6c4ba !important; }
+  .poster-section .work-heading { border-color:#777; }
+  .poster-card { color:#ece9df !important; }
+  .poster-card p { color:#b3b0a6 !important; }
+  .poster-picture { background:#343431 !important; }
+  .marquee-section { background:#ef4c27 !important; border:0 !important; }
+  .marquee-item,.marquee-item.clickable,.marquee-sep { color:#171714 !important; }
+  .marquee-badge { background:#171714 !important; color:#ece9df !important; }
+  .about-quote { color:#ef4c27 !important; font-size:clamp(48px,6vw,100px) !important; }
+  .about-text,.stat-label { color:#333 !important; }
+  .stat-number { color:#171714 !important; }
+  .stat-box { border-color:#ef4c27 !important; }
+  .interest-tag { border-color:#777 !important; color:#171714 !important; }
+  .skill-card { border-color:#777 !important; }
+  .skill-card-title,.skill-list li { color:#171714 !important; }
+  .skill-card-icon,.skill-list li::before { color:#ef4c27 !important; }
+  .contact-wrapper { background:#a5a4c8 !important; color:#171714 !important; }
+  .contact-heading { font-family:Impact,'Arial Black',sans-serif !important; }
+  .contact-wrapper .btn-primary { background:#ef4c27 !important; color:#171714 !important; }
+  .footer { background:#171714; }
+  .footer-name,.footer-copy { color:#ece9df !important; }
+  .full-divider { background:#171714 !important; opacity:.2; }
+  .case-title,.case-lead,.case-facts dd,.case-next h2 { color:#171714 !important; }
+  .case-next { border-color:#777 !important; }
+  .case-next p { color:#444 !important; }
+  .btn-outline { border-color:#171714 !important; color:#171714 !important; }
+  .btn-primary { background:#ef4c27 !important; color:#171714 !important; }
+  .case-image-stage { background:#d6d3ca !important; }
+  .cs-hero { background:#ece9df; }
+  .cs-hero h1 { color:#171714; }
+  @media(max-width:900px) {
+    .hero-reimagined { padding:80px 14px 10px !important; }
+    .hero-topline span:last-child { display:none; }
+    .hero-reimagined-grid { grid-template-columns:1fr; gap:8px; }
+    .hero-statement { min-height:480px; padding:22px; }
+    .hero-monument { font-size:clamp(65px,15vw,115px); }
+    .hero-image-panel { min-height:360px; height:60vw; }
+    .hero-image-panel img { object-position:center 30%; }
+    .hero-statement-bottom button span { margin-left:5px; }
+    .section { padding:80px 16px !important; }
+    .project-grid { grid-template-columns:1fr !important; gap:18px !important; }
+    .project-link:nth-child(2) { margin-top:0; }
+    .project-visual,.project-link:nth-child(2) .project-visual { aspect-ratio:4/3 !important; }
+    .nav,.nav.scrolled { padding:14px 16px !important; }
+    .hero-bottomline { font-size:9px; }
+  }
+
   /* Editorial refinement: the original interactions remain intact. */
   :root { color-scheme:dark; }
   .sr-only { position:absolute; width:1px; height:1px; padding:0; margin:-1px; overflow:hidden; clip:rect(0,0,0,0); white-space:nowrap; border:0; }
@@ -1074,39 +1167,23 @@ export default function Portfolio() {
           <GlutenfryPage onBack={() => navigateTo("home")} onNavigate={navigateTo} />
         ) : (
           <>
-            <section id="hero" className="hero">
-              <div ref={parallaxBg} className="hero-bg-text">ART DIRECTOR</div>
-              <div className="hero-grid-dots" />
-              <div className="hero-left">
-                <div ref={heroLeftRef} style={{ transition:"transform 0.18s ease-out" }}>
-                  <div className="hero-tag">Philip Spiekermann · Ruhrgebiet</div>
-                  <h1 className="hero-name">GUTE IDEEN.<br /><span>BLEIBEN.</span></h1>
-                  <Typewriter />
-                  <p className="hero-desc">Ich bin Philip. Art Director aus dem Ruhrgebiet. Ich mache aus guten Ideen Marken, die hängenbleiben.</p>
-                  <div className="hero-cta">
-                    <button className="btn-primary" onClick={() => scrollTo("work")}>Projekte entdecken ↓</button>
-                    <button className="btn-outline" onClick={() => scrollTo("contact")}>Lass uns sprechen ↗</button>
-                  </div>
+            <section id="hero" className="hero hero-reimagined">
+              <div className="hero-topline"><span>PHILGOOD MEDIA®</span><span>INDEPENDENT ART DIRECTION / RUHRGEBIET</span><span>EST. 2024 — 2026</span></div>
+              <div className="hero-reimagined-grid">
+                <div className="hero-statement">
+                  <div className="hero-edition">DESIGN STUDIO / 001</div>
+                  <h1 className="hero-monument">NICHT<br/><em>BRAV.</em><br/>SONDERN<br/>GUT.</h1>
+                  <div className="hero-statement-bottom"><span>Philip Spiekermann<br/>Art Direction & visuelle Konzepte</span><button onClick={() => scrollTo("work")}>ARBEIT ANSEHEN <span aria-hidden="true">↘</span></button></div>
                 </div>
+                <div className="hero-image-panel"><PhotoSwitcher/><div className="hero-image-stamp">P/GM<br/>26</div><div className="hero-image-caption">DESIGN MIT HALTUNG. AUS DEM REVIER.</div></div>
               </div>
-              <div className="hero-right">
-                <div ref={heroRightRef} style={{ transition:"transform 0.18s ease-out" }}>
-                  <div className="photo-frame">
-                    <div className="photo-frame-inner">
-                      <PhotoSwitcher />
-                    </div>
-                    <div className="photo-label">Recklinghausen · Ruhrgebiet</div>
-                  </div>
-                </div>
-              </div>
-              <div className="scroll-hint"><div className="scroll-line" /><span>Scroll</span></div>
+              <div className="hero-bottomline"><span>BRANDING / ART DIRECTION / DIGITAL / PRINT</span><span>SCROLL TO EXPLORE ↓</span></div>
             </section>
-
 
             <section id="work" className="section">
               <div className="work-heading">
-                <div><div className="section-label">01 / Ausgewählte Arbeiten</div><h2 className="section-title">IDEEN WERDEN<br />SICHTBAR.</h2></div>
-                <p className="work-intro">Von der ersten Idee bis ins Detail. Fünf Projekte aus Branding, Kampagne, Editorial und Eventgestaltung.</p>
+                <div><div className="section-label">01 / Ausgewählte Arbeiten</div><h2 className="section-title">AUSGEWÄHLTE<br />ARBEITEN.</h2></div>
+                <p className="work-intro">Zwei eigenständige Markenwelten. Keine Füllprojekte, kein Agentur-Baukasten.</p>
               </div>
               <div className="project-grid">
                 {PROJECTS.map((project,i) => <a key={project.page} className="project-link" href={"/#"+project.page} onClick={e => {
