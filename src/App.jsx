@@ -640,6 +640,16 @@ html,body{background:var(--pg-paper);color:var(--pg-ink)}
 .portfolio-root #work .project-meta{padding-top:15px!important}
 @media(max-width:900px){.portfolio-root .hero{min-height:auto!important;padding:170px 34px 95px!important}.portfolio-root .hero-name{font-size:clamp(58px,10vw,105px)!important}.portfolio-root #work{padding-top:70px!important}}
 @media(max-width:600px){.portfolio-root .nav{padding:20px 24px!important}.portfolio-root .hero{padding:152px 25px 85px!important;min-height:80svh!important}.portfolio-root .hero-tag{font-size:9px!important;letter-spacing:.02em!important;margin-bottom:36px!important}.portfolio-root .hero-name{font-size:clamp(48px,11.5vw,76px)!important;letter-spacing:-.09em!important;line-height:1.02!important;margin-bottom:30px!important}.portfolio-root .hero-desc{font-size:17px!important;margin-bottom:28px!important}.portfolio-root .hero-cta{gap:20px!important;flex-wrap:wrap!important}.portfolio-root .btn-primary{padding:15px 17px!important}.portfolio-root .btn-outline{padding:13px 0!important}.portfolio-root #work{padding-top:65px!important}.portfolio-root #work .section-title{font-size:clamp(38px,9vw,65px)!important}}
+
+/* Heavy black editorial typography */
+@import url('https://fonts.googleapis.com/css2?family=Archivo+Black&family=Inter:wght@400;500;600;700;800;900&display=swap');
+.portfolio-root .hero-name,.portfolio-root #work .section-title,.portfolio-root .section-title,.portfolio-root .about-quote{font-family:'Archivo Black','Arial Black',sans-serif!important;font-weight:900!important;letter-spacing:-.065em!important}
+.portfolio-root .hero-name{font-size:clamp(62px,8.6vw,148px)!important;line-height:.98!important}
+.portfolio-root #work .section-title{line-height:1.02!important}
+.portfolio-root .nav-logo,.portfolio-root .nav-logo .logo-name{font-family:'Inter',Arial,sans-serif!important;font-weight:900!important;letter-spacing:-.055em!important}
+.portfolio-root .project-meta h3,.portfolio-root .poster-card h3{font-family:'Inter',Arial,sans-serif!important;font-weight:900!important;letter-spacing:-.045em!important}
+@media(max-width:900px){.portfolio-root .hero-name{font-size:clamp(54px,9.5vw,100px)!important}}
+@media(max-width:600px){.portfolio-root .hero-name{font-size:clamp(40px,9.7vw,64px)!important;line-height:1.08!important;letter-spacing:-.075em!important;overflow-wrap:normal!important}.portfolio-root #work .section-title{font-size:clamp(36px,8.4vw,60px)!important}}
 `;
 
 const WORDS = ["Art Director", "Brand Designer", "Print & Digital", "Creative Mind"];
