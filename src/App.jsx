@@ -650,6 +650,31 @@ html,body{background:var(--pg-paper);color:var(--pg-ink)}
 .portfolio-root .project-meta h3,.portfolio-root .poster-card h3{font-family:'Inter',Arial,sans-serif!important;font-weight:900!important;letter-spacing:-.045em!important}
 @media(max-width:900px){.portfolio-root .hero-name{font-size:clamp(54px,9.5vw,100px)!important}}
 @media(max-width:600px){.portfolio-root .hero-name{font-size:clamp(40px,9.7vw,64px)!important;line-height:1.08!important;letter-spacing:-.075em!important;overflow-wrap:normal!important}.portfolio-root #work .section-title{font-size:clamp(36px,8.4vw,60px)!important}}
+
+/* Studio editorial homepage: image-first work and disciplined service columns */
+.portfolio-root .hero{padding-bottom:0!important;min-height:0!important}
+.portfolio-root .hero-left{padding-bottom:92px!important}
+.portfolio-root .hero-name{font-size:clamp(68px,10vw,160px)!important;max-width:1200px!important;line-height:.91!important}
+.portfolio-root .hero-name span{color:#1E211E!important}
+.portfolio-root .hero-tag{margin-bottom:36px!important}
+.portfolio-root .hero-desc{max-width:480px!important}
+.portfolio-root .hero-cta .btn-primary{background:#1E211E!important;color:#F7F6F2!important}
+.pg-focus-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));width:calc(100% + 12vw);margin:0 -6vw;background:#F7F6F2;border-top:1px solid #1E211E;border-bottom:1px solid #1E211E}
+.pg-focus-grid>div{padding:36px 6vw 38px;border-right:1px solid #C8C9C2;min-width:0}
+.pg-focus-grid>div:last-child{border-right:0}
+.pg-focus-grid small{display:block;font:600 11px 'Space Mono',monospace;letter-spacing:.05em;margin-bottom:12px}
+.pg-focus-grid strong{display:block;font-family:'Archivo Black','Arial Black',sans-serif;font-size:clamp(24px,3.2vw,58px);letter-spacing:-.065em;line-height:1;color:#1E211E}
+.pg-focus-grid p{max-width:240px;font-size:15px;line-height:1.4;margin-top:15px;color:#404740}
+.portfolio-root #work{background:#171A18!important;color:#F7F6F2!important;padding-top:85px!important}
+.portfolio-root #work .section-label,.portfolio-root #work .section-title,.portfolio-root #work .work-intro,.portfolio-root #work .project-meta h3,.portfolio-root #work .project-index{color:#F7F6F2!important}
+.portfolio-root #work .project-meta{border-color:rgba(255,255,255,.3)!important}
+.portfolio-root #work .project-grid{grid-template-columns:repeat(2,minmax(0,1fr))!important;gap:28px!important}
+.portfolio-root #work .project-link{grid-column:auto!important;transform:none!important}
+.portfolio-root #work .project-visual{aspect-ratio:4/3!important}
+.portfolio-root #work .project-visual img{filter:none!important}
+.portfolio-root #work .project-open{background:#D6F25E!important;color:#171A18!important}
+@media(max-width:900px){.pg-focus-grid{width:calc(100% + 68px);margin:0 -34px}.pg-focus-grid>div{padding:24px 20px}.pg-focus-grid strong{font-size:clamp(23px,3.4vw,40px)}}
+@media(max-width:600px){.portfolio-root .hero{padding-bottom:0!important}.portfolio-root .hero-left{padding-bottom:70px!important}.portfolio-root .hero-name{font-size:clamp(51px,12.1vw,82px)!important;letter-spacing:-.075em!important;line-height:.96!important}.pg-focus-grid{width:calc(100% + 50px);margin:0 -25px;grid-template-columns:1fr!important}.pg-focus-grid>div{padding:22px 25px;border-right:0;border-bottom:1px solid #C8C9C2;display:grid;grid-template-columns:1fr 1.2fr;column-gap:12px;align-items:start}.pg-focus-grid>div:last-child{border-bottom:0}.pg-focus-grid small{grid-column:1/-1;margin-bottom:8px}.pg-focus-grid strong{font-size:clamp(27px,8vw,42px)}.pg-focus-grid p{font-size:13px;margin:0}.portfolio-root #work{padding-top:64px!important}.portfolio-root #work .project-grid{grid-template-columns:1fr!important;gap:35px!important}.portfolio-root #work .project-visual{aspect-ratio:4/3!important}}
 `;
 
 const WORDS = ["Art Director", "Brand Designer", "Print & Digital", "Creative Mind"];
@@ -1281,9 +1306,9 @@ export default function Portfolio() {
               <div className="hero-left">
                 <div ref={heroLeftRef} style={{ transition:"transform 0.18s ease-out" }}>
                   <div className="hero-tag">INDEPENDENT CREATIVE STUDIO · RUHRGEBIET</div>
-                  <h1 className="hero-name">MARKEN.<br/><span>MIT CHARAKTER.</span></h1>
+                  <h1 className="hero-name">DESIGN,<br/><span>DAS WIRKT.</span></h1>
                   <Typewriter />
-                  <p className="hero-desc">Wir gestalten Identitäten und Kampagnen für Gastronomie, Marken und Sport. Klar im Konzept. Stark im Auftritt.</p>
+                  <p className="hero-desc">Für Restaurants, Marken und Sportvereine. Visuelle Identitäten, Rebranding und Kampagnen, die Menschen erreichen.</p>
                   
                   <div className="hero-cta">
                     <button className="btn-primary" onClick={() => scrollTo("work")}>Arbeiten ansehen ↓</button>
@@ -1291,7 +1316,7 @@ export default function Portfolio() {
                   </div>
                 </div>
               </div>
-              <div className="scroll-hint"><div className="scroll-line" /><span>Scroll</span></div>
+              <div className="pg-focus-grid"><div><small>01 / GASTRO</small><strong>GASTRO</strong><p>Branding, Speisekarten, Interior und Social Media.</p></div><div><small>02 / MARKEN</small><strong>BRANDING</strong><p>Identitäten, Rebranding, Kampagnen und Designsysteme.</p></div><div><small>03 / VEREINE</small><strong>SPORT</strong><p>Social Media, Vereinsmarketing und Anzeigen.</p></div></div>
             </section>
 
 
