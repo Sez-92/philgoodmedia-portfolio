@@ -613,6 +613,33 @@ html,body{background:var(--pg-paper);color:var(--pg-ink)}
 .pg-services span{font:700 10px 'Space Mono',monospace;letter-spacing:.02em;color:#1C2522;border:1px solid #1C2522;padding:9px 11px;background:transparent}
 @media(max-width:900px){.portfolio-root .hero-name{font-size:clamp(54px,11vw,95px)!important}.portfolio-root .hero-right{margin-top:36px!important}}
 @media(max-width:600px){.portfolio-root .hero{padding-top:116px!important}.portfolio-root .hero-name{font-size:clamp(52px,13.1vw,80px)!important;letter-spacing:-.085em!important;line-height:.95!important}.portfolio-root .hero-desc{font-size:16px!important}.pg-services{margin:20px 0 24px;gap:6px}.pg-services span{font-size:9px;padding:8px 9px}.portfolio-root .hero-cta{gap:10px!important}.portfolio-root .hero-right{margin-top:42px!important}}
+
+/* Clean studio homepage v3 – deliberately remove previous stacked hero visuals */
+.portfolio-root{background:#F7F6F2!important;color:#202421!important}
+.portfolio-root .nav{background:#F7F6F2!important;border-bottom:1px solid #D8D8D0!important;box-shadow:none!important}
+.portfolio-root .nav-logo,.portfolio-root .nav-logo span,.portfolio-root .menu-toggle{color:#202421!important}
+.portfolio-root .menu-toggle{border:1px solid #202421!important}
+.portfolio-root .hero{background:#F7F6F2!important;display:flex!important;flex-direction:column!important;justify-content:center!important;align-items:stretch!important;gap:0!important;min-height:88svh!important;padding:170px max(6vw,24px) 100px!important;overflow:hidden!important}
+.portfolio-root .hero-left{max-width:1300px;width:100%;margin:0 auto!important}
+.portfolio-root .hero-left>div{transform:none!important}
+.portfolio-root .hero-right,.portfolio-root .ruhr-tower,.portfolio-root .hero-bg-text,.portfolio-root .hero-grid-dots,.portfolio-root .scroll-hint{display:none!important}
+.portfolio-root .hero-tag{font:600 12px 'Space Mono',monospace!important;letter-spacing:.08em!important;color:#536058!important;margin-bottom:42px!important;animation:none!important;opacity:1!important}
+.portfolio-root .hero-tag:before{width:28px!important;background:#536058!important}
+.portfolio-root .hero-name{font-family:'Karla',Arial,sans-serif!important;font-size:clamp(68px,9.5vw,160px)!important;line-height:.95!important;letter-spacing:-.085em!important;font-weight:700!important;color:#202421!important;margin:0 0 35px!important;animation:none!important;opacity:1!important;max-width:1200px!important}
+.portfolio-root .hero-name span{color:#202421!important}
+.portfolio-root .hero-desc{color:#404740!important;max-width:560px!important;font:400 clamp(18px,1.8vw,23px)/1.45 'Karla',Arial,sans-serif!important;animation:none!important;opacity:1!important;margin-bottom:38px!important}
+.portfolio-root .hero-typewriter,.portfolio-root .pg-services{display:none!important}
+.portfolio-root .hero-cta{display:flex!important;gap:20px!important;animation:none!important;opacity:1!important;align-items:center!important}
+.portfolio-root .btn-primary{background:#202421!important;color:#F7F6F2!important;border:1px solid #202421!important;padding:18px 24px!important;font:700 12px 'Space Mono',monospace!important;letter-spacing:0!important}
+.portfolio-root .btn-outline{background:transparent!important;color:#202421!important;border:0!important;border-bottom:1px solid #202421!important;padding:15px 0!important;font:700 12px 'Space Mono',monospace!important;letter-spacing:0!important}
+.portfolio-root #work{background:#E7E9E1!important;color:#202421!important;padding-top:90px!important}
+.portfolio-root #work .section-title{font-family:'Karla',Arial,sans-serif!important;font-size:clamp(44px,6vw,94px)!important;letter-spacing:-.075em!important;line-height:1!important}
+.portfolio-root #work .section-label{font-size:11px!important;letter-spacing:.08em!important}
+.portfolio-root #work .project-grid{gap:42px!important}
+.portfolio-root #work .project-visual{border-radius:0!important}
+.portfolio-root #work .project-meta{padding-top:15px!important}
+@media(max-width:900px){.portfolio-root .hero{min-height:auto!important;padding:170px 34px 95px!important}.portfolio-root .hero-name{font-size:clamp(58px,10vw,105px)!important}.portfolio-root #work{padding-top:70px!important}}
+@media(max-width:600px){.portfolio-root .nav{padding:20px 24px!important}.portfolio-root .hero{padding:152px 25px 85px!important;min-height:80svh!important}.portfolio-root .hero-tag{font-size:9px!important;letter-spacing:.02em!important;margin-bottom:36px!important}.portfolio-root .hero-name{font-size:clamp(48px,11.5vw,76px)!important;letter-spacing:-.09em!important;line-height:1.02!important;margin-bottom:30px!important}.portfolio-root .hero-desc{font-size:17px!important;margin-bottom:28px!important}.portfolio-root .hero-cta{gap:20px!important;flex-wrap:wrap!important}.portfolio-root .btn-primary{padding:15px 17px!important}.portfolio-root .btn-outline{padding:13px 0!important}.portfolio-root #work{padding-top:65px!important}.portfolio-root #work .section-title{font-size:clamp(38px,9vw,65px)!important}}
 `;
 
 const WORDS = ["Art Director", "Brand Designer", "Print & Digital", "Creative Mind"];
@@ -1240,33 +1267,17 @@ export default function Portfolio() {
           <>
             <section id="hero" className="hero">
               <div ref={parallaxBg} className="hero-bg-text">PHILGOOD.</div>
-              <svg className="ruhr-tower" viewBox="0 0 300 520" aria-hidden="true" focusable="false">
-                <g fill="none" stroke="currentColor" strokeWidth="5" strokeLinejoin="miter">
-                  <path d="M58 490 L107 142 L193 142 L242 490 M80 330 H220 M95 235 H205 M58 490 H242 M112 142 L112 75 H188 V142 M150 75 V26 M112 75 L188 142 M188 75 L112 142"/>
-                  <path d="M107 142 L193 235 L95 330 L242 490 M193 142 L107 235 L220 330 L58 490"/>
-                  <circle cx="150" cy="93" r="38"/><circle cx="150" cy="93" r="9"/><path d="M150 55 V131 M112 93 H188 M123 66 L177 120 M177 66 L123 120"/>
-                </g>
-              </svg>
+              
               <div className="hero-left">
                 <div ref={heroLeftRef} style={{ transition:"transform 0.18s ease-out" }}>
-                  <div className="hero-tag">PHILGOOD MEDIA — KREATIVSTUDIO IM RUHRGEBIET</div>
-                  <h1 className="hero-name">WENIGER<br/><span>BLA BLA.</span><br/>MEHR WOW.</h1>
+                  <div className="hero-tag">INDEPENDENT CREATIVE STUDIO · RUHRGEBIET</div>
+                  <h1 className="hero-name">MARKEN.<br/><span>MIT CHARAKTER.</span></h1>
                   <Typewriter />
-                  <p className="hero-desc">Wir gestalten Marken, die auffallen. Für Restaurants, Unternehmen und Sportvereine – vom neuen Markenauftritt bis zur Kampagne im Feed.</p>
-                  <div className="pg-services" aria-label="Unsere Schwerpunkte"><span>01 / GASTRO & RESTAURANTS</span><span>02 / BRANDING & REDESIGN</span><span>03 / SPORT & SOCIAL MEDIA</span></div>
+                  <p className="hero-desc">Wir gestalten Identitäten und Kampagnen für Gastronomie, Marken und Sport. Klar im Konzept. Stark im Auftritt.</p>
+                  
                   <div className="hero-cta">
                     <button className="btn-primary" onClick={() => scrollTo("work")}>Arbeiten ansehen ↓</button>
                     <button className="btn-outline" onClick={() => scrollTo("contact")}>Lass uns sprechen ↗</button>
-                  </div>
-                </div>
-              </div>
-              <div className="hero-right">
-                <div ref={heroRightRef} style={{ transition:"transform 0.18s ease-out" }}>
-                  <div className="photo-frame">
-                    <div className="photo-frame-inner">
-                      <PhotoSwitcher />
-                    </div>
-                    
                   </div>
                 </div>
               </div>
