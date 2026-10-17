@@ -590,6 +590,29 @@ html,body{background:var(--pg-paper);color:var(--pg-ink)}
 .hero-cta .btn-primary,.hero-cta .btn-outline{margin:0!important;transform:none!important}
 @media(max-width:900px){.ruhr-tower{top:4%;right:-18%;width:65vw;height:55%;opacity:.11}.hero-right{width:100%;margin:32px auto 0!important}.photo-frame{width:min(78vw,430px)!important;aspect-ratio:4/5!important}}
 @media(max-width:600px){.hero{padding-top:110px!important}.hero-right{padding:0!important;margin:48px auto 0!important;justify-content:center!important}.hero-right>div{width:100%!important}.photo-frame{width:min(82vw,390px)!important;aspect-ratio:4/5!important}.hero-cta{gap:12px!important}.hero-cta .btn-primary,.hero-cta .btn-outline{width:auto!important;max-width:100%;padding:14px 18px!important}.ruhr-tower{right:-28%;top:4%;width:95vw;height:45%;opacity:.12}}
+
+/* Philgood Media positioning: minimal, sharp, customer-facing */
+.portfolio-root .hero{background:#F4F1E8!important;color:#1C2522!important;min-height:0!important}
+.portfolio-root .nav{background:#F4F1E8!important;border-bottom:1px solid #1C2522!important}
+.portfolio-root .nav-logo,.portfolio-root .nav-logo span,.portfolio-root .menu-toggle{color:#1C2522!important}
+.portfolio-root .menu-toggle{border-color:#1C2522!important}
+.portfolio-root .hero-tag{color:#304C3D!important;font-weight:700!important}
+.portfolio-root .hero-tag:before{background:#304C3D!important}
+.portfolio-root .hero-name{font-family:'Karla',Arial,sans-serif!important;font-size:clamp(66px,9.3vw,152px)!important;font-weight:700!important;line-height:.91!important;letter-spacing:-.095em!important;color:#1C2522!important}
+.portfolio-root .hero-name span{color:#304C3D!important}
+.portfolio-root .hero-desc{color:#303A34!important;font-size:clamp(16px,1.5vw,21px)!important;line-height:1.45!important;font-weight:400!important;max-width:580px!important}
+.portfolio-root .hero-typewriter{display:none!important}
+.portfolio-root .hero-bg-text{display:none!important}
+.portfolio-root .ruhr-tower{color:#304C3D!important;opacity:.10!important}
+.portfolio-root .btn-primary{background:#D5F15C!important;color:#1C2522!important;border:1px solid #1C2522!important}
+.portfolio-root .btn-outline{color:#1C2522!important;border:1px solid #1C2522!important}
+.portfolio-root .photo-frame{border:0!important;box-shadow:none!important;aspect-ratio:4/5!important}
+.portfolio-root .hero-photo{filter:grayscale(1)!important}
+.portfolio-root #work{background:#D5F15C!important}
+.pg-services{display:flex;flex-wrap:wrap;gap:7px;margin:24px 0 26px;max-width:590px}
+.pg-services span{font:700 10px 'Space Mono',monospace;letter-spacing:.02em;color:#1C2522;border:1px solid #1C2522;padding:9px 11px;background:transparent}
+@media(max-width:900px){.portfolio-root .hero-name{font-size:clamp(54px,11vw,95px)!important}.portfolio-root .hero-right{margin-top:36px!important}}
+@media(max-width:600px){.portfolio-root .hero{padding-top:116px!important}.portfolio-root .hero-name{font-size:clamp(52px,13.1vw,80px)!important;letter-spacing:-.085em!important;line-height:.95!important}.portfolio-root .hero-desc{font-size:16px!important}.pg-services{margin:20px 0 24px;gap:6px}.pg-services span{font-size:9px;padding:8px 9px}.portfolio-root .hero-cta{gap:10px!important}.portfolio-root .hero-right{margin-top:42px!important}}
 `;
 
 const WORDS = ["Art Director", "Brand Designer", "Print & Digital", "Creative Mind"];
@@ -1226,12 +1249,13 @@ export default function Portfolio() {
               </svg>
               <div className="hero-left">
                 <div ref={heroLeftRef} style={{ transition:"transform 0.18s ease-out" }}>
-                  <div className="hero-tag">Philip Spiekermann / Art Direction / Ruhrgebiet</div>
-                  <h1 className="hero-name">IDEEN, DIE<br/><span>BLEIBEN.</span></h1>
+                  <div className="hero-tag">PHILGOOD MEDIA — KREATIVSTUDIO IM RUHRGEBIET</div>
+                  <h1 className="hero-name">WENIGER<br/><span>BLA BLA.</span><br/>MEHR WOW.</h1>
                   <Typewriter />
-                  <p className="hero-desc">Branding, Kampagnen und digitale Erlebnisse. Konzeptionell stark, visuell eigenständig. Aus dem Ruhrgebiet.</p>
+                  <p className="hero-desc">Wir gestalten Marken, die auffallen. Für Restaurants, Unternehmen und Sportvereine – vom neuen Markenauftritt bis zur Kampagne im Feed.</p>
+                  <div className="pg-services" aria-label="Unsere Schwerpunkte"><span>01 / GASTRO & RESTAURANTS</span><span>02 / BRANDING & REDESIGN</span><span>03 / SPORT & SOCIAL MEDIA</span></div>
                   <div className="hero-cta">
-                    <button className="btn-primary" onClick={() => scrollTo("work")}>Projekte entdecken ↓</button>
+                    <button className="btn-primary" onClick={() => scrollTo("work")}>Arbeiten ansehen ↓</button>
                     <button className="btn-outline" onClick={() => scrollTo("contact")}>Lass uns sprechen ↗</button>
                   </div>
                 </div>
@@ -1252,8 +1276,8 @@ export default function Portfolio() {
 
             <section id="work" className="section">
               <div className="work-heading">
-                <div><div className="section-label">01 / Ausgewählte Arbeiten</div><h2 className="section-title">IDEEN WERDEN<br />SICHTBAR.</h2></div>
-                <p className="work-intro">Ausgewählte Arbeiten. Unterschiedliche Welten. Eine Haltung: niemals beliebig.</p>
+                <div><div className="section-label">01 / Ausgewählte Arbeiten</div><h2 className="section-title">DESIGN, DAS<br />ETWAS BEWEGT.</h2></div>
+                <p className="work-intro">Branding, Rebranding und Kampagnen. Konzipiert mit Haltung, gestaltet mit Charakter.</p>
               </div>
               <div className="project-grid">
                 {PROJECTS.map((project,i) => <a key={project.page} className="project-link" href={"/#"+project.page} onClick={e => {
