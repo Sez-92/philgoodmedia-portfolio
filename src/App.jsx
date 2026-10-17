@@ -700,6 +700,15 @@ html,body{background:var(--pg-paper);color:var(--pg-ink)}
 .portfolio-root #work{background:#101312!important}
 .portfolio-root #work .section-title{font-size:clamp(38px,6vw,85px)!important}
 @media(max-width:600px){.portfolio-root .nav{padding:18px 20px!important}.portfolio-root .hero-left{min-height:84svh!important;padding:145px 22px 55px!important}.portfolio-root .hero{background-position:55% center!important}.portfolio-root .hero-name{font-size:clamp(62px,14.1vw,98px)!important;line-height:.91!important}.portfolio-root .hero-tag{font-size:10px!important}.portfolio-root .hero-desc{font-size:11px!important}.portfolio-root .hero-cta .btn-outline{display:none!important}.pg-focus-grid{grid-template-columns:repeat(3,minmax(0,1fr))!important}.pg-focus-grid>div{display:block!important;padding:18px 10px!important;border-bottom:0!important;border-right:1px solid #D4D3CE!important}.pg-focus-grid small{font-size:8px!important;line-height:1.2!important}.pg-focus-grid strong{font-size:clamp(14px,4.5vw,24px)!important}.pg-focus-grid p{font-size:9px!important;line-height:1.4!important;margin-top:10px!important}.pg-service-images{gap:5px;padding:0 5px 5px}.pg-service-images img{height:150px}.portfolio-root #work{padding-top:55px!important}}
+
+/* Ensure the white hero copy is actually readable on all mobile devices */
+.portfolio-root .hero{background:linear-gradient(90deg,rgba(0,0,0,.90),rgba(0,0,0,.65)),url('/fruehschicht/02-interior.jpg') center/cover no-repeat!important}
+.portfolio-root .hero-left,.portfolio-root .hero-left>div{position:relative!important;z-index:4!important}
+.portfolio-root .hero-name,.portfolio-root .hero-name span,.portfolio-root .hero-tag,.portfolio-root .hero-desc{color:#fff!important;opacity:1!important;mix-blend-mode:normal!important;text-shadow:0 2px 12px rgba(0,0,0,.25)!important}
+.portfolio-root .hero-name .pg-dot{color:#D6F25E!important}
+.portfolio-root .hero-tag:before{background:#fff!important}
+.portfolio-root .hero-cta{position:relative!important;z-index:5!important}
+@media(max-width:600px){.portfolio-root .hero{background:linear-gradient(90deg,rgba(0,0,0,.90),rgba(0,0,0,.58)),url('/fruehschicht/02-interior.jpg') center/cover no-repeat!important}.portfolio-root .hero-name{font-size:clamp(58px,13.8vw,88px)!important;line-height:.91!important}.portfolio-root .hero-desc{color:#fff!important}}
 `;
 
 const WORDS = ["Art Director", "Brand Designer", "Print & Digital", "Creative Mind"];
