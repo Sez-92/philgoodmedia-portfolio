@@ -171,6 +171,39 @@ const styles = `
   }
 
 
+  /* Sector-led service presentation */
+  .services-sector { background:#ece9df; }
+  .sector-kicker { display:flex; justify-content:space-between; border-top:1px solid #171714; padding-top:15px; font:11px 'Space Mono',monospace; }
+  .sector-headline { font:900 clamp(70px,11vw,190px)/.85 Impact,'Arial Black',sans-serif; letter-spacing:-.06em; margin:45px 0 25px; color:#171714; }
+  .sector-headline span { color:#ef4c27; }
+  .sector-intro { max-width:540px; margin:0 0 75px auto; font-size:clamp(19px,2.3vw,32px); line-height:1.3; }
+  .sector-row { display:grid; grid-template-columns:180px 1fr 70px; gap:25px; padding:38px 0 42px; border-top:1px solid #171714; transition:background .3s,padding .3s; }
+  .sector-row:last-child { border-bottom:1px solid #171714; }
+  .sector-row:hover { background:#dedbd1; padding-left:18px; }
+  .sector-number { font:11px 'Space Mono',monospace; padding-top:8px; }
+  .sector-row h3 { font:900 clamp(34px,5vw,82px)/.96 Impact,'Arial Black',sans-serif; letter-spacing:-.04em; margin:0 0 18px; }
+  .sector-row p { max-width:530px; font-size:16px; line-height:1.5; }
+  .sector-tags { display:flex; flex-wrap:wrap; gap:7px; margin-top:25px; }
+  .sector-tags span { font:10px 'Space Mono',monospace; border:1px solid #171714; padding:8px 10px; border-radius:30px; }
+  .sector-arrow { font-size:45px; color:#ef4c27; text-align:right; }
+  .sector-cta { background:#a5a4c8; padding:25px; display:flex; justify-content:space-between; align-items:center; margin-top:28px; gap:20px; font:12px 'Space Mono',monospace; }
+  .sector-cta button { background:#171714; color:#ece9df; border:0; padding:18px 20px; cursor:pointer; font:11px 'Space Mono',monospace; }
+  .sector-cta button span { margin-left:30px; }
+  @media(max-width:700px) {
+    .sector-kicker { font-size:9px; gap:12px; }
+    .sector-headline { font-size:clamp(54px,13.5vw,94px); margin:40px 0 25px; }
+    .sector-intro { margin:0 0 45px; font-size:20px; }
+    .sector-row { grid-template-columns:1fr 35px; gap:10px; padding:25px 0 32px; }
+    .sector-row:hover { padding-left:0; background:transparent; }
+    .sector-number { grid-column:1/-1; padding:0 0 10px; }
+    .sector-row h3 { font-size:clamp(35px,9vw,58px); }
+    .sector-row p { font-size:14px; }
+    .sector-tags { gap:6px; margin-top:19px; }
+    .sector-tags span { font-size:9px; padding:7px 9px; }
+    .sector-arrow { font-size:28px; }
+    .sector-cta { align-items:stretch; flex-direction:column; }
+    .sector-cta button { width:100%; text-align:left; display:flex; justify-content:space-between; }
+  }
   /* Mobile-first refinement: make the experience work without hover */
   @media(max-width:700px) {
     html,body,.portfolio-root { overflow-x:clip !important; }
@@ -1251,17 +1284,29 @@ export default function Portfolio() {
                   <ReactiveDotField />
                   <div className="hero-edition">DESIGN STUDIO / 001</div>
                   <h1 className="hero-monument">NICHT<br/><em>BRAV.</em><br/>SONDERN<br/>GUT.</h1>
-                  <div className="hero-statement-bottom"><span>Philip Spiekermann<br/>Art Direction & visuelle Konzepte</span><button onClick={() => scrollTo("work")}>ARBEIT ANSEHEN <span aria-hidden="true">↘</span></button></div>
+                  <div className="hero-statement-bottom"><span>Philip Spiekermann<br/>Brand Design · Sport · Gastro · Messe</span><button onClick={() => scrollTo("work")}>ARBEIT ANSEHEN <span aria-hidden="true">↘</span></button></div>
                 </div>
-                <div className="hero-image-panel"><PhotoSwitcher/><div className="hero-image-stamp">P/GM<br/>26</div><div className="hero-image-caption">DESIGN MIT HALTUNG. AUS DEM REVIER.</div></div>
+                <div className="hero-image-panel"><PhotoSwitcher/><div className="hero-image-stamp">P/GM<br/>26</div><div className="hero-image-caption">GASTRO / SPORT / MARKEN / MESSE</div></div>
               </div>
               <div className="hero-bottomline"><span>BRANDING / ART DIRECTION / DIGITAL / PRINT</span><span>SCROLL TO EXPLORE ↓</span></div>
+            </section>
+
+            <section id="services" className="services-sector section">
+              <div className="sector-kicker"><span>WAS ICH FÜR DICH GESTALTE</span><span>01 — 03 / LEISTUNGEN</span></div>
+              <h2 className="sector-headline">DEINE IDEE.<br/><span>MEIN REVIER.</span></h2>
+              <p className="sector-intro">Keine Lösungen von der Stange. Sondern ein visueller Auftritt, der zu deinem Geschäft passt und im Kopf bleibt.</p>
+              <div className="sector-list">
+                <article className="sector-row"><div className="sector-number">01 / GASTRONOMIE</div><div><h3>GUTER GESCHMACK.<br/>GUTER AUFTRITT.</h3><p>Für Restaurants, Cafés und Food-Konzepte, die nicht aussehen wollen wie alle anderen.</p><div className="sector-tags"><span>Logo & Identität</span><span>Speisekarten</span><span>Packaging</span><span>Social Design</span><span>Raumgrafik</span></div></div><span className="sector-arrow">↗</span></article>
+                <article className="sector-row"><div className="sector-number">02 / SPORT</div><div><h3>IDENTITÄT.<br/>TEAMGEIST. WIRKUNG.</h3><p>Für Sportvereine und Sportmarken, die ihre Community begeistern und Sponsoren überzeugen wollen.</p><div className="sector-tags"><span>Vereinsbranding</span><span>Merchandise</span><span>Kampagnen</span><span>Sponsoring</span><span>Social Media</span></div></div><span className="sector-arrow">↗</span></article>
+                <article className="sector-row"><div className="sector-number">03 / BUSINESS & MESSE</div><div><h3>MARKEN, DIE<br/>RAUM EINNEHMEN.</h3><p>Für Unternehmen und Marken, die einen starken Auftritt brauchen – auf Papier, digital und live vor Ort.</p><div className="sector-tags"><span>Corporate Design</span><span>Brand Design</span><span>Messedesign</span><span>Messewände</span><span>Print & Digital</span></div></div><span className="sector-arrow">↗</span></article>
+              </div>
+              <div className="sector-cta"><span>DU HAST EIN PROJEKT IM KOPF?</span><button onClick={()=>scrollTo("contact")}>LASS UNS SPRECHEN <span>↗</span></button></div>
             </section>
 
             <section id="work" className="section">
               <div className="work-heading">
                 <div><div className="section-label">01 / Ausgewählte Arbeiten</div><h2 className="section-title">AUSGEWÄHLTE<br />ARBEITEN.</h2></div>
-                <p className="work-intro">Zwei eigenständige Markenwelten. Keine Füllprojekte, kein Agentur-Baukasten.</p>
+                <p className="work-intro">Einblicke in ausgewählte Markenwelten und freie Gestaltung.</p>
               </div>
               <div className="project-grid">
                 {PROJECTS.map((project,i) => <a key={project.page} className="project-link" href={"/#"+project.page} onClick={e => {
@@ -1335,7 +1380,7 @@ export default function Portfolio() {
                   <div className="contact-wrapper">
                     <div className="contact-tagline">Lass uns reden</div>
                     <h2 className="contact-heading">GUTES BEGINNT<br />MIT EINEM HALLO.</h2>
-                    <p style={{ fontSize:17, color:BLACK, maxWidth:440, lineHeight:1.7 }}>Eine neue Marke, eine Kampagne oder eine erste Idee? Erzähl mir, was du vorhast.</p>
+                    <p style={{ fontSize:17, color:BLACK, maxWidth:440, lineHeight:1.7 }}>Restaurant, Sportverein, Marke oder Messestand? Erzähl mir, was du vorhast.</p>
                     <div className="contact-links">
                       <a href="mailto:philipspiekermann@hotmail.com?subject=Projektanfrage" className="btn-primary">Projekt anfragen ↗</a>
                       <a href="https://www.linkedin.com/in/philip-spiekermann-450403205/" target="_blank" rel="noreferrer" className="btn-outline">LinkedIn</a>
