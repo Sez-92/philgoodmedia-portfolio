@@ -171,6 +171,45 @@ const styles = `
   }
 
 
+  /* Clean contemporary palette: warm chalk, near-black, citrus and soft sage */
+  html,body,.portfolio-root,.hero-reimagined,.services-sector { background:#f4f2eb !important; color:#1b211c !important; }
+  .nav,.nav.scrolled,.nav-links.open { background:#f4f2eb !important; border-color:#1b211c !important; }
+  .nav-logo,.logo-name,.nav-link,.nav-link:hover,.nav-link.active { color:#1b211c !important; }
+  .hero-statement { background:#d6ef70 !important; color:#1b211c !important; }
+  .hero-monument { font-family:Impact,'Arial Black',sans-serif; font-size:clamp(66px,9.2vw,170px) !important; letter-spacing:-.065em; line-height:.84; }
+  .hero-monument em { color:#50644c !important; }
+  .hero-statement-bottom button,.sector-cta button { background:#1b211c !important; color:#f4f2eb !important; }
+  .hero-statement-bottom button:hover { background:#f4f2eb !important; color:#1b211c !important; }
+  .hero-image-stamp { background:#d6ef70 !important; color:#1b211c !important; }
+  .egg-trigger { border:0; cursor:pointer; z-index:5; flex-direction:column; gap:2px; font-weight:700; }
+  .egg-hint { font-size:10px; position:absolute; right:8px; bottom:9px; }
+  .egg-backdrop { position:fixed; inset:0; background:rgba(17,24,18,.84); backdrop-filter:blur(9px); z-index:99999; display:flex; align-items:center; justify-content:center; padding:20px; }
+  .egg-modal { background:#d6ef70; color:#1b211c; padding:24px; width:min(420px,100%); position:relative; text-align:left; box-shadow:15px 15px 0 #1b211c; }
+  .egg-modal img { display:block; width:100%; max-height:280px; object-fit:cover; margin:20px 0; }
+  .egg-eyebrow,.egg-modal small { font:11px 'Space Mono',monospace; }
+  .egg-modal p { font:900 clamp(30px,8vw,46px)/.96 Impact,'Arial Black',sans-serif; margin:0 0 16px; }
+  .egg-close { position:absolute; right:15px; top:10px; background:transparent; border:0; color:#1b211c; font-size:32px; cursor:pointer; }
+  .sector-headline,.section-title,.sector-row h3,.project-meta h3 { color:#1b211c !important; }
+  .sector-headline span,.section-label,.sector-arrow,.project-open,.nav-link::after,.scroll-progress-bar { color:#50644c !important; }
+  .sector-headline span { color:#50644c !important; }
+  .sector-cta { background:#d6ef70 !important; }
+  .sector-row:hover { background:#e9eadf !important; }
+  .project-link { background:#e7e6de !important; }
+  .project-link:nth-child(2) { background:#dce4d5 !important; }
+  .poster-section,.footer { background:#1b211c !important; }
+  .contact-wrapper { background:#d6ef70 !important; }
+  .btn-primary,.contact-wrapper .btn-primary { background:#1b211c !important; color:#f4f2eb !important; }
+  .about-quote { color:#50644c !important; }
+  .marquee-section { background:#d6ef70 !important; }
+  .hero-image-panel img { filter:grayscale(.45) contrast(1.08); }
+  @media(max-width:700px) {
+    .hero-statement { min-height:420px !important; }
+    .hero-monument { font-size:clamp(60px,13.5vw,94px) !important; line-height:.88 !important; letter-spacing:-.07em; }
+    .hero-image-panel { height:300px !important; min-height:300px !important; }
+    .hero-image-stamp { width:65px !important; height:65px !important; }
+    .egg-modal { box-shadow:8px 8px 0 #1b211c; padding:18px; }
+    .egg-modal img { max-height:220px; }
+  }
   /* Sector-led service presentation */
   .services-sector { background:#ece9df; }
   .sector-kicker { display:flex; justify-content:space-between; border-top:1px solid #171714; padding-top:15px; font:11px 'Space Mono',monospace; }
@@ -936,6 +975,16 @@ const POSTERS = [
   {title:"Her Art, Her Voice", category:"Museum · Plakatserie", src:"/posters/her-art-her-voice.webp", alt:"Drei Museumsplakate mit bunten Kunstmotiven auf einer Außenwand, jeweils mit dem Titel Her Art, Her Voice"},
   {title:"Cali Couture — Streetworkout", category:"Poster · Collage & Typografie", src:"/posters/cali-streetworkout.webp", alt:"Cali-Couture-Collage mit schwarzhaariger Figur, pinken Akzenten und rotem Streetworkout-Schriftzug"},
 ];
+function FirstEasterEgg() {
+  const [count,setCount]=useState(0);
+  const [open,setOpen]=useState(false);
+  useEffect(()=>{if(!open)return;const onKey=e=>{if(e.key==="Escape")setOpen(false)};window.addEventListener("keydown",onKey);return()=>window.removeEventListener("keydown",onKey)},[open]);
+  return <>
+    <button type="button" className="hero-image-stamp egg-trigger" aria-label="Verstecktes Extra entdecken" title="Dreimal tippen" onClick={()=>{if(count>=2){setOpen(true);setCount(0)}else setCount(v=>v+1)}}>P/GM<br/>26<span className="egg-hint">✳</span></button>
+    {open&&<div className="egg-backdrop" role="presentation" onClick={()=>setOpen(false)}><div className="egg-modal" role="dialog" aria-modal="true" aria-label="Überraschung" onClick={e=>e.stopPropagation()}><button className="egg-close" aria-label="Schließen" onClick={()=>setOpen(false)}>×</button><span className="egg-eyebrow">YOU FOUND IT / 001</span><img src="https://media1.tenor.com/m/ur0xcQWCkegAAAAd/the-office-michael-scott.gif" alt="Humorvolle Reaktion aus The Office" loading="lazy"/><p>GUTE IDEEN BRAUCHEN AUCH HUMOR.</p><small>PSST. DA KOMMT NOCH MEHR.</small></div></div>}
+  </>;
+}
+
 function ReactiveDotField() {
   const [cursor,setCursor] = useState(null);
   const dots = Array.from({length:126},(_,i)=>({x:(i%14)*100/13,y:Math.floor(i/14)*100/8}));
@@ -1262,7 +1311,7 @@ export default function Portfolio() {
           <>
             <button className="menu-toggle" aria-expanded={menuOpen} aria-controls="main-navigation" onClick={() => setMenuOpen(v => !v)}>{menuOpen ? "Schließen ×" : "Menü +"}</button>
             <div id="main-navigation" className={"nav-links" + (menuOpen ? " open" : "")}>
-              {[["work","Projekte"],["posters","Poster"],["about","Über mich"],["skills","Leistungen"],["contact","Kontakt ↗"]].map(([s,label]) => (
+              {[["services","Leistungen"],["work","Projekte"],["posters","Poster"],["about","Über mich"],["skills","Leistungen"],["contact","Kontakt ↗"]].map(([s,label]) => (
                 <button key={s} className={"nav-link"+(activeSection===s?" active":"")} onClick={() => scrollTo(s)}>{label}</button>
               ))}
             </div>
@@ -1282,13 +1331,13 @@ export default function Portfolio() {
               <div className="hero-reimagined-grid">
                 <div className="hero-statement">
                   <ReactiveDotField />
-                  <div className="hero-edition">DESIGN STUDIO / 001</div>
-                  <h1 className="hero-monument">NICHT<br/><em>BRAV.</em><br/>SONDERN<br/>GUT.</h1>
+                  <div className="hero-edition">ART DIRECTION / BRAND DESIGN</div>
+                  <h1 className="hero-monument">MARKEN.<br/><em>MIT</em><br/>CHARAKTER.</h1>
                   <div className="hero-statement-bottom"><span>Philip Spiekermann<br/>Brand Design · Sport · Gastro · Messe</span><button onClick={() => scrollTo("work")}>ARBEIT ANSEHEN <span aria-hidden="true">↘</span></button></div>
                 </div>
-                <div className="hero-image-panel"><PhotoSwitcher/><div className="hero-image-stamp">P/GM<br/>26</div><div className="hero-image-caption">GASTRO / SPORT / MARKEN / MESSE</div></div>
+                <div className="hero-image-panel"><PhotoSwitcher/><FirstEasterEgg /><div className="hero-image-caption">GASTRO / SPORT / MARKEN / MESSE</div></div>
               </div>
-              <div className="hero-bottomline"><span>BRANDING / ART DIRECTION / DIGITAL / PRINT</span><span>SCROLL TO EXPLORE ↓</span></div>
+              <div className="hero-bottomline"><span>BRANDING / ART DIRECTION / DIGITAL / PRINT</span><span>ENTDECKEN ↓</span></div>
             </section>
 
             <section id="services" className="services-sector section">
@@ -1305,7 +1354,7 @@ export default function Portfolio() {
 
             <section id="work" className="section">
               <div className="work-heading">
-                <div><div className="section-label">01 / Ausgewählte Arbeiten</div><h2 className="section-title">AUSGEWÄHLTE<br />ARBEITEN.</h2></div>
+                <div><div className="section-label">01 / Ausgewählte Arbeiten</div><h2 className="section-title">EINBLICKE<br />IN DIE ARBEIT.</h2></div>
                 <p className="work-intro">Einblicke in ausgewählte Markenwelten und freie Gestaltung.</p>
               </div>
               <div className="project-grid">
