@@ -1049,7 +1049,7 @@ function PosterGallery() {
 
 const PROJECTS = [
   {page:"glutenfry",title:"Glutenfry",description:"Eine mutige Marke für glutenfreies Soul Food.",category:"Brand Design · Packaging · Print",img:"/gf_brand.png"},
-  {page:"fruehschicht",title:"Frühschicht",description:"Eine Bäckerei mit Ruhrgebiets-DNA.",category:"Branding · Packaging · Interior",img:"/fruehschicht/01-storefront.jpg"}
+  {page:"fruehschicht",title:"Frühschicht",description:"Eine Bäckerei mit Ruhrgebiets-DNA.",category:"Branding · Packaging · Interior",img:""}
 ];
 
 function ImageDetail({ image, onClose }) {
@@ -1136,6 +1136,13 @@ function FruehschichtPage({ onNavigate }) {
       .case-fruehschicht .fs-gallery-item{margin:0;min-width:0}.case-fruehschicht .fs-image{aspect-ratio:4/3;background:var(--fs-wine);position:relative;overflow:hidden;display:grid;place-items:center}
       .case-fruehschicht .fs-image img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;display:block}
       .case-fruehschicht .fs-image-fallback{color:var(--fs-butter);font-family:'Bagel Fat One','Cooper Black',Georgia,serif;font-size:clamp(24px,5vw,54px);text-align:center;padding:20px}
+      .case-fruehschicht .fs-gallery-item:nth-child(2n) .fs-image{background:#f1e2bf}
+      .case-fruehschicht .fs-gallery-item:nth-child(2n) .fs-image-fallback{color:#7b1528}
+      .case-fruehschicht .fs-gallery-item:nth-child(3n) .fs-image{background:#e5d8c7}
+      .case-fruehschicht .fs-gallery-item:nth-child(3n) .fs-image-fallback{color:#7b1528}
+      .case-fruehschicht .fs-image-fallback{display:flex;flex-direction:column;gap:20px;align-items:center;justify-content:center}
+      .case-fruehschicht .fs-art-mark{font-size:clamp(27px,5vw,65px);line-height:.86;letter-spacing:-.06em}
+      .case-fruehschicht .fs-image-fallback small{font:11px 'Space Mono',monospace;text-transform:uppercase}
       .case-fruehschicht .fs-gallery-item figcaption{padding:13px 0;border-bottom:1px solid var(--fs-line);font-size:13px;display:flex;justify-content:space-between;gap:12px}
       .case-fruehschicht .fs-contact{background:var(--fs-wine);color:var(--fs-cream)}.case-fruehschicht .fs-contact .fs-label{color:var(--fs-butter)}.case-fruehschicht .fs-contact .fs-heading{max-width:850px}
       .case-fruehschicht .fs-contact a{display:inline-block;margin-top:24px;background:var(--fs-butter);color:var(--fs-ink);padding:15px 22px;text-decoration:none;font:11px 'Space Mono',monospace;letter-spacing:1px;text-transform:uppercase}
@@ -1145,7 +1152,7 @@ function FruehschichtPage({ onNavigate }) {
       @media(prefers-reduced-motion:reduce){.case-fruehschicht *{scroll-behavior:auto!important;animation:none!important;transition:none!important}}
     `}</style>
     <header className="fs-hero">
-      <div className="fs-kicker">Feelgood Media / Brand Concept / Ruhrgebiet</div>
+      <div className="fs-kicker">Philgood Media / Brand Concept / Ruhrgebiet</div>
       <h1 className="fs-wordmark">Frühschicht</h1>
       <p className="fs-intro">Eine Bäckerei für das Ruhrgebiet, die da anfängt, wo hier früher jeder Tag anfing: in der Frühschicht.</p>
       <span className="fs-badge">Selbstinitiiertes Konzept · 2026</span>
@@ -1174,7 +1181,7 @@ function FruehschichtPage({ onNavigate }) {
     <section className="fs-section">
       <div className="fs-label">04 / Anwendungen</div>
       <h2 className="fs-heading">Eine Marke. Viele Berührungspunkte.</h2>
-      <div className="fs-gallery">{gallery.map((item,i)=><figure className="fs-gallery-item" key={item.src}><div className="fs-image"><div className="fs-image-fallback">{item.title}</div><img src={item.src} alt={item.title+" — Frühschicht Branding Mockup"} loading={i===0?"eager":"lazy"} onError={e=>{e.currentTarget.style.display="none"}}/><span style={{position:"absolute",left:12,bottom:12,background:"#F1E2BF",color:"#1E1A17",padding:"6px 8px",font:"10px 'Space Mono',monospace"}}>FRÜHSCHICHT</span></div><figcaption><strong>{item.title}</strong><span>{item.caption}</span></figcaption></figure>)}</div>
+      <div className="fs-gallery">{gallery.map((item,i)=><figure className="fs-gallery-item" key={item.src}><div className="fs-image"><div className="fs-image-fallback"><span className="fs-art-mark">FRÜH<br/>SCHICHT.</span><small>{item.title}</small></div><span style={{position:"absolute",left:12,bottom:12,background:"#F1E2BF",color:"#1E1A17",padding:"6px 8px",font:"10px 'Space Mono',monospace"}}>FRÜHSCHICHT</span></div><figcaption><strong>{item.title}</strong><span>{item.caption}</span></figcaption></figure>)}</div>
     </section>
     <section className="fs-section fs-contact">
       <div className="fs-label">Ein freies Konzeptprojekt</div>
