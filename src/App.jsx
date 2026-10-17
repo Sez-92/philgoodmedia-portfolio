@@ -675,6 +675,31 @@ html,body{background:var(--pg-paper);color:var(--pg-ink)}
 .portfolio-root #work .project-open{background:#D6F25E!important;color:#171A18!important}
 @media(max-width:900px){.pg-focus-grid{width:calc(100% + 68px);margin:0 -34px}.pg-focus-grid>div{padding:24px 20px}.pg-focus-grid strong{font-size:clamp(23px,3.4vw,40px)}}
 @media(max-width:600px){.portfolio-root .hero{padding-bottom:0!important}.portfolio-root .hero-left{padding-bottom:70px!important}.portfolio-root .hero-name{font-size:clamp(51px,12.1vw,82px)!important;letter-spacing:-.075em!important;line-height:.96!important}.pg-focus-grid{width:calc(100% + 50px);margin:0 -25px;grid-template-columns:1fr!important}.pg-focus-grid>div{padding:22px 25px;border-right:0;border-bottom:1px solid #C8C9C2;display:grid;grid-template-columns:1fr 1.2fr;column-gap:12px;align-items:start}.pg-focus-grid>div:last-child{border-bottom:0}.pg-focus-grid small{grid-column:1/-1;margin-bottom:8px}.pg-focus-grid strong{font-size:clamp(27px,8vw,42px)}.pg-focus-grid p{font-size:13px;margin:0}.portfolio-root #work{padding-top:64px!important}.portfolio-root #work .project-grid{grid-template-columns:1fr!important;gap:35px!important}.portfolio-root #work .project-visual{aspect-ratio:4/3!important}}
+
+/* Reference-led art direction — cinematic full-bleed hero, three-column services */
+.portfolio-root .nav{background:transparent!important;border:0!important;box-shadow:none!important;backdrop-filter:none!important}
+.portfolio-root .nav.scrolled{background:#181818!important}
+.portfolio-root .nav-logo,.portfolio-root .nav-logo span,.portfolio-root .menu-toggle{color:#fff!important}
+.portfolio-root .menu-toggle{border-color:rgba(255,255,255,.7)!important}
+.portfolio-root .hero{background:linear-gradient(90deg,rgba(10,10,10,.83),rgba(10,10,10,.28)),url('/fruehschicht/02-interior.jpg') center/cover no-repeat!important;color:#fff!important;padding:0!important;display:block!important}
+.portfolio-root .hero-left{width:100%!important;max-width:none!important;padding:clamp(160px,16vw,250px) 5vw 95px!important;min-height:92svh!important;display:flex;align-items:center;position:relative}
+.portfolio-root .hero-left>div{width:100%;max-width:1180px;margin:auto}
+.portfolio-root .hero-tag{color:#fff!important;font-size:12px!important;line-height:1.6!important;white-space:normal!important;letter-spacing:.13em!important;margin-bottom:32px!important}
+.portfolio-root .hero-name{color:#fff!important;font-family:'Archivo Black','Arial Black',sans-serif!important;font-size:clamp(75px,11vw,190px)!important;line-height:.84!important;letter-spacing:-.075em!important;max-width:1000px!important;margin:0 0 28px!important}
+.portfolio-root .hero-name span{color:#fff!important}
+.portfolio-root .hero-name .pg-dot{color:#D6F25E!important}
+.portfolio-root .hero-desc{color:#fff!important;font:600 13px/1.6 'Space Mono',monospace!important;letter-spacing:.12em!important;margin-bottom:30px!important}
+.portfolio-root .hero-cta .btn-primary{background:transparent!important;color:#fff!important;border:1px solid #fff!important;border-radius:100px!important;padding:17px 23px!important}
+.portfolio-root .hero-cta .btn-outline{color:#fff!important;border-color:rgba(255,255,255,.8)!important}
+.pg-focus-grid{background:#F7F6F2!important;color:#181818!important;border:0!important;width:100%!important;margin:0!important}
+.pg-focus-grid>div{padding:30px 4vw!important;border-color:#D4D3CE!important}
+.pg-focus-grid strong{font-size:clamp(27px,3vw,55px)!important}
+.pg-focus-grid p{font-family:'Space Mono',monospace!important;font-size:12px!important;line-height:1.55!important}
+.pg-service-images{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px;background:#F7F6F2;padding:0 12px 12px}
+.pg-service-images img{width:100%;height:clamp(190px,25vw,420px);object-fit:cover;filter:contrast(1.08)}
+.portfolio-root #work{background:#101312!important}
+.portfolio-root #work .section-title{font-size:clamp(38px,6vw,85px)!important}
+@media(max-width:600px){.portfolio-root .nav{padding:18px 20px!important}.portfolio-root .hero-left{min-height:84svh!important;padding:145px 22px 55px!important}.portfolio-root .hero{background-position:55% center!important}.portfolio-root .hero-name{font-size:clamp(62px,14.1vw,98px)!important;line-height:.91!important}.portfolio-root .hero-tag{font-size:10px!important}.portfolio-root .hero-desc{font-size:11px!important}.portfolio-root .hero-cta .btn-outline{display:none!important}.pg-focus-grid{grid-template-columns:repeat(3,minmax(0,1fr))!important}.pg-focus-grid>div{display:block!important;padding:18px 10px!important;border-bottom:0!important;border-right:1px solid #D4D3CE!important}.pg-focus-grid small{font-size:8px!important;line-height:1.2!important}.pg-focus-grid strong{font-size:clamp(14px,4.5vw,24px)!important}.pg-focus-grid p{font-size:9px!important;line-height:1.4!important;margin-top:10px!important}.pg-service-images{gap:5px;padding:0 5px 5px}.pg-service-images img{height:150px}.portfolio-root #work{padding-top:55px!important}}
 `;
 
 const WORDS = ["Art Director", "Brand Designer", "Print & Digital", "Creative Mind"];
@@ -1305,10 +1330,10 @@ export default function Portfolio() {
               
               <div className="hero-left">
                 <div ref={heroLeftRef} style={{ transition:"transform 0.18s ease-out" }}>
-                  <div className="hero-tag">INDEPENDENT CREATIVE STUDIO · RUHRGEBIET</div>
-                  <h1 className="hero-name">DESIGN,<br/><span>DAS WIRKT.</span></h1>
+                  <div className="hero-tag">KREATIVSTUDIO<br/>AUS DEM RUHRGEBIET</div>
+                  <h1 className="hero-name">DESIGN,<br/><span>DAS<br/>WIRKT<span className="pg-dot">.</span></span></h1>
                   <Typewriter />
-                  <p className="hero-desc">Für Restaurants, Marken und Sportvereine. Visuelle Identitäten, Rebranding und Kampagnen, die Menschen erreichen.</p>
+                  <p className="hero-desc">FÜR RESTAURANTS, MARKEN<br/>UND SPORTVEREINE.</p>
                   
                   <div className="hero-cta">
                     <button className="btn-primary" onClick={() => scrollTo("work")}>Arbeiten ansehen ↓</button>
