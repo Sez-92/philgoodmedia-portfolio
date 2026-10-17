@@ -170,6 +170,28 @@ const styles = `
     .cs-cards-mobile { display:none; }
   }
 
+
+  /* Interaction layer: kinetic dot field, editorial image hover and responsive motion */
+  .hero-statement { position:relative; isolation:isolate; }
+  .reactive-dot-field { position:absolute; inset:0; z-index:0; overflow:hidden; touch-action:pan-y; }
+  .reactive-dot-field i { position:absolute; display:block; width:5px; height:5px; border-radius:50%; background:#171714; transition:transform .18s cubic-bezier(.2,.7,.2,1),opacity .2s; pointer-events:none; }
+  .dot-field-label { position:absolute; bottom:12px; right:12px; font:9px 'Space Mono',monospace; opacity:.7; pointer-events:none; }
+  .hero-statement > :not(.reactive-dot-field) { position:relative; z-index:1; pointer-events:none; }
+  .hero-statement-bottom button { pointer-events:auto !important; position:relative; z-index:3; transition:background .25s,color .25s,transform .25s; }
+  .hero-statement-bottom button:hover { background:#ece9df; color:#171714; transform:translateY(-4px); }
+  .hero-monument { mix-blend-mode:multiply; }
+  .hero-image-panel img { transition:filter .65s ease,transform 1.2s cubic-bezier(.16,1,.3,1); }
+  .hero-image-panel:hover img { filter:grayscale(0) contrast(1.08); transform:scale(1.07) rotate(-1deg); }
+  .hero-image-stamp { transition:transform .65s cubic-bezier(.2,.8,.2,1); }
+  .hero-image-panel:hover .hero-image-stamp { transform:rotate(40deg) scale(1.1); }
+  .project-visual img { transition:transform .9s cubic-bezier(.2,.8,.2,1),filter .65s; }
+  .project-link:hover .project-visual img { transform:scale(1.07); filter:saturate(1.25); }
+  .project-meta h3 { transition:letter-spacing .4s,transform .4s; }
+  .project-link:hover .project-meta h3 { letter-spacing:.01em; transform:translateX(8px); }
+  .poster-card img { transition:transform .7s cubic-bezier(.2,.8,.2,1),filter .5s; }
+  .poster-card:hover img { transform:scale(1.045) rotate(-.5deg); filter:contrast(1.12); }
+  @media(hover:none) { .dot-field-label { display:none; } }
+  @media(prefers-reduced-motion:reduce) { .reactive-dot-field i,.hero-image-panel img,.project-visual img,.poster-card img { transition:none !important; } }
   /* PHILGOOD / 2026: Independent editorial redesign, intentionally not a card-based portfolio */
   :root { color-scheme:light; }
   html,body,.portfolio-root { background:#ece9df !important; color:#171714 !important; }
@@ -842,6 +864,22 @@ const POSTERS = [
   {title:"Her Art, Her Voice", category:"Museum · Plakatserie", src:"/posters/her-art-her-voice.webp", alt:"Drei Museumsplakate mit bunten Kunstmotiven auf einer Außenwand, jeweils mit dem Titel Her Art, Her Voice"},
   {title:"Cali Couture — Streetworkout", category:"Poster · Collage & Typografie", src:"/posters/cali-streetworkout.webp", alt:"Cali-Couture-Collage mit schwarzhaariger Figur, pinken Akzenten und rotem Streetworkout-Schriftzug"},
 ];
+function ReactiveDotField() {
+  const [cursor,setCursor] = useState(null);
+  const dots = Array.from({length:126},(_,i)=>({x:(i%14)*100/13,y:Math.floor(i/14)*100/8}));
+  return <div className="reactive-dot-field" onPointerMove={e=>{
+    const r=e.currentTarget.getBoundingClientRect();
+    setCursor({x:(e.clientX-r.left)/r.width*100,y:(e.clientY-r.top)/r.height*100});
+  }} onPointerLeave={()=>setCursor(null)} aria-hidden="true">
+    {dots.map((dot,i)=>{
+      const dx=cursor?dot.x-cursor.x:0,dy=cursor?dot.y-cursor.y:0;
+      const d=Math.hypot(dx,dy),force=cursor?Math.max(0,1-d/22):0;
+      return <i key={i} style={{left:dot.x+"%",top:dot.y+"%",transform:"translate("+((dx/(d||1))*force*34)+"px,"+((dy/(d||1))*force*34)+"px) scale("+(1+force*2.8)+")",opacity:.27+force*.7}}/>;
+    })}
+    <span className="dot-field-label">MOVE TO DISTURB THE GRID ↗</span>
+  </div>;
+}
+
 function PosterGallery() {
   const [selected, setSelected] = useState(null);
   const dialog = useRef(null);
@@ -1171,6 +1209,7 @@ export default function Portfolio() {
               <div className="hero-topline"><span>PHILGOOD MEDIA®</span><span>INDEPENDENT ART DIRECTION / RUHRGEBIET</span><span>EST. 2024 — 2026</span></div>
               <div className="hero-reimagined-grid">
                 <div className="hero-statement">
+                  <ReactiveDotField />
                   <div className="hero-edition">DESIGN STUDIO / 001</div>
                   <h1 className="hero-monument">NICHT<br/><em>BRAV.</em><br/>SONDERN<br/>GUT.</h1>
                   <div className="hero-statement-bottom"><span>Philip Spiekermann<br/>Art Direction & visuelle Konzepte</span><button onClick={() => scrollTo("work")}>ARBEIT ANSEHEN <span aria-hidden="true">↘</span></button></div>
