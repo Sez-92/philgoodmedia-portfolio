@@ -97,6 +97,6 @@ export default function App(){
   </>}{!sports&&<Contact/>}</main><Footer/>
   {poster!==null&&<Modal label="Poster-Großansicht" onClose={()=>setPoster(null)}><div className="viewer-caption" aria-live="polite"><h2>{posters[poster].title}</h2><span>{poster+1} / {posters.length}</span></div><img className="viewer-image" src={posters[poster].src} alt={posters[poster].title}/><div className="viewer-controls"><button className="pill" onClick={()=>setPoster(i=>(i-1+posters.length)%posters.length)}>← Vorheriges</button><button className="pill" onClick={()=>setPoster(i=>(i+1)%posters.length)}>Nächstes →</button></div></Modal>}
   {image&&<Modal label={image.title} onClose={()=>setImage(null)}><h2 className="viewer-caption">{image.title}</h2><img className="viewer-image" src={image.src} alt={image.title}/></Modal>}
-  {egg&&<Modal label="Kleine kreative Pause" onClose={()=>setEgg(false)}><div className="egg"><span>Gefunden. Eine kleine kreative Pause.</span><img className="egg-monogram" src="/favicon.svg" alt="Philgood Media Monogramm"/><h2>Gute Ideen<br/>brauchen Spielraum.</h2></div></Modal>}
+  {egg&&<Modal label="Kleine kreative Pause" onClose={()=>setEgg(false)}><div className="egg"><span>Gefunden. Eine kleine kreative Pause.</span><img src="/the-office-michael-scott.gif" alt="Michael Scott aus The Office"/><h2>Gute Ideen<br/>brauchen Humor.</h2></div></Modal>}
  </>;
 }
