@@ -1,4 +1,5 @@
 import './vereinssport.css';
+import SportsMarquee from './SportsMarquee.jsx';
 
 const enquiry='mailto:philipspiekermann@hotmail.com?subject=Social-Media-Design%20f%C3%BCr%20unseren%20Verein';
 export const sportsTitle='Social Media Design für Sportvereine in Recklinghausen | Philgood Media';
@@ -41,7 +42,7 @@ export default function Vereinssport({onImage}){
    <p className="sports-kicker">Social-Media-Design für Sportvereine</p>
    <h1>Kreisliga auf dem Platz.<br/><span>Bundesliga im Feed.</span></h1>
    <div className="sports-hero-bottom"><p>Ein eigener Look für euren Verein.<br/>Von mir gestaltet. Von euch in Canva befüllt.</p><a className="sports-cta" href={enquiry}>Anfrage stellen <span aria-hidden="true">↗</span></a><a className="sports-text-link" href="#beispiele">Beispiele entdecken ↓</a></div>
-   <img className="sports-hero-image" src="/vereinssport/hero_vereinssport_1920x1080.jpg" alt="Neun Vereins-Postings im Poster-Look: Spieltag, Ergebnis und Tor in Rot, Blau und Orange" width="1920" height="1080" fetchpriority="high"/>
+   <SportsMarquee/>
    <div className="sports-hero-note"><span>Vereinsfarben statt Einheitsbrei.</span><span>Feed / Story / Saison</span></div>
   </header>
 
