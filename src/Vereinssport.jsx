@@ -1,7 +1,7 @@
 import './vereinssport.css';
 import SportsMarquee from './SportsMarquee.jsx';
+import { ProjectLink } from './ProjectRequest.jsx';
 
-const enquiry='mailto:philipspiekermann@hotmail.com?subject=Social-Media-Design%20f%C3%BCr%20unseren%20Verein';
 export const sportsTitle='Social Media Design für Sportvereine in Recklinghausen | Philgood Media';
 export const sportsDescription='Social-Media-Vorlagen im Poster-Look für Sportvereine im Kreis Recklinghausen. Spieltag, Ergebnis und Tor – in euren Vereinsfarben und selbst in Canva befüllbar.';
 
@@ -41,7 +41,7 @@ export default function Vereinssport({onImage}){
    <div className="sports-eyebrow"><span>Philgood Media / Vereinssport</span><span>Für den Kreis Recklinghausen & darüber hinaus</span></div>
    <p className="sports-kicker">Social-Media-Design für Sportvereine</p>
    <h1>Kreisliga auf dem Platz.<br/><span>Bundesliga im Feed.</span></h1>
-   <div className="sports-hero-bottom"><p>Ein eigener Look für euren Verein.<br/>Von mir gestaltet. Von euch in Canva befüllt.</p><a className="sports-cta" href={enquiry}>Anfrage stellen <span aria-hidden="true">↗</span></a><a className="sports-text-link" href="#beispiele">Beispiele entdecken ↓</a></div>
+   <div className="sports-hero-bottom"><p>Ein eigener Look für euren Verein.<br/>Von mir gestaltet. Von euch in Canva befüllt.</p><ProjectLink className="sports-cta" area="sport" services={['Social-Media-Design']}>Anfrage stellen <span aria-hidden="true">↗</span></ProjectLink><a className="sports-text-link" href="#beispiele">Beispiele entdecken ↓</a></div>
    <SportsMarquee/>
    <div className="sports-hero-note"><span>Vereinsfarben statt Einheitsbrei.</span><span>Feed / Story / Saison</span></div>
   </header>
@@ -62,13 +62,13 @@ export default function Vereinssport({onImage}){
 
   <section className="sports-formats" aria-labelledby="sports-formats-title"><span className="sports-kicker">Mehr als nur Spieltag.</span><h2 id="sports-formats-title">Alles, was euren<br/>Verein bewegt.</h2><div>{['Spieltag','Ergebnis','Tor','Aufstellung','Neuzugang','Spieler des Spiels','Tabelle','Geburtstag','Sponsor'].map((name,i)=><span key={name}><small>{String(i+1).padStart(2,'0')}</small>{name}</span>)}</div></section>
 
-  <section className="sports-packages" id="pakete" aria-labelledby="sports-packages-title"><div className="sports-section-label"><h2 id="sports-packages-title">So können wir zusammenarbeiten.</h2><span>Passend zu eurem Team.</span></div><div className="sports-package-grid">{packages.map((pack,i)=><article key={pack.title} className={i===1?'sports-package featured':'sports-package'}><span className="sports-package-number">0{i+1}</span><h3>{pack.title}</h3><p>{pack.line}</p><ul>{pack.items.map(item=><li key={item}>{item}</li>)}</ul><a href={enquiry}>Angebot anfragen ↗</a></article>)}</div><p className="sports-extras">Dazu buchbar: Sponsoren-Vorlagen, Reel-Vorlagen und eine Kampagne zum Saisonstart.</p></section>
+  <section className="sports-packages" id="pakete" aria-labelledby="sports-packages-title"><div className="sports-section-label"><h2 id="sports-packages-title">So können wir zusammenarbeiten.</h2><span>Passend zu eurem Team.</span></div><div className="sports-package-grid">{packages.map((pack,i)=><article key={pack.title} className={i===1?'sports-package featured':'sports-package'}><span className="sports-package-number">0{i+1}</span><h3>{pack.title}</h3><p>{pack.line}</p><ul>{pack.items.map(item=><li key={item}>{item}</li>)}</ul><ProjectLink area="sport" services={['Social-Media-Design']} package={pack.title}>Angebot anfragen ↗</ProjectLink></article>)}</div><p className="sports-extras">Dazu buchbar: Sponsoren-Vorlagen, Reel-Vorlagen und eine Kampagne zum Saisonstart.</p></section>
 
   <section className="sports-process" aria-labelledby="sports-process-title"><span className="sports-kicker">Vom ersten Gespräch bis zum Anpfiff.</span><h2 id="sports-process-title">Einfach zum<br/>eigenen Auftritt.</h2><ol>{[['Kennenlernen.','Wir sprechen über euren Verein, eure Ziele und wer eure Social-Media-Kanäle betreut.'],['Eure Farben. Euer Design.','Ich entwickle euren Look und gestalte daraus Vorlagen für eure wichtigsten Formate.'],['Übergabe. Loslegen.','Ihr bekommt eure Vorlagen, den Styleguide und eine Einweisung. Danach kann euer Team selbst posten.']].map(([title,text],i)=><li key={title}><span>0{i+1}</span><h3>{title}</h3><p>{text}</p></li>)}</ol></section>
 
   <section className="sports-faq" aria-labelledby="sports-faq-title"><h2 id="sports-faq-title">Kurz geklärt.</h2>{[['Läuft das in Canva?','Ja. Die Vorlagen werden für Canva vorbereitet. Photoshop-Dateien sind auf Wunsch möglich.'],['Kann das unser Jugendwart bedienen?','Ja. Die Vorlagen sind für euren Vereinsalltag gedacht. In der Einweisung gehen wir gemeinsam durch, wie ihr Fotos, Namen, Gegner und Ergebnisse austauscht.'],['Kann ein Sponsor das mitfinanzieren?','Ja. Sponsor-Platzierungen können direkt im Design vorgesehen werden.'],['Geht das auch für andere Sportarten?','Ja. Die gezeigten Beispiele sind Fußballkonzepte. Euer Design richtet sich nach eurem Verein und eurer Sportart.']].map(([q,a])=><details key={q}><summary>{q}<span aria-hidden="true">+</span></summary><p>{a}</p></details>)}</section>
 
-  <section className="sports-contact" id="vereinskontakt"><span className="sports-kicker">Euer nächstes Heimspiel: im Feed.</span><h2>Dein Verein will<br/>auch so aussehen?</h2><p>Schreib mir, für welchen Verein du anfragst und was ihr braucht. Dann besprechen wir euren Auftritt.</p><a className="sports-cta" href={enquiry}>Lass uns loslegen <span aria-hidden="true">↗</span></a></section>
+  <section className="sports-contact" id="vereinskontakt"><span className="sports-kicker">Euer nächstes Heimspiel: im Feed.</span><h2>Dein Verein will<br/>auch so aussehen?</h2><p>Wähle kurz aus, was euer Verein braucht und bis wann. Daraus wird direkt deine Projektanfrage.</p><ProjectLink className="sports-cta" area="sport" services={['Social-Media-Design']}>Lass uns loslegen <span aria-hidden="true">↗</span></ProjectLink></section>
 
   <details className="sports-credits"><summary>Bildnachweise der freien Konzepte</summary><p>Fotografie: Unsplash. Konzeption, Layout und Bildbearbeitung: Philgood Media.</p><ul>{credits.map(([use,name,url])=><li key={use}>{use}: <a href={url} target="_blank" rel="noreferrer">{name} ↗</a></li>)}</ul><a href="https://unsplash.com/license" target="_blank" rel="noreferrer">Unsplash-Lizenz ↗</a></details>
  </article>;
