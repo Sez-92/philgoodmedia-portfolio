@@ -2,7 +2,6 @@ import { useEffect, useRef, useState } from 'react';
 import './posters.css';
 
 const palettes = ['#dceae1','#eddfd4','#deebf2','#e4e5dc','#e9dce3','#e8e6e2','#dce8eb','#e7e4ec'];
-const notes = ['Den Kopf in den Wolken. Die Idee auf Papier.','Bewegung, Rhythmus und ein langer Atem.','Ein bisschen Eskapismus. Ganz viel Vorfreude.','Zwei Katzen. Eine ziemlich dunkle Nacht.','Große Stadt. Kleine Auszeit.','Typografie mit einer anderen Perspektive.','Ein Motiv, das Fragen stellt.','Eine Bühne für starke Stimmen.'];
 
 export default function PosterGallery({items,onOpen}) {
   const [active,setActive]=useState(0);
@@ -60,7 +59,7 @@ export default function PosterGallery({items,onOpen}) {
   }
 
   return <section ref={section} className="poster-showcase" id="poster" aria-labelledby="poster-title" style={{'--poster-bg':palettes[active%palettes.length]}}>
-    <div className="showcase-top"><h2 id="poster-title">Poster & Motive</h2><span>Ein Motiv. Ein Moment.</span></div>
+    <div className="showcase-top"><h2 id="poster-title">Poster & Motive</h2></div>
     <div className="poster-stage" role="region" aria-roledescription="Karussell" aria-label="Poster entdecken" tabIndex={0}
       onKeyDown={event=>{if(event.target!==event.currentTarget)return;if(event.key==='ArrowRight'){event.preventDefault();choose(active+1,1);}if(event.key==='ArrowLeft'){event.preventDefault();choose(active-1,-1);}}}
       onMouseEnter={()=>setPaused(true)} onMouseLeave={()=>{setPaused(false);resetTilt();}}
@@ -71,7 +70,7 @@ export default function PosterGallery({items,onOpen}) {
       <div className="showcase-number" aria-hidden="true">{String(active+1).padStart(2,'0')}</div>
       <div className="showcase-copy" key={'copy-'+active} style={{'--slide-from':`${direction*22}px`}} aria-live={playing?'off':'polite'}>
         <span className="showcase-category">{item.category}</span>
-        <h3>{item.title}</h3><p>{notes[active%notes.length]}</p>
+        <h3>{item.title}</h3>
         <button className="showcase-open" onClick={()=>{setPlaying(false);onOpen(active);}}>Motiv ansehen <span aria-hidden="true">↗</span></button>
       </div>
       <button className="showcase-art" aria-label={item.title+' — Großansicht öffnen'} aria-haspopup="dialog" onPointerMove={tilt} onPointerLeave={resetTilt}
@@ -80,10 +79,10 @@ export default function PosterGallery({items,onOpen}) {
           <span className="showcase-art-tilt" ref={artwork}><img src={item.src} alt={item.title} loading="lazy" decoding="async" draggable="false"/></span>
         </span><span className="showcase-zoom" aria-hidden="true">↗</span>
       </button>
-      <div className="showcase-controls"><span className="showcase-count">{String(active+1).padStart(2,'0')} <span>/ {String(items.length).padStart(2,'0')}</span></span><span className="showcase-hint">Wischen oder weiterklicken ↔</span><div><button aria-label="Vorheriges Motiv" onClick={()=>choose(active-1,-1)}>←</button><button aria-label="Nächstes Motiv" onClick={()=>choose(active+1,1)}>→</button></div></div>
+      <div className="showcase-controls"><span className="showcase-count">{String(active+1).padStart(2,'0')} <span>/ {String(items.length).padStart(2,'0')}</span></span><div><button aria-label="Vorheriges Motiv" onClick={()=>choose(active-1,-1)}>←</button><button aria-label="Nächstes Motiv" onClick={()=>choose(active+1,1)}>→</button></div></div>
       {playing&&<div className="showcase-progress" key={'progress-'+active} style={{animationPlayState:running?'running':'paused'}} aria-hidden="true"/>}
     </div>
-    <div className="showcase-bottom"><span>Die Sammlung <span>({String(items.length).padStart(2,'0')})</span></span><button className="showcase-play" aria-pressed={playing} disabled={reduced} onClick={()=>setPlaying(v=>!v)}>{playing?'Ⅱ Pause':'▷ Abspielen'}</button></div>
+    <div className="showcase-bottom"><button className="showcase-play" aria-pressed={playing} disabled={reduced} onClick={()=>setPlaying(v=>!v)}>{playing?'Ⅱ Pause':'▷ Abspielen'}</button></div>
     <div className="showcase-rail" ref={rail} aria-label="Motiv auswählen">{items.map((poster,index)=><button key={poster.src} className={'showcase-thumb'+(active===index?' is-active':'')} aria-label={poster.title+' auswählen'} aria-pressed={active===index} onClick={()=>choose(index)}><span className="showcase-thumb-image"><img src={poster.thumbnail||poster.src} alt="" loading="lazy" decoding="async" draggable="false"/></span><span>{String(index+1).padStart(2,'0')}</span></button>)}</div>
   </section>;
 }
