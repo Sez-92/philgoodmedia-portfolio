@@ -1,0 +1,6 @@
+{
+  "trailingSlash": true,
+  "rewrites": [
+    { "source": "/vereinssport/", "destination": "/vereinssport/index.html" }
+  ]
+}
