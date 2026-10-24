@@ -46,6 +46,20 @@ export default function ProjectRequest({initial = {}}) {
       form.current.querySelector('input[name="service"]')?.focus();
       return;
     }
+    // Read the form as well, so browser autofill and native date pickers are included.
+    const fields = new FormData(form.current);
+    if (step === 1) setData(current => ({...current,
+      company: String(fields.get('organization') || ''),
+      description: String(fields.get('project') || ''),
+      timing: String(fields.get('timing') || current.timing),
+      deadline: String(fields.get('deadline') || ''),
+    }));
+    if (step === 2) setData(current => ({...current,
+      name: String(fields.get('name') || ''),
+      email: String(fields.get('email') || ''),
+      phone: String(fields.get('tel') || ''),
+      callbackTime: String(fields.get('callback-time') || ''),
+    }));
     setServiceError(false);
     setStep(current => Math.min(current + 1, 3));
   }
@@ -73,8 +87,8 @@ export default function ProjectRequest({initial = {}}) {
       {step === 1 && <>
         <label className="request-field">Unternehmen, Restaurant oder Verein <span className="request-optional">optional</span><input name="organization" autoComplete="organization" value={data.company} onChange={event => set('company', event.target.value)} maxLength={120} placeholder="Wie heißt dein Projekt?"/></label>
         <label className="request-field">Was schwebt dir vor? <span className="request-optional">optional</span><textarea name="project" rows={4} value={data.description} onChange={event => set('description', event.target.value)} maxLength={1200} placeholder="Zum Beispiel: Wir eröffnen ein Café und brauchen ein Logo, eine Speisekarte und Flyer."/><span className="request-field-note">Zwei, drei Sätze reichen. Details klären wir gemeinsam.</span></label>
-        <fieldset><legend>Bis wann brauchst du es?</legend><div className="request-choices request-areas">{[['flexible', 'Noch flexibel'], ['date', 'Ich habe einen Wunschtermin']].map(([value, label]) => <label key={value}><input type="radio" name="timing" checked={data.timing === value} onChange={() => set('timing', value)}/><span>{label}</span></label>)}</div></fieldset>
-        {data.timing === 'date' && <label className="request-field request-date">Gewünschter Fertigstellungstermin<input type="date" name="deadline" value={data.deadline} min={localToday()} required onChange={event => set('deadline', event.target.value)}/><span className="request-field-note">Ich prüfe mit dir, ob der Termin machbar ist.</span></label>}
+        <fieldset><legend>Bis wann brauchst du es?</legend><div className="request-choices request-areas">{[['flexible', 'Noch flexibel'], ['date', 'Ich habe einen Wunschtermin']].map(([value, label]) => <label key={value}><input type="radio" name="timing" value={value} checked={data.timing === value} onChange={() => set('timing', value)}/><span>{label}</span></label>)}</div></fieldset>
+        {data.timing === 'date' && <label className="request-field request-date">Gewünschter Fertigstellungstermin<input type="date" name="deadline" value={data.deadline} min={localToday()} required onInput={event => set('deadline', event.currentTarget.value)} onChange={event => set('deadline', event.target.value)}/><span className="request-field-note">Ich prüfe mit dir, ob der Termin machbar ist.</span></label>}
       </>}
       {step === 2 && <>
         <label className="request-field">Dein Name<input name="name" autoComplete="name" value={data.name} required maxLength={100} onChange={event => set('name', event.target.value)} placeholder="Vor- und Nachname" pattern=".*\S.*"/></label>
