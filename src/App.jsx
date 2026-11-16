@@ -2,6 +2,7 @@ import { useEffect, useRef, useState } from 'react';
 import './style.css';
 import ProjectRequest, { ProjectLink, ProjectRequestContext } from './ProjectRequest.jsx';
 import PosterGallery from './PosterGallery.jsx';
+import NewYearCampaign from './NewYearCampaign.jsx';
 import Vereinssport, { VereinssportTeaser, sportsTitle, sportsDescription } from './Vereinssport.jsx';
 
 const projects = [
@@ -100,5 +101,7 @@ export default function App(){
   {image&&<Modal label={image.title} onClose={()=>setImage(null)}><h2 className="viewer-caption">{image.title}</h2><img className="viewer-image" src={image.src} alt={image.title}/></Modal>}
   {request&&<Modal className="project-request-modal" label="Projekt anfragen" onClose={()=>setRequest(null)}><ProjectRequest initial={request}/></Modal>}
   {egg&&<Modal label="Kleine kreative Pause" onClose={()=>setEgg(false)}><div className="egg"><span>Gefunden. Eine kleine kreative Pause.</span><img src="/the-office-michael-scott.gif" alt="Michael Scott aus The Office"/><h2>Gute Ideen<br/>brauchen Humor.</h2></div></Modal>}
+  <NewYearCampaign enabled={poster===null&&!image&&!egg&&!request}/>
  </ProjectRequestContext.Provider>;
 }
+
